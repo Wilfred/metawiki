@@ -1,14 +1,19 @@
 var http = require('http');
 var Resource = require('./resource.js');
 
-http.createServer(function (req, res) {
-    // TODO: support other content-types.
-    res.writeHead(200, {'Content-Type': 'text/html'});
+var restify = require('restify');
 
+function index(req, res, next) {
+    res.setHeader('Content-Type', 'text/html');
     Resource.findOne({'path': 'index.html'}, function(err, indexResource) {
+        res.writeHead(200);
         res.end(indexResource.content);
     });
-}).listen(1337, '127.0.0.1');
+}
 
-console.log('Server running at http://127.0.0.1:1337/');
+var server = restify.createServer();
+server.get('/', index);
 
+server.listen(8080, function() {
+  console.log('%s listening at %s', server.name, server.url);
+});
