@@ -3,11 +3,11 @@ var Resource = require('./resource.js');
 
 var restify = require('restify');
 
-function index(req, res, next) {
-    res.setHeader('Content-Type', 'text/html');
+function index(req, response, next) {
+    response.setHeader('Content-Type', 'text/html');
     Resource.findOne({'path': 'index.html'}, function(err, indexResource) {
-        res.writeHead(200);
-        res.end(indexResource.content);
+        response.writeHead(200);
+        response.end(indexResource.content);
     });
 }
 
