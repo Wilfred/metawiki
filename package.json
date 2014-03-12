@@ -1,0 +1,11 @@
+{
+  "name": "wikicircle",
+  "version": "0.0.1",
+  "description": "A metawiki.",
+  "main": "server.js",
+  "keywords": [
+    "wiki"
+  ],
+  "author": "Wilfred Hughes me@wilfred.me.uk",
+  "license": "AGPL"
+}
