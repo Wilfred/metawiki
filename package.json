@@ -2,6 +2,7 @@
   "name": "wikicircle",
   "version": "0.0.1",
   "description": "A metawiki.",
+  "repository": "https://github.com/Wilfred/wikicircle",
   "main": "server.js",
   "keywords": [
     "wiki"
