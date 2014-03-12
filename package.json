@@ -7,5 +7,8 @@
     "wiki"
   ],
   "author": "Wilfred Hughes me@wilfred.me.uk",
-  "license": "AGPL"
+  "license": "AGPL",
+  "dependencies": {
+    "express": "~3.4.8"
+  }
 }
