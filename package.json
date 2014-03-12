@@ -9,6 +9,6 @@
   "author": "Wilfred Hughes me@wilfred.me.uk",
   "license": "AGPL",
   "dependencies": {
-    "express": "~3.4.8"
+    "mongoose": "~3.8.8"
   }
 }
