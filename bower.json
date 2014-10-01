@@ -1,0 +1,17 @@
+{
+  "name": "wikicircle",
+  "version": "0.0.0",
+  "authors": [
+    "Wilfred Hughes <me@wilfred.me.uk>"
+  ],
+  "description": "A JS metawiki",
+  "license": "AGPLv3",
+  "homepage": "https://github.com/Wilfred/wikieval",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
