@@ -4,10 +4,10 @@ var textarea = document.getElementById("editor"),
 
 textarea.value = "console.log(\"hello world!\");";
 
-CodeMirror.fromTextArea(textarea, {
+var editor = CodeMirror.fromTextArea(textarea, {
     lineNumbers: true
 });
 
 button.onclick = function() {
-    eval(textarea.value);
+    eval(editor.getValue());
 }
