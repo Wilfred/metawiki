@@ -1,15 +1,15 @@
-var Resource = require('./resource.js');
+var fs = require("fs");
+var db = require('./db.js');
 
-var hello = new Resource({
+db.connect();
+
+db.Resource.findOneAndUpdate({
     category: 'template',
     path: 'index.html',
-    content: 'hello world!'
+}, {
+    content: fs.readFileSync('index.html', {encoding: 'utf8'})
+}, {
+    upsert: true
+}, function(x) {
+    db.disconnect();
 });
-hello.save(function (err) {
-  if (err) {
-      console.log('Failed to save resource!');
-  } else {
-      console.log('Saved.')
-  }
-});
-
