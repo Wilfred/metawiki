@@ -1,5 +1,12 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+
+function connect() {
+    mongoose.connect('mongodb://localhost/test');
+}
+
+function disconnect() {
+    mongoose.connection.close();
+}
 
 // A resource is a blob of data that can viewed or modified over
 // our REST API.
@@ -10,4 +17,8 @@ var Resource = mongoose.model('Resource', {
     content: String
 });
 
-module.exports = Resource;
+module.exports = {
+    Resource: Resource,
+    connect: connect,
+    disconnect: disconnect
+};
