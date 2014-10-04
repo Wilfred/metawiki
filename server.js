@@ -12,21 +12,35 @@ function index(req, response, next) {
     });
 }
 
-function resource(req, response, next) {
-    db.Resource.findOne({'path': req.params[0]}, function(err, resource) {
+var CATEGORY_MIME_TYPES = {
+    js: 'application/javascript',
+    html: 'text/html',
+    css: 'text/css',
+}
+
+function resource(req, res, next) {
+    var category = req.params[0], path = req.params[1];
+    
+    db.Resource.findOne({
+        'category': category, 'path': path,
+    }, function(err, resource) {
         if (resource === null) {
             next(new restify.NotFoundError(
-                "No resource with path '" + req.params[0] + "'"));
+                "No resource with path '" + path + "'"));
         } else {
-            response.send(resource.content);
+            res.writeHead(200, {
+                'Content-Type': CATEGORY_MIME_TYPES[resource.category] || 'application/octet-stream'
+            });
+            res.write(resource.content);
+            res.end();
         }
-    })
+    });
 }
 
 var server = restify.createServer();
 server.get('/', index);
-server.get(/^\/resources\/(.+)/, resource);
+server.get(/^\/resources\/(.+?)\/(.+)$/, resource);
 
 server.listen(8080, function() {
-  console.log('%s listening at %s', server.name, server.url);
+    console.log('%s listening at %s', server.name, server.url);
 });
