@@ -1,7 +1,8 @@
 var http = require('http');
-var db = require('./db.js');
-
 var restify = require('restify');
+
+var db = require('./db.js');
+db.connect();
 
 function index(req, response, next) {
     response.setHeader('Content-Type', 'text/html');
