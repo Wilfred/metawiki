@@ -18,7 +18,11 @@ function createResource(resourcePath, localPath) {
 }
 
 async.parallel([
-    createResource("index.html", "index.html")
+    createResource("index.html", "index.html"),
+
+    // TODO: treat css as a separate type of content.
+    createResource("css/codemirror.css",
+                   "bower_components/codemirror/lib/codemirror.css"),
 ], function(err, res) {
     db.disconnect();
 });
