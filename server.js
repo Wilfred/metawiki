@@ -18,7 +18,7 @@ function resource(req, response, next) {
             next(new restify.NotFoundError(
                 "No resource with path '" + req.params[0] + "'"));
         } else {
-            response.send(resource)
+            response.send(resource.content);
         }
     })
 }
