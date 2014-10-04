@@ -12,6 +12,7 @@ function disconnect() {
 // our REST API.
 // TODO: versioning
 var Resource = mongoose.model('Resource', {
+    // TODO: rename this to 'type'.
     category: String,
     path: String,
     content: String
