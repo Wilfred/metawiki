@@ -20,9 +20,16 @@ function createResource(resourcePath, localPath) {
 async.parallel([
     createResource("index.html", "index.html"),
 
-    // TODO: treat css as a separate type of content.
+    // TODO: treat css and js as separate types of content.
     createResource("css/codemirror.css",
                    "bower_components/codemirror/lib/codemirror.css"),
+    createResource("js/codemirror/codemirror.js",
+                   "bower_components/codemirror/lib/codemirror.js"),
+    createResource("js/codemirror/javascript.js",
+                   "bower_components/codemirror/mode/javascript/javascript.js"),
+    
+    createResource("js/wikieval/start_editor.js",
+                   "static/start_editor.js"),
 ], function(err, res) {
     db.disconnect();
 });
