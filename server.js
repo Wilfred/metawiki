@@ -22,12 +22,15 @@ function resource(req, res, next) {
     var category = req.params[0], path = req.params[1];
     
     db.Resource.findOne({
-        'category': category, 'path': path,
+        'category': category, 'path': path
     }, function(err, resource) {
         if (resource === null) {
+            console.log("404 " + req.getPath());
             next(new restify.NotFoundError(
                 "No resource with path '" + path + "'"));
         } else {
+            console.log("200 " + req.getPath());
+
             res.writeHead(200, {
                 'Content-Type': CATEGORY_MIME_TYPES[resource.category] || 'application/octet-stream'
             });
@@ -37,10 +40,10 @@ function resource(req, res, next) {
     });
 }
 
-var server = restify.createServer();
+var server = restify.createServer({name: "WikiEval"});
 server.get('/', index);
 server.get(/^\/resources\/(.+?)\/(.+)$/, resource);
 
 server.listen(8080, function() {
-    console.log('%s listening at %s', server.name, server.url);
+    console.log('==> %s server listening at %s', server.name, server.url);
 });
