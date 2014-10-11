@@ -9,5 +9,6 @@ AGPLv3 license.
 ```
 $ npm install
 $ sudo systemctl start mongodb
+$ node fresh_db.js
 $ node server.js
 ```
