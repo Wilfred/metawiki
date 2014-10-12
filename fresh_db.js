@@ -43,6 +43,9 @@ async.series([
             createResource("js", "marked/marked.js",
                            "bower_components/marked/lib/marked.js"),
             
+            createResource("js", "handlebars/handlebars.js",
+                           "bower_components/handlebars/handlebars.js"),
+            
             createResource("js", "wikieval/start_editor.js",
                            "static/start_editor.js"),
             createResource("js", "wikieval/app.js",
