@@ -1,7 +1,7 @@
-var http = require('http');
 var restify = require('restify');
 
-var db = require('./db.js');
+var log = require('./log');
+var db = require('./db');
 db.connect();
 
 function index(req, response, next) {
@@ -25,12 +25,9 @@ function resource(req, res, next) {
         'category': category, 'path': path
     }, function(err, resource) {
         if (resource === null) {
-            console.log("404 " + req.getPath());
             next(new restify.NotFoundError(
                 "No resource with path '" + path + "'"));
         } else {
-            console.log("200 " + req.getPath());
-
             res.writeHead(200, {
                 'Content-Type': CATEGORY_MIME_TYPES[resource.category] || 'application/octet-stream'
             });
@@ -40,7 +37,17 @@ function resource(req, res, next) {
     });
 }
 
-var server = restify.createServer({name: "WikiEval"});
+var APP_NAME = "WikiEval";
+var server = restify.createServer({
+    name: APP_NAME,
+    log: log
+});
+
+server.pre(function (request, response, next) {
+    request.log.info(request.method, request.url);
+    next();
+});
+
 server.get('/', index);
 server.get(/^\/resources\/(.+?)\/(.+)$/, resource);
 
