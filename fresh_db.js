@@ -46,7 +46,10 @@ async.series([
             createResource("js", "wikieval/start_editor.js",
                            "static/start_editor.js"),
             createResource("js", "wikieval/app.js",
-                           "static/app.js")
+                           "static/app.js"),
+
+            createResource("md", "Home",
+                           "static/Home.md")
         ], cb);
     }, function(cb) {
         db.disconnect(cb);
