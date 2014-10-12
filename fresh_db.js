@@ -38,7 +38,9 @@ async.series([
                            "bower_components/routie/dist/routie.js"),
             
             createResource("js", "wikieval/start_editor.js",
-                           "static/start_editor.js")
+                           "static/start_editor.js"),
+            createResource("js", "wikieval/app.js",
+                           "static/app.js")
         ], cb);
     }, function(cb) {
         db.disconnect(cb);
