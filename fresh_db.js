@@ -37,6 +37,9 @@ async.series([
             createResource("js", "routie/routie.js",
                            "bower_components/routie/dist/routie.js"),
             
+            createResource("js", "jquery/jquery.js",
+                           "bower_components/jquery/dist/jquery.js"),
+            
             createResource("js", "wikieval/start_editor.js",
                            "static/start_editor.js"),
             createResource("js", "wikieval/app.js",
