@@ -19,6 +19,6 @@
     "marked": "~0.3.2",
     "routie": "~0.3.2",
     "jquery": "~2.1.1",
-    "handlebars.js": "~2.0.0"
+    "handlebars": "~2.0.0"
   }
 }
