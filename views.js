@@ -1,4 +1,4 @@
-var async = require('async');
+var restify = require('restify');
 var db = require('./db');
 
 
