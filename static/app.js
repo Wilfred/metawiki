@@ -10,10 +10,13 @@ routie('md/:pageName', function(pageName) {
 
 routie('edit/*', function() {
     var resourceName = window.location.hash.substr("#edit/".length);
-    $content.html(editorTemplate({
-        content: "some content",
-        resourceName: resourceName
-    }));
+
+    $.ajax({url:"/resources/" + resourceName}).done(function(page) {
+        $content.html(editorTemplate({
+            content: page.content,
+            resourceName: resourceName
+        }));
+    });
 });
 
 routie('md/Home');
