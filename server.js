@@ -18,6 +18,7 @@ server.pre(function (request, response, next) {
 });
 
 server.get('/', views.index);
+server.get(/^\/serve\/(.+?)\/(.+)$/, views.serve);
 server.get(/^\/resources\/(.+?)\/(.+)$/, views.resource);
 server.get(/^\/resources\/$/, views.allResources);
 

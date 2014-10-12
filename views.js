@@ -17,6 +17,25 @@ var CATEGORY_MIME_TYPES = {
 };
 var DEFAULT_MIME_TYPE = 'application/octet-stream';
 
+function serve(request, response, next) {
+    var category = request.params[0], path = request.params[1];
+    
+    db.Resource.findOne({
+        'category': category, 'path': path
+    }, function(err, resource) {
+        if (resource === null) {
+            next(new restify.NotFoundError(
+                "No resource with path '" + path + "'"));
+        } else {
+            response.writeHead(200, {
+                'Content-Type': CATEGORY_MIME_TYPES[resource.category] || DEFAULT_MIME_TYPE
+            });
+            response.write(resource.content);
+            response.end();
+        }
+    });
+}
+
 function resource(req, res, next) {
     var category = req.params[0], path = req.params[1];
     
@@ -27,11 +46,8 @@ function resource(req, res, next) {
             next(new restify.NotFoundError(
                 "No resource with path '" + path + "'"));
         } else {
-            res.writeHead(200, {
-                'Content-Type': CATEGORY_MIME_TYPES[resource.category] || DEFAULT_MIME_TYPE
-            });
-            res.write(resource.content);
-            res.end();
+            res.send(resource);
+            next();
         }
     });
 }
@@ -44,6 +60,7 @@ function allResources(req, res, next) {
 }
 
 module.exports = {
+    serve: serve,
     resource: resource,
     allResources: allResources,
     index: index
