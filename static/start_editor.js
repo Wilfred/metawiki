@@ -1,4 +1,4 @@
-/* jshint -W061 */
+/* jshint -W061 */ // Allow eval.
 var textarea = document.getElementById("editor"),
     button = document.getElementById("eval-contents");
 
