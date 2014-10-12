@@ -34,6 +34,9 @@ async.series([
             createResource("js", "codemirror/javascript.js",
                            "bower_components/codemirror/mode/javascript/javascript.js"),
             
+            createResource("js", "routie/routie.js",
+                           "bower_components/routie/dist/routie.js"),
+            
             createResource("js", "wikieval/start_editor.js",
                            "static/start_editor.js")
         ], cb);
