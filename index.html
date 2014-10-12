@@ -18,6 +18,12 @@
             </p>
         </div>
 
+        <script type="text/template" id="editor-template">
+            <h2>Editing {{resourceName}}</h2>
+            <textarea id="editor">{{content}}</textarea>
+            <button id="eval-contents">Run Code</button>
+        </script>
+
         <script src="/serve/js/codemirror/codemirror.js"></script>
         <script src="/serve/js/codemirror/javascript.js"></script>
         <script src="/serve/js/routie/routie.js"></script>
