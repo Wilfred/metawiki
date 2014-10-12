@@ -2,10 +2,6 @@ var fs = require("fs");
 var async = require('async');
 var db = require('./db.js');
 
-db.connect();
-
-
-
 function createResource(category, resourcePath, localPath) {
     return function(cb) {
         db.Resource.findOneAndUpdate({
@@ -22,10 +18,11 @@ function createResource(category, resourcePath, localPath) {
 async.series([
     // Remove all existing resources, install a fresh set, and cleanup.
     function(cb) {
-        console.log('removing');
+        db.connect(cb);
+    },
+    function(cb) {
         db.Resource.remove({}, cb);
     }, function(cb) {
-        console.log('creating');
         async.parallel([
             createResource("html", "index.html", "index.html"),
 
@@ -41,11 +38,9 @@ async.series([
                            "static/start_editor.js")
         ], cb);
     }, function(cb) {
-        console.log('disconnecting');
         db.disconnect(cb);
     }
 ], function(err, res) {
-    console.log('finished');
     if (err) {
         console.log(['Failed:', err]);
     } else {

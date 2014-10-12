@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
-function connect() {
-    mongoose.connect('mongodb://localhost/test');
+function connect(cb) {
+    mongoose.connect('mongodb://localhost/test', cb);
 }
 
-function disconnect() {
-    mongoose.connection.close();
+function disconnect(cb) {
+    mongoose.connection.close(cb);
 }
 
 // A resource is a blob of data that can viewed or modified over
