@@ -1,3 +1,4 @@
+var async = require('async');
 var db = require('./db');
 
 
@@ -13,7 +14,8 @@ var CATEGORY_MIME_TYPES = {
     js: 'application/javascript',
     html: 'text/html',
     css: 'text/css'
-}, DEFAULT_MIME_TYPE = 'application/octet-stream';
+};
+var DEFAULT_MIME_TYPE = 'application/octet-stream';
 
 function resource(req, res, next) {
     var category = req.params[0], path = req.params[1];
@@ -34,7 +36,15 @@ function resource(req, res, next) {
     });
 }
 
+function allResources(req, res, next) {
+    db.Resource.find({}, function(err, resources) {
+        res.send(resources);
+        next();
+    });
+}
+
 module.exports = {
     resource: resource,
+    allResources: allResources,
     index: index
 };

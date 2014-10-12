@@ -19,6 +19,7 @@ server.pre(function (request, response, next) {
 
 server.get('/', views.index);
 server.get(/^\/resources\/(.+?)\/(.+)$/, views.resource);
+server.get(/^\/resources\/$/, views.allResources);
 
 server.listen(8080, function() {
     console.log('==> %s server listening at %s', server.name, server.url);
