@@ -40,9 +40,6 @@ async.series([
             createResource("js", "jquery/jquery.js",
                            "bower_components/jquery/dist/jquery.js"),
             
-            createResource("js", "uri/uri.js",
-                           "bower_components/uri.js/src/URI.js"),
-            
             createResource("js", "marked/marked.js",
                            "bower_components/marked/lib/marked.js"),
             
