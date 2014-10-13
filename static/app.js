@@ -21,8 +21,10 @@ routie('md/:pageName', function(pageName) {
     });
 });
 
-routie('edit/*', function() {
-    var resourceName = window.location.hash.substr("#edit/".length);
+routie('edit*', function() {
+    // Of the form 'edit?foo/bar'
+    var hashPath = window.location.hash.substring(1);
+    var resourceName = hashPath.split('?')[1];
 
     Resource.fetch(resourceName, function(err, page) {
         $content.html(editorTemplate({
