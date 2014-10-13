@@ -1,9 +1,22 @@
 // The clientside wiki app.
+
+// Models.
+var Resource = {
+    fetch: function fetch(resourceName, callback) {
+        $.ajax({url:"/resources/" + resourceName}).done(function(resource) {
+            // TODO: Handle 404 and 500.
+            callback(null, resource);
+        });
+    }
+}
+
+// Templating.
 var $content = $("#content"),
     editorTemplate = Handlebars.compile($("#editor-template").html());
 
+// Controllers.
 routie('md/:pageName', function(pageName) {
-    $.ajax({url:"/resources/md/" + pageName}).done(function(page) {
+    Resource.fetch("md/" + pageName, function(err, page) {
         $content.html(marked(page.content));
     });
 });
@@ -11,7 +24,7 @@ routie('md/:pageName', function(pageName) {
 routie('edit/*', function() {
     var resourceName = window.location.hash.substr("#edit/".length);
 
-    $.ajax({url:"/resources/" + resourceName}).done(function(page) {
+    Resource.fetch(resourceName, function(err, page) {
         $content.html(editorTemplate({
             content: page.content,
             resourceName: resourceName
@@ -23,4 +36,5 @@ routie('edit/*', function() {
     });
 });
 
+// Initialisation.
 routie('md/Home');
