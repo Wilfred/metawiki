@@ -1,5 +1,7 @@
 # WikiCircle
 
+[![Dependency Status](https://david-dm.org/wilfred/wikieval.svg)](https://david-dm.org/wilfred/wikieval)
+
 This is a prototype of a metawiki. Nothing works yet.
 
 AGPLv3 license.
