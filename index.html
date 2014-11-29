@@ -20,6 +20,11 @@
 
         <script type="text/template" id="editor-template">
             <h2>{{heading}}</h2>
+            <select name="mimeType">
+                <!-- this should be a database value, not hard-coded. -->
+                <option value="text/x-markdown">Markdown</option>
+                <option value="application/javascript">JavaScript</option>
+            </select>
             <textarea id="editor">{{content}}</textarea>
             <button id="eval-contents">Run Code</button>
         </script>
