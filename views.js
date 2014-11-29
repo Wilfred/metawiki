@@ -10,13 +10,6 @@ function index(req, response, next) {
     });
 }
 
-var CATEGORY_MIME_TYPES = {
-    js: 'application/javascript',
-    html: 'text/html',
-    css: 'text/css'
-};
-var DEFAULT_MIME_TYPE = 'application/octet-stream';
-
 function serve(request, response, next) {
     var category = request.params[0], path = request.params[1];
     
@@ -28,7 +21,7 @@ function serve(request, response, next) {
                 "No resource with path '" + path + "'"));
         } else {
             response.writeHead(200, {
-                'Content-Type': CATEGORY_MIME_TYPES[resource.category] || DEFAULT_MIME_TYPE
+                'Content-Type': resource.mimeType
             });
             response.write(resource.content);
             response.end();

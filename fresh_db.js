@@ -3,12 +3,13 @@ var async = require('async');
 var db = require('./db.js');
 var models = require('./models.js');
 
-function createResource(category, resourcePath, localPath) {
+function createResource(category, mimeType, resourcePath, localPath) {
     return function(cb) {
         models.Resource.findOneAndUpdate({
             category: category,
             path: resourcePath
         }, {
+            mimeType: mimeType,
             content: fs.readFileSync(localPath, {encoding: 'utf8'})
         }, {
             upsert: true
@@ -25,34 +26,44 @@ async.series([
         models.Resource.remove({}, cb);
     }, function(cb) {
         async.parallel([
-            createResource("html", "index.html", "index.html"),
+            createResource("html", "test/html",
+                           "index.html", "index.html"),
 
-            // TODO: treat css and js as separate types of content.
-            createResource("css", "codemirror.css",
+            createResource("css", "text/css",
+                           "codemirror.css",
                            "bower_components/codemirror/lib/codemirror.css"),
-            createResource("js", "codemirror/codemirror.js",
+            createResource("js", "application/javascript",
+                           "codemirror/codemirror.js",
                            "bower_components/codemirror/lib/codemirror.js"),
-            createResource("js", "codemirror/javascript.js",
+            createResource("js", "application/javascript",
+                            "codemirror/javascript.js",
                            "bower_components/codemirror/mode/javascript/javascript.js"),
             
-            createResource("js", "routie/routie.js",
+            createResource("js", "application/javascript",
+                            "routie/routie.js",
                            "bower_components/routie/dist/routie.js"),
             
-            createResource("js", "jquery/jquery.js",
+            createResource("js", "application/javascript",
+                            "jquery/jquery.js",
                            "bower_components/jquery/dist/jquery.js"),
             
-            createResource("js", "marked/marked.js",
+            createResource("js", "application/javascript",
+                            "marked/marked.js",
                            "bower_components/marked/lib/marked.js"),
             
-            createResource("js", "handlebars/handlebars.js",
+            createResource("js", "application/javascript",
+                            "handlebars/handlebars.js",
                            "bower_components/handlebars/handlebars.js"),
             
-            createResource("js", "wikieval/start_editor.js",
+            createResource("js", "application/javascript",
+                            "wikieval/start_editor.js",
                            "static/start_editor.js"),
-            createResource("js", "wikieval/app.js",
+            createResource("js", "application/javascript",
+                            "wikieval/app.js",
                            "static/app.js"),
 
-            createResource("md", "Home",
+            createResource("md", "text/plain",
+                           "Home",
                            "static/Home.md")
         ], cb);
     }, function(cb) {
