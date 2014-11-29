@@ -21,7 +21,7 @@ function serve(request, response, next) {
                 "No resource with path '" + path + "'"));
         } else {
             response.writeHead(200, {
-                'Content-Type': resource.mimeType
+                'Content-Type': resource.mimeType + "; charset=UTF-8"
             });
             response.write(resource.content);
             response.end();
