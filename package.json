@@ -13,7 +13,7 @@
     "async": "^0.9.0",
     "bunyan": "^1.1.3",
     "bunyan-prettystream": "^0.1.3",
-    "mongoose": "~3.8.8",
+    "mongoose": "^3.8.19",
     "restify": "~2.6.3"
   }
 }
