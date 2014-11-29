@@ -55,9 +55,6 @@ async.series([
                            "bower_components/handlebars/handlebars.js"),
             
             createResource("application/javascript",
-                            "js/wikieval/start_editor.js",
-                           "static/start_editor.js"),
-            createResource("application/javascript",
                             "js/wikieval/app.js",
                            "static/app.js"),
 
