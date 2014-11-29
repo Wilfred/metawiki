@@ -20,6 +20,7 @@
 
         <script type="text/template" id="editor-template">
             <h2>{{heading}}</h2>
+            <input type="text" name="path" value="{{path}}">
             <select name="mimeType">
                 <!-- this should be a database value, not hard-coded. -->
                 <option value="text/x-markdown" {{#ifEqual mimeType "text/x-markdown"}}selected{{/ifEqual}}>

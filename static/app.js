@@ -34,7 +34,7 @@ routie('edit*', function() {
     var resourceName = hashPath.split('?')[1];
 
     Resource.fetch(resourceName, function(err, resource) {
-        loadEditor("Editing " + resource.path, resource);
+        loadEditor("Editing", resource);
     });
 });
 
@@ -47,6 +47,7 @@ function loadEditor(heading, resource) {
     $content.html(editorTemplate({
         content: resource ? resource.content : "",
         mimeType: resource ? resource.mimeType : "text/x-markdown",
+        path: resource ? resource.path : "",
         heading: heading
     }));
 
