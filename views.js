@@ -17,6 +17,7 @@ function serve(request, response, next) {
         'path': path
     }, function(err, resource) {
         if (resource === null) {
+            // TODO: should be JSON with an error reason.
             next(new restify.NotFoundError(
                 "No resource with path '" + path + "'"));
         } else {
