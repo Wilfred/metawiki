@@ -1,10 +1,11 @@
 var fs = require("fs");
 var async = require('async');
 var db = require('./db.js');
+var models = require('./models.js');
 
 function createResource(category, resourcePath, localPath) {
     return function(cb) {
-        db.Resource.findOneAndUpdate({
+        models.Resource.findOneAndUpdate({
             category: category,
             path: resourcePath
         }, {
@@ -21,7 +22,7 @@ async.series([
         db.connect(cb);
     },
     function(cb) {
-        db.Resource.remove({}, cb);
+        models.Resource.remove({}, cb);
     }, function(cb) {
         async.parallel([
             createResource("html", "index.html", "index.html"),

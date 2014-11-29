@@ -1,10 +1,10 @@
 var restify = require('restify');
-var db = require('./db');
+var models = require('./models');
 
 
 function index(req, response, next) {
     response.setHeader('Content-Type', 'text/html');
-    db.Resource.findOne({'path': 'index.html'}, function(err, indexResource) {
+    models.Resource.findOne({'path': 'index.html'}, function(err, indexResource) {
         response.writeHead(200);
         response.end(indexResource.content);
     });
@@ -20,7 +20,7 @@ var DEFAULT_MIME_TYPE = 'application/octet-stream';
 function serve(request, response, next) {
     var category = request.params[0], path = request.params[1];
     
-    db.Resource.findOne({
+    models.Resource.findOne({
         'category': category, 'path': path
     }, function(err, resource) {
         if (resource === null) {
@@ -39,7 +39,7 @@ function serve(request, response, next) {
 function getResource(req, res, next) {
     var category = req.params[0], path = req.params[1];
     
-    db.Resource.findOne({
+    models.Resource.findOne({
         'category': category, 'path': path
     }, function(err, resource) {
         if (resource === null) {
@@ -53,7 +53,7 @@ function getResource(req, res, next) {
 }
 
 function allResources(req, res, next) {
-    db.Resource.find({}, function(err, resources) {
+    models.Resource.find({}, function(err, resources) {
         res.send(resources);
         next();
     });
