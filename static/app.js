@@ -26,28 +26,26 @@ routie('edit*', function() {
     var hashPath = window.location.hash.substring(1);
     var resourceName = hashPath.split('?')[1];
 
-    Resource.fetch(resourceName, function(err, page) {
-        $content.html(editorTemplate({
-            content: page.content,
-            heading: "Editing " + resourceName
-        }));
-
-        CodeMirror.fromTextArea($('#editor').get(0), {
-            lineNumbers: true
-        });
+    Resource.fetch(resourceName, function(err, resource) {
+        loadEditor("Editing " + resource.name, resource);
     });
 });
 
 routie('new*', function() {
+    loadEditor("New", null);
+});
+
+// Views.
+function loadEditor(heading, resource) {
     $content.html(editorTemplate({
-        content: "",
-        heading: "New Resource"
+        content: resource ? resource.content : "",
+        heading: heading
     }));
 
     CodeMirror.fromTextArea($('#editor').get(0), {
         lineNumbers: true
     });
-});
+}
 
 // Initialisation.
 routie('md/Home');
