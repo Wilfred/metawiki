@@ -36,7 +36,7 @@ function serve(request, response, next) {
     });
 }
 
-function resource(req, res, next) {
+function getResource(req, res, next) {
     var category = req.params[0], path = req.params[1];
     
     db.Resource.findOne({
@@ -61,7 +61,7 @@ function allResources(req, res, next) {
 
 module.exports = {
     serve: serve,
-    resource: resource,
+    getResource: getResource,
     allResources: allResources,
     index: index
 };
