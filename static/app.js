@@ -11,6 +11,13 @@ var Resource = {
 }
 
 // Templating.
+Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
+  if (v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
 var $content = $("#content"),
     editorTemplate = Handlebars.compile($("#editor-template").html());
 
@@ -39,6 +46,7 @@ routie('new*', function() {
 function loadEditor(heading, resource) {
     $content.html(editorTemplate({
         content: resource ? resource.content : "",
+        mimeType: resource ? resource.mimeType : "text/x-markdown",
         heading: heading
     }));
 

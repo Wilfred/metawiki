@@ -22,8 +22,12 @@
             <h2>{{heading}}</h2>
             <select name="mimeType">
                 <!-- this should be a database value, not hard-coded. -->
-                <option value="text/x-markdown">Markdown</option>
-                <option value="application/javascript">JavaScript</option>
+                <option value="text/x-markdown" {{#ifEqual mimeType "text/x-markdown"}}selected{{/ifEqual}}>
+                    Markdown
+                </option>
+                <option value="application/javascript" {{#ifEqual mimeType "application/javascript"}}selected{{/ifEqual}}>
+                    JavaScript
+                </option>
             </select>
             <textarea id="editor">{{content}}</textarea>
             <button class="eval-contents">Run Code</button>
