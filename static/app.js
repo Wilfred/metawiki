@@ -27,7 +27,7 @@ routie('edit*', function() {
     var resourceName = hashPath.split('?')[1];
 
     Resource.fetch(resourceName, function(err, resource) {
-        loadEditor("Editing " + resource.name, resource);
+        loadEditor("Editing " + resource.path, resource);
     });
 });
 
@@ -42,9 +42,15 @@ function loadEditor(heading, resource) {
         heading: heading
     }));
 
-    CodeMirror.fromTextArea($('#editor').get(0), {
+    var cm = CodeMirror.fromTextArea($('#editor').get(0), {
         lineNumbers: true
     });
+
+    $('.eval-contents').click(function() {
+        /* jshint evil: true */
+        eval(cm.getValue());
+        /* jshint evil: false */
+    })
 }
 
 // Initialisation.
