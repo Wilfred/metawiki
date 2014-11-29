@@ -22,13 +22,14 @@ var $content = $("#content"),
     editorTemplate = Handlebars.compile($("#editor-template").html());
 
 // Controllers.
-routie('md/:pageName', function(pageName) {
+routie('md/:pageName', function viewController(pageName) {
+    console.log('controller called!')
     Resource.fetch("md/" + pageName, function(err, page) {
         $content.html(marked(page.content));
     });
 });
 
-routie('edit*', function() {
+routie('edit*', function editController() {
     // Of the form 'edit?foo/bar'
     var hashPath = window.location.hash.substring(1);
     var resourceName = hashPath.split('?')[1];
@@ -38,7 +39,7 @@ routie('edit*', function() {
     });
 });
 
-routie('new*', function() {
+routie('new*', function newController() {
     loadEditor("New", null);
 });
 
