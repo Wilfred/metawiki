@@ -29,12 +29,23 @@ routie('edit*', function() {
     Resource.fetch(resourceName, function(err, page) {
         $content.html(editorTemplate({
             content: page.content,
-            resourceName: resourceName
+            heading: "Editing " + resourceName
         }));
 
         CodeMirror.fromTextArea($('#editor').get(0), {
             lineNumbers: true
         });
+    });
+});
+
+routie('new*', function() {
+    $content.html(editorTemplate({
+        content: "",
+        heading: "New Resource"
+    }));
+
+    CodeMirror.fromTextArea($('#editor').get(0), {
+        lineNumbers: true
     });
 });
 
