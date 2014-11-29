@@ -15,8 +15,6 @@ var MIME_TYPES = [
 // TODO: versioning
 // TODO: mimeType will need to be immutable.
 var Resource = mongoose.model('Resource', {
-    // TODO: is this still needed?
-    category: String,
     path: String,
     
     content: String,

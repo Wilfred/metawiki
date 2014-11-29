@@ -4,17 +4,17 @@ var models = require('./models');
 
 function index(req, response, next) {
     response.setHeader('Content-Type', 'text/html');
-    models.Resource.findOne({'path': 'index.html'}, function(err, indexResource) {
+    models.Resource.findOne({'path': 'html/index.html'}, function(err, indexResource) {
         response.writeHead(200);
         response.end(indexResource.content);
     });
 }
 
 function serve(request, response, next) {
-    var category = request.params[0], path = request.params[1];
+    var path = request.params[0];
     
     models.Resource.findOne({
-        'category': category, 'path': path
+        'path': path
     }, function(err, resource) {
         if (resource === null) {
             next(new restify.NotFoundError(
@@ -30,10 +30,10 @@ function serve(request, response, next) {
 }
 
 function getResource(req, res, next) {
-    var category = req.params[0], path = req.params[1];
+    var path = req.params[0];
     
     models.Resource.findOne({
-        'category': category, 'path': path
+        'path': path
     }, function(err, resource) {
         if (resource === null) {
             next(new restify.NotFoundError(

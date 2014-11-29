@@ -18,8 +18,8 @@ server.pre(function (request, response, next) {
 });
 
 server.get('/', views.index);
-server.get(/^\/serve\/(.+?)\/(.+)$/, views.serve);
-server.get(/^\/resources\/(.+?)\/(.+)$/, views.getResource);
+server.get(/^\/serve\/(.+?)$/, views.serve);
+server.get(/^\/resources\/(.+?)$/, views.getResource);
 server.get(/^\/resources\/$/, views.allResources);
 
 server.listen(8080, function() {
