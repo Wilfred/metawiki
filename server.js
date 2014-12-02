@@ -17,6 +17,8 @@ server.pre(function (request, response, next) {
     next();
 });
 
+server.use(restify.bodyParser({mapParams: false}));
+
 server.get('/', views.index);
 server.get(/^\/serve\/(.+?)$/, views.serve);
 server.get(/^\/resources\/(.+?)$/, views.getResource);
