@@ -24,6 +24,4 @@ server.get(/^\/serve\/(.+?)$/, views.serve);
 server.get(/^\/resources\/(.+?)$/, views.getResource);
 server.get(/^\/resources\/$/, views.allResources);
 
-server.listen(8080, function() {
-    console.log('==> %s server listening at %s', server.name, server.url);
-});
+module.exports = server;
