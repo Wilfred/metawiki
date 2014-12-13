@@ -1,9 +1,26 @@
-var expect = require("chai").expect;
+/*global describe, it */
 
-describe("GET resource API", function() {
-   describe("basic fetch", function() {
-       it("should be able to fetch items from the DB", function(){
-           expect(1).to.equal(1);
-       });
-   });
+var expect = require("chai").expect;
+var request = require('request');
+var server = require('../server');
+
+describe("Backend REST API", function() {
+    before(function(done) {
+        server.listen(9001, 'localhost', done);
+    });
+    
+    describe("homepage", function() {
+        it("should return 200 from /", function(done){
+
+            request.get('http://localhost:8000', function (err, res, body){
+                expect(res.statusCode).to.equal(205);
+                done();
+            });
+        });
+    });
+
+    after(function(done) {
+        server.close();
+        done();
+    })
 });
