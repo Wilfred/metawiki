@@ -28,7 +28,7 @@ async.series([
         models.Resource.remove({}, cb);
     }, function(cb) {
         async.parallel([
-            createResource("test/html",
+            createResource("text/html",
                            "html/index.html", "index.html"),
 
             createResource("text/css",
