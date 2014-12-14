@@ -30,6 +30,9 @@
                     <option value="application/javascript" {{#ifEqual mimeType "application/javascript"}}selected{{/ifEqual}}>
                         JavaScript
                     </option>
+                    <option value="text/html" {{#ifEqual mimeType "text/html"}}selected{{/ifEqual}}>
+                        HTML
+                    </option>
                 </select>
                 <textarea id="editor">{{content}}</textarea>
                 {{#ifEqual mimeType "application/javascript"}}
