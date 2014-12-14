@@ -15,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "codemirror": "~4.6.0",
+    "codemirror": "~4.8.0",
     "marked": "~0.3.2",
     "routie": "~0.3.2",
     "jquery": "~2.1.1",
