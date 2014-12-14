@@ -53,7 +53,6 @@ routie('edit*', function editController() {
             Resource.save(resourceName, editor.getValue(), function() {
               // TODO: go to a more sensible location
               routie('md/Home');
-                console.log('saved');
             })
             return false;
         })
