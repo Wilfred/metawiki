@@ -69,15 +69,25 @@ routie('new*', function newController() {
 
 // Views.
 function loadEditor(heading, resource) {
+    var mimeType = resource ? resource.mimeType : "text/x-markdown"
+    var mode = "javascript"
+  
+    if (mimeType == "text/x-markdown") {
+        mode = "markdown"
+    } else if (mimeType == "text/html") {
+        mode = "xml"
+    }
+  
     $content.html(editorTemplate({
         content: resource ? resource.content : "",
-        mimeType: resource ? resource.mimeType : "text/x-markdown",
+        mimeType: mimeType,
         path: resource ? resource.path : "",
         heading: heading
     }));
 
     var cm = CodeMirror.fromTextArea($('#editor').get(0), {
-        lineNumbers: true
+        lineNumbers: true,
+        mode: mode
     });
 
     $('.eval-contents').click(function() {
