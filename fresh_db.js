@@ -3,6 +3,8 @@ var async = require('async');
 var db = require('./db.js');
 var models = require('./models.js');
 
+var total = 0;
+
 function createResource(mimeType, resourcePath, localPath) {
     return function(cb) {
         models.Resource.findOneAndUpdate({
@@ -13,6 +15,7 @@ function createResource(mimeType, resourcePath, localPath) {
         }, {
             upsert: true
         }, cb);
+        total++;
     }
 }
 
@@ -69,6 +72,6 @@ async.series([
     if (err) {
         console.log(['Failed:', err]);
     } else {
-        console.log('Done.');
+        console.log(['Created/updated:', total]);
     }
 });
