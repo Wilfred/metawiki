@@ -32,7 +32,9 @@
                     </option>
                 </select>
                 <textarea id="editor">{{content}}</textarea>
-                <button class="eval-contents">Execute</button>
+                {{#ifEqual mimeType "application/javascript"}}
+                <input type="submit" value="Execute" name="execute">
+                {{/ifEqual}}
                 <input type="submit" value="Save">
             </form>
         </script>

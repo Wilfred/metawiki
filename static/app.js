@@ -98,10 +98,11 @@ function loadEditor(heading, resource) {
         }
     });
 
-    $('.eval-contents').click(function() {
+    $('input[name=execute]').click(function() {
         /* jshint evil: true */
         eval(cm.getValue());
         /* jshint evil: false */
+        return false
     });
 
     return cm;
