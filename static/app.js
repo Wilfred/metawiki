@@ -23,10 +23,10 @@ var Resource = {
 
 // Templating.
 Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
-  if (v1 === v2) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
+    if (v1 === v2) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
 });
 
 var $content = $("#content"),
