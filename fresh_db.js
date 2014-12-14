@@ -67,7 +67,7 @@ async.series([
                             "js/wikieval/app.js",
                            "static/app.js"),
 
-            createResource("text/plain",
+            createResource("text/x-markdown",
                            "md/Home",
                            "static/Home.md")
         ], cb);
