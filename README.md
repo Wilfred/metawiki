@@ -20,3 +20,11 @@ $ sudo systemctl start mongodb
 $ node fresh_db.js
 $ node main.js
 ```
+
+## Tests
+
+We have a handful of backend tests, which you can run with:
+
+```
+$ mocha
+```
