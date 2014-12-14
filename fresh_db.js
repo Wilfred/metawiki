@@ -40,6 +40,12 @@ async.series([
             createResource("application/javascript",
                             "js/codemirror/javascript.js",
                            "bower_components/codemirror/mode/javascript/javascript.js"),
+            createResource("application/javascript",
+                            "js/codemirror/markdown.js",
+                           "bower_components/codemirror/mode/javascript/javascript.js"),
+            createResource("application/javascript",
+                            "js/codemirror/xml.js",
+                           "bower_components/codemirror/mode/xml/xml.js"),
             
             createResource("application/javascript",
                             "js/routie/routie.js",
