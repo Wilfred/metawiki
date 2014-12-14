@@ -1,3 +1,5 @@
+/*global Handlebars, routie */
+
 // The clientside wiki app.
 
 // Models.
