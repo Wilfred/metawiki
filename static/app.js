@@ -87,7 +87,15 @@ function loadEditor(heading, resource) {
 
     var cm = CodeMirror.fromTextArea($('#editor').get(0), {
         lineNumbers: true,
+        indentUnit: 4,
         mode: mode
+    })
+    
+    cm.setOption("extraKeys", {
+        Tab: function(cm) {
+            var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+            cm.replaceSelection(spaces);
+        }
     });
 
     $('.eval-contents').click(function() {
