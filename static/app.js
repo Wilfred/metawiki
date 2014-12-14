@@ -32,6 +32,10 @@ Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
 var $content = $("#content"),
     editorTemplate = Handlebars.compile($("#editor-template").html());
 
+function getHash() {
+    return window.location.hash.substring(1);
+}
+
 // Controllers.
 routie('md/:pageName', function viewController(pageName) {
     Resource.fetch("md/" + pageName, function(err, page) {
@@ -86,4 +90,6 @@ function loadEditor(heading, resource) {
 }
 
 // Initialisation.
-routie('md/Home');
+if (getHash() === "") {
+    routie('md/Home');
+}
