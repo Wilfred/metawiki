@@ -9,6 +9,15 @@ var Resource = {
             // TODO: Handle 404 and 500.
             callback(null, resource);
         });
+    }, save: function save(name, content, callback) {
+        $.ajax({
+            url:"/resources/" + name,
+            data: {name: name, content: content},
+            type: 'PUT',
+        }).done(function(resource) {
+            // TODO: Handle 404 and 500.
+            callback(null, resource);
+        });
     }
 }
 
@@ -25,7 +34,6 @@ var $content = $("#content"),
 
 // Controllers.
 routie('md/:pageName', function viewController(pageName) {
-    console.log('controller called!')
     Resource.fetch("md/" + pageName, function(err, page) {
         $content.html(marked(page.content));
     });
@@ -37,7 +45,18 @@ routie('edit*', function editController() {
     var resourceName = hashPath.split('?')[1];
 
     Resource.fetch(resourceName, function(err, resource) {
-        loadEditor("Editing", resource);
+        var editor = loadEditor("Editing", resource);
+
+        // TODO: we should narrow this to children of the edit form.
+        // TODO: create too.
+        $('input[type=submit]').click(function() {
+            Resource.save(resourceName, editor.getValue(), function() {
+              // TODO: go to a more sensible location
+              routie('md/Home');
+                console.log('saved');
+            })
+            return false;
+        })
     });
 });
 
@@ -62,7 +81,9 @@ function loadEditor(heading, resource) {
         /* jshint evil: true */
         eval(cm.getValue());
         /* jshint evil: false */
-    })
+    });
+
+    return cm;
 }
 
 // Initialisation.
