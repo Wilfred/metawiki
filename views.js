@@ -45,6 +45,24 @@ function getResource(req, res, next) {
     });
 }
 
+function updateResource(req, res, next) {
+    var path = req.params[0];
+    
+    models.Resource.findOneAndUpdate({
+        'path': path
+    }, {
+        'content': req.body.content,
+    }, function(err, resource) {
+        if (resource === null) {
+            next(new restify.NotFoundError(
+                "No resource with path '" + path + "'"));
+        } else {
+            res.send(resource);
+            next();
+        }
+    });
+}
+
 function allResources(req, res, next) {
     models.Resource.find({}, function(err, resources) {
         res.send(resources);
@@ -55,6 +73,7 @@ function allResources(req, res, next) {
 module.exports = {
     serve: serve,
     getResource: getResource,
+    updateResource: updateResource,
     allResources: allResources,
     index: index
 };

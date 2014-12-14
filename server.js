@@ -22,6 +22,7 @@ server.use(restify.bodyParser({mapParams: false}));
 server.get('/', views.index);
 server.get(/^\/serve\/(.+?)$/, views.serve);
 server.get(/^\/resources\/(.+?)$/, views.getResource);
+server.put(/^\/resources\/(.+?)$/, views.updateResource);
 server.get(/^\/resources\/$/, views.allResources);
 
 module.exports = server;
