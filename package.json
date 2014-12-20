@@ -21,7 +21,9 @@
   },
   "subdomain": "undefined-wikieval",
   "scripts": {
-    "start": "node server.js"
+    "server": "node main.js",
+    "reset-db": "node fresh_db.js",
+    "test": "mocha"
   },
   "engines": {
     "node": "0.10.x"

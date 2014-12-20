@@ -17,8 +17,8 @@ AGPLv3 license.
 ```
 $ npm install
 $ sudo systemctl start mongodb
-$ node fresh_db.js
-$ node main.js
+$ npm run reset-db
+$ npm run server
 ```
 
 ## Tests
@@ -26,5 +26,5 @@ $ node main.js
 We have a handful of backend tests, which you can run with:
 
 ```
-$ mocha
+$ npm run test
 ```
