@@ -19,7 +19,6 @@
     "request": "^2.51.0",
     "restify": "~2.6.3"
   },
-  "subdomain": "undefined-wikieval",
   "scripts": {
     "server": "node main.js",
     "reset-db": "node fresh_db.js",
