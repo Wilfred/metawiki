@@ -5,7 +5,7 @@ var prettyStdOut = new PrettyStream();
 prettyStdOut.pipe(process.stdout);
 
 module.exports = new bunyan.createLogger({
-    name: "WikiEval",
+    name: "wikicircle",
     streams: [{
         level: 'debug',
         type: 'raw',

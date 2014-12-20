@@ -6,7 +6,7 @@ db.connect();
 
 var views = require('./views');
 
-var APP_NAME = "WikiEval";
+var APP_NAME = "wikicircle";
 var server = restify.createServer({
     name: APP_NAME,
     log: log

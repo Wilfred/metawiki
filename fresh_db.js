@@ -64,7 +64,7 @@ async.series([
                            "bower_components/handlebars/handlebars.js"),
             
             createResource("application/javascript",
-                            "js/wikieval/app.js",
+                            "js/wikicircle/app.js",
                            "static/app.js"),
 
             createResource("text/x-markdown",

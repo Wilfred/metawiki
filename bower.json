@@ -6,7 +6,7 @@
   ],
   "description": "A JS metawiki",
   "license": "AGPLv3",
-  "homepage": "https://github.com/Wilfred/wikieval",
+  "homepage": "https://github.com/Wilfred/wikicircle",
   "ignore": [
     "**/.*",
     "node_modules",
