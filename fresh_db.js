@@ -21,9 +21,7 @@ function createResource(mimeType, resourcePath, localPath) {
 
 async.series([
     // Remove all existing resources, install a fresh set, and cleanup.
-    function(cb) {
-        db.connect(cb);
-    },
+    db.connect,
     function(cb) {
         models.Resource.remove({}, cb);
     }, function(cb) {
@@ -71,9 +69,8 @@ async.series([
                            "md/Home",
                            "static/Home.md")
         ], cb);
-    }, function(cb) {
-        db.disconnect(cb);
-    }
+    },
+    db.disconnect
 ], function(err, res) {
     if (err) {
         console.log(['Failed:', err]);
