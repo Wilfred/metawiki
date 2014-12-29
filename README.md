@@ -19,7 +19,7 @@ AGPLv3 license.
 # specifying --python is only necessary if python 3 is the default
 $ npm install --python=/usr/bin/python2
 $ sudo systemctl start mongodb
-$ npm run reset-db
+$ npm run load-db
 $ npm run server
 ```
 
