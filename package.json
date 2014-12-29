@@ -21,9 +21,9 @@
     "restify": "~2.6.3"
   },
   "scripts": {
-    "server": "node main.js",
-    "reset-db": "node fresh_db.js",
-    "test": "mocha"
+    "server": "node src/backend/main.js",
+    "reset-db": "node src/backend/fresh_db.js",
+    "test": "mocha src/backend/test"
   },
   "engines": {
     "node": "0.10.x"

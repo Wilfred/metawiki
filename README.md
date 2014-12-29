@@ -28,5 +28,6 @@ $ npm run server
 We have a handful of backend tests, which you can run with:
 
 ```
+$ export PATH=$PATH:node_modules/.bin
 $ npm run test
 ```
