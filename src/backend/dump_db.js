@@ -17,6 +17,11 @@ async.series([
             async.map(resources, function(resource, _cb) {
 
                 var localPath = "src/frontend/" + path.basename(resource.path)
+
+                if (resource.mimeType == "text/x-markdown") {
+                    localPath = localPath + '.md'
+                }
+                
                 async.series([
                     function(__cb) {
                         mkdirp(path.dirname(localPath), {}, __cb)
