@@ -18,7 +18,7 @@
     "mocha": "^2.0.1",
     "mongoose": "^3.8.19",
     "request": "^2.51.0",
-    "restify": "~2.6.3"
+    "restify": "~2.8.0"
   },
   "scripts": {
     "server": "node src/backend/main.js",
