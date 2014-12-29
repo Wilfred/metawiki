@@ -27,7 +27,8 @@ async.series([
     }, function(cb) {
         async.parallel([
             createResource("text/html",
-                           "html/index.html", "index.html"),
+                           "html/index.html",
+                           "src/frontend/index.html"),
 
             createResource("text/css",
                            "css/codemirror.css",
