@@ -16,7 +16,7 @@ async.series([
 
             async.map(resources, function(resource, _cb) {
 
-                var localPath = "bootstrap/" + resource.path
+                var localPath = "src/frontend/" + path.basename(resource.path)
                 async.series([
                     function(__cb) {
                         mkdirp(path.dirname(localPath), {}, __cb)
