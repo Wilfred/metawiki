@@ -4,6 +4,6 @@ node_js:
 services:
   - mongodb
 before_script:
-  - npm run reset-db
+  - npm run load-db
 script:
   - npm run test
