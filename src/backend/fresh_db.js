@@ -63,11 +63,11 @@ async.series([
             
             createResource("application/javascript",
                             "js/wikicircle/app.js",
-                           "static/app.js"),
+                           "src/frontend/app.js"),
 
             createResource("text/x-markdown",
                            "md/Home",
-                           "static/Home.md")
+                           "src/frontend/Home.md")
         ], cb);
     },
     db.disconnect
