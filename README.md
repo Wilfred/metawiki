@@ -20,7 +20,7 @@ AGPLv3 license.
 $ npm install --python=/usr/bin/python2
 $ sudo systemctl start mongodb
 $ npm run load-db
-$ npm run server
+$ npm start
 ```
 
 ## Tests
