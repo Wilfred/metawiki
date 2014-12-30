@@ -54,10 +54,15 @@ routie('edit*', function editController() {
         // TODO: we should narrow this to children of the edit form.
         // TODO: create too.
         $('input[type=submit]').click(function() {
+            var $input = $(this);
+           
             Resource.save(resourceName, editor.getValue(), function() {
-              // TODO: go to a more sensible location
-              routie('md/Home');
-            })
+                // don't go anywhere if we said 'save and continue'
+                if ($input.attr('name') != 'save-continue') {
+                    // TODO: go to the relevant edited page
+                    routie('md/Home');
+                }
+            });
             return false;
         })
     });
