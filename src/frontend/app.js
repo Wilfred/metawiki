@@ -36,40 +36,45 @@ function getHash() {
     return window.location.hash.substring(1);
 }
 
-// Controllers.
-routie('md/:pageName', function viewController(pageName) {
-    Resource.fetch("md/" + pageName, function(err, page) {
-        $content.html(marked(page.content));
-    });
-});
+// Controllers with routing.
+// TODO: separate these.
+routie({
+    'md/:pageName': function viewController(pageName) {
+        console.log(['load pageName', pageName]);
+        console.trace();
+        Resource.fetch("md/" + pageName, function(err, page) {
+            $content.html(marked(page.content));
+        });
+    },
+            
+    'edit*': function editController() {
+        // Of the form 'edit?foo/bar'
+        var hashPath = window.location.hash.substring(1);
+        var resourceName = hashPath.split('?')[1];
 
-routie('edit*', function editController() {
-    // Of the form 'edit?foo/bar'
-    var hashPath = window.location.hash.substring(1);
-    var resourceName = hashPath.split('?')[1];
+        Resource.fetch(resourceName, function(err, resource) {
+            var editor = loadEditor("Editing", resource);
 
-    Resource.fetch(resourceName, function(err, resource) {
-        var editor = loadEditor("Editing", resource);
-
-        // TODO: we should narrow this to children of the edit form.
-        // TODO: create too.
-        $('input[type=submit]').click(function() {
-            var $input = $(this);
+            // TODO: we should narrow this to children of the edit form.
+            // TODO: create too.
+            $('input[type=submit]').click(function() {
+                var $input = $(this);
            
-            Resource.save(resourceName, editor.getValue(), function() {
-                // don't go anywhere if we said 'save and continue'
-                if ($input.attr('name') != 'save-continue') {
-                    // TODO: go to the relevant edited page
-                    routie('md/Home');
-                }
+                Resource.save(resourceName, editor.getValue(), function() {
+                    // don't go anywhere if we said 'save and continue'
+                    if ($input.attr('name') != 'save-continue') {
+                        // TODO: go to the relevant edited page
+                        routie('md/Home');
+                    }
+                });
+                return false;
             });
-            return false;
-        })
-    });
-});
+        });  
+    },
 
-routie('new*', function newController() {
-    loadEditor("New", null);
+    'new*': function newController() {
+        loadEditor("New", null);
+    }
 });
 
 // Views.
