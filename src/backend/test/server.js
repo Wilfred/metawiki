@@ -7,12 +7,14 @@ var async = require('async');
 var server = require('../server');
 var db = require('../db');
 
+var wikiServer = server.create({log: undefined});
+
 describe("Initial load", function() {
     before(function(done) {
         async.parallel([
             db.connect,
             function(cb) {
-                server.listen(9001, 'localhost', cb);
+                wikiServer.listen(9001, 'localhost', cb);
             }
         ], done);
     });
@@ -31,7 +33,7 @@ describe("Initial load", function() {
     });
 
     after(function(done) {
-        server.close(); // sync method
+        wikiServer.close(); // sync method
         db.disconnect(done);
     });
 });

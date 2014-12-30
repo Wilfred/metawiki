@@ -3,7 +3,9 @@ var db = require('./db');
 
 db.connect();
 
-server.listen(9000, function() {
-    console.log('==> %s server listening at %s', server.name, server.url);
+var wikiServer = server.create();
+wikiServer.listen(9000, function() {
+    console.log('==> %s server listening at %s',
+                wikiServer.name, wikiServer.url);
 });
 
