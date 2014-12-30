@@ -1,8 +1,6 @@
 var restify = require('restify');
 
 var log = require('./log');
-var db = require('./db');
-db.connect();
 
 var views = require('./views');
 
