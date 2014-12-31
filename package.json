@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "node src/backend/main.js",
-    "load-db": "node src/backend/fresh_db.js",
+    "load-db": "node src/backend/load_db.js",
     "dump-db": "node src/backend/dump_db.js",
     "test": "mocha src/backend/test"
   },
