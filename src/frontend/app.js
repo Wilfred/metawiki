@@ -98,6 +98,7 @@ function loadEditor(heading, resource) {
     var cm = CodeMirror.fromTextArea($('#editor').get(0), {
         lineNumbers: true,
         indentUnit: 4,
+        matchBrackets: true,
         mode: mode
     })
     
