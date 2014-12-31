@@ -16,7 +16,7 @@ function createResource(mimeType, resourcePath, localPath) {
             upsert: true
         }, cb);
         total++;
-    }
+    };
 }
 
 async.series([
