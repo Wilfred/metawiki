@@ -83,9 +83,11 @@ function loadEditor(heading, resource) {
     var mode = "javascript"
   
     if (mimeType == "text/x-markdown") {
-        mode = "markdown"
+        mode = "markdown";
     } else if (mimeType == "text/html") {
-        mode = "xml"
+        mode = "xml";
+    } else if (mimeType == "text/css") {
+        mode = "css";
     }
   
     $content.html(editorTemplate({

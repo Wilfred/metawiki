@@ -5,6 +5,7 @@
         <title>Wikicircle - A truly editable website</title>
 
         <link rel="stylesheet" href="/serve/css/codemirror.css">
+        <link rel="stylesheet" href="/serve/js/wikicircle/wikicircle.css">
     </head>
     <body>
         <div id="content">
@@ -33,6 +34,9 @@
                     <option value="text/html" {{#ifEqual mimeType "text/html"}}selected{{/ifEqual}}>
                         HTML
                     </option>
+                    <option value="text/css" {{#ifEqual mimeType "text/css"}}selected{{/ifEqual}}>
+                        CSS
+                    </option>
                 </select>
                 <textarea id="editor">{{content}}</textarea>
                 {{#ifEqual mimeType "application/javascript"}}
@@ -45,6 +49,7 @@
 
         <script src="/serve/js/codemirror/codemirror.js"></script>
         <script src="/serve/js/codemirror/xml.js"></script>
+        <script src="/serve/js/codemirror/css.js"></script>
         <script src="/serve/js/codemirror/javascript.js"></script>
         <script src="/serve/js/codemirror/markdown.js"></script>
         <script src="/serve/js/routie/routie.js"></script>
