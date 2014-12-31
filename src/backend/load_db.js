@@ -48,6 +48,9 @@ async.series([
             createResource("application/javascript",
                             "js/codemirror/xml.js",
                            "bower_components/codemirror/mode/xml/xml.js"),
+            createResource("application/javascript",
+                            "js/codemirror/css.js",
+                           "bower_components/codemirror/mode/css/css.js"),
             
             createResource("application/javascript",
                             "js/routie/routie.js",
@@ -68,6 +71,10 @@ async.series([
             createResource("application/javascript",
                             "js/wikicircle/app.js",
                            "src/frontend/app.js"),
+
+            createResource("text/css",
+                           "js/wikicircle/wikicircle.css",
+                           "src/frontend/wikicircle.css"),
 
             createResource("text/x-markdown",
                            "md/Home",
