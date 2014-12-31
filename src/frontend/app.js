@@ -40,8 +40,6 @@ function getHash() {
 // TODO: separate these.
 routie({
     'md/:pageName': function viewController(pageName) {
-        console.log(['load pageName', pageName]);
-        console.trace();
         Resource.fetch("md/" + pageName, function(err, page) {
             $content.html(marked(page.content));
         });
