@@ -1,4 +1,4 @@
-![screenshot](images/ouroboros.jpg)
+![screenshot](binary_files/ouroboros.jpg)
 
 # WikiCircle
 
