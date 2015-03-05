@@ -1,3 +1,5 @@
+![logo](/serve/logo.jpg)
+
 # Wikicircle
 
 Wikicircle is an experiment in writing a *truly* editable website.
