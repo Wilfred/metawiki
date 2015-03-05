@@ -5,6 +5,7 @@ var models = require('./models.js');
 
 var total = 0;
 
+// TODO: use an opts object.
 function createResource(mimeType, resourcePath, localPath) {
     return function(cb) {
         models.Resource.findOneAndUpdate({
@@ -19,6 +20,21 @@ function createResource(mimeType, resourcePath, localPath) {
     };
 }
 
+function createBinaryResource(opts) {
+    return function(cb) {
+        models.Resource.findOneAndUpdate({
+            path: opts.path
+        }, {
+            mimeType: opts.mimeType,
+            localPath: opts.localPath
+        }, {
+            upsert: true
+        }, cb);
+        total++;
+    };
+    
+}
+
 async.series([
     // Remove all existing resources, install a fresh set, and cleanup.
     db.connect,
@@ -29,6 +45,12 @@ async.series([
             createResource("text/html",
                            "html/index.html",
                            "src/frontend/index.html"),
+
+            createBinaryResource({
+                path: "logo.jpg",
+                mimeType: "image/jpeg",
+                localPath: "ouroboros.jpg"
+            }),
 
             createResource("text/css",
                            "css/codemirror.css",

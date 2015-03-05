@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var Resource = mongoose.model('Resource', {
     path: String,
     content: String,
+    localPath: String, // TODO: enforce content XOR localPath
     mimeType: String
 });
 
