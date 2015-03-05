@@ -19,6 +19,8 @@ AGPLv3 license.
 # specifying --python is only necessary if python 3 is the default
 $ npm install --python=/usr/bin/python2
 $ sudo systemctl start mongodb
+# if mongo didn't shut down cleanly:
+$ sudo -u mongodb bash -c "mongod --repair --dbpath /var/lib/mongodb"
 $ npm run load-db
 $ npm start
 ```
