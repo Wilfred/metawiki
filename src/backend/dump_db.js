@@ -21,7 +21,7 @@ async.series([
                 if (resource.mimeType == "text/x-markdown") {
                     localPath = localPath + '.md';
                 }
-                
+
                 async.series([
                     function(__cb) {
                         mkdirp(path.dirname(localPath), {}, __cb);
@@ -33,9 +33,9 @@ async.series([
             }, cb);
         });
     },
-    
+
     db.disconnect
-    
+
 ], function(err) {
     if (err) {
         console.log(['Failed:', err]);

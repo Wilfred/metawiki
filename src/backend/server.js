@@ -15,12 +15,14 @@ function createServer(opts) {
     opts = _.extend(defaultOpts, opts);
     var server = restify.createServer(opts);
 
-    server.pre(function (request, response, next) {
+    server.pre(function(request, response, next) {
         request.log.info(request.method, request.url);
         next();
     });
 
-    server.use(restify.bodyParser({mapParams: false}));
+    server.use(restify.bodyParser({
+        mapParams: false
+    }));
 
     server.get('/', views.index);
     server.get(/^\/serve\/(.+?)$/, views.serve);

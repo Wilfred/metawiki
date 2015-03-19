@@ -12,7 +12,9 @@ function createResource(mimeType, resourcePath, localPath) {
             path: resourcePath
         }, {
             mimeType: mimeType,
-            content: fs.readFileSync(localPath, {encoding: 'utf8'})
+            content: fs.readFileSync(localPath, {
+                encoding: 'utf8'
+            })
         }, {
             upsert: true
         }, cb);
@@ -32,7 +34,7 @@ function createBinaryResource(opts) {
         }, cb);
         total++;
     };
-    
+
 }
 
 async.series([
@@ -40,11 +42,12 @@ async.series([
     db.connect,
     function(cb) {
         models.Resource.remove({}, cb);
-    }, function(cb) {
+    },
+    function(cb) {
         async.parallel([
             createResource("text/html",
-                           "html/index.html",
-                           "src/frontend/index.html"),
+                "html/index.html",
+                "src/frontend/index.html"),
 
             createBinaryResource({
                 path: "logo.jpg",
@@ -53,54 +56,54 @@ async.series([
             }),
 
             createResource("text/css",
-                           "css/codemirror.css",
-                           "bower_components/codemirror/lib/codemirror.css"),
+                "css/codemirror.css",
+                "bower_components/codemirror/lib/codemirror.css"),
             createResource("application/javascript",
-                           "js/codemirror/codemirror.js",
-                           "bower_components/codemirror/lib/codemirror.js"),
+                "js/codemirror/codemirror.js",
+                "bower_components/codemirror/lib/codemirror.js"),
             createResource("application/javascript",
-                           "js/codemirror/matchbrackets.js",
-                           "bower_components/codemirror/addon/edit/matchbrackets.js"),
+                "js/codemirror/matchbrackets.js",
+                "bower_components/codemirror/addon/edit/matchbrackets.js"),
             createResource("application/javascript",
-                            "js/codemirror/javascript.js",
-                           "bower_components/codemirror/mode/javascript/javascript.js"),
+                "js/codemirror/javascript.js",
+                "bower_components/codemirror/mode/javascript/javascript.js"),
             createResource("application/javascript",
-                            "js/codemirror/markdown.js",
-                           "bower_components/codemirror/mode/markdown/markdown.js"),
+                "js/codemirror/markdown.js",
+                "bower_components/codemirror/mode/markdown/markdown.js"),
             createResource("application/javascript",
-                            "js/codemirror/xml.js",
-                           "bower_components/codemirror/mode/xml/xml.js"),
+                "js/codemirror/xml.js",
+                "bower_components/codemirror/mode/xml/xml.js"),
             createResource("application/javascript",
-                            "js/codemirror/css.js",
-                           "bower_components/codemirror/mode/css/css.js"),
-            
+                "js/codemirror/css.js",
+                "bower_components/codemirror/mode/css/css.js"),
+
             createResource("application/javascript",
-                            "js/routie/routie.js",
-                           "bower_components/routie/dist/routie.js"),
-            
+                "js/routie/routie.js",
+                "bower_components/routie/dist/routie.js"),
+
             createResource("application/javascript",
-                            "js/jquery/jquery.js",
-                           "bower_components/jquery/dist/jquery.js"),
-            
+                "js/jquery/jquery.js",
+                "bower_components/jquery/dist/jquery.js"),
+
             createResource("application/javascript",
-                            "js/marked/marked.js",
-                           "bower_components/marked/lib/marked.js"),
-            
+                "js/marked/marked.js",
+                "bower_components/marked/lib/marked.js"),
+
             createResource("application/javascript",
-                            "js/handlebars/handlebars.js",
-                           "bower_components/handlebars/handlebars.js"),
-            
+                "js/handlebars/handlebars.js",
+                "bower_components/handlebars/handlebars.js"),
+
             createResource("application/javascript",
-                            "js/wikicircle/app.js",
-                           "src/frontend/app.js"),
+                "js/wikicircle/app.js",
+                "src/frontend/app.js"),
 
             createResource("text/css",
-                           "js/wikicircle/wikicircle.css",
-                           "src/frontend/wikicircle.css"),
+                "js/wikicircle/wikicircle.css",
+                "src/frontend/wikicircle.css"),
 
             createResource("text/x-markdown",
-                           "md/Home",
-                           "src/frontend/Home.md")
+                "md/Home",
+                "src/frontend/Home.md")
         ], cb);
     },
     db.disconnect

@@ -8,7 +8,7 @@ async.series([
     function(cb) {
         models.Resource.remove({}, cb);
     },
-    
+
     db.disconnect
 ], function(err) {
     if (err) {

@@ -7,7 +7,9 @@ var models = require('./models');
 
 function index(req, response, next) {
     response.setHeader('Content-Type', 'text/html');
-    models.Resource.findOne({'path': 'html/index.html'}, function(err, indexResource) {
+    models.Resource.findOne({
+        'path': 'html/index.html'
+    }, function(err, indexResource) {
         response.writeHead(200);
         response.end(indexResource.content);
     });
@@ -15,7 +17,7 @@ function index(req, response, next) {
 
 function serve(request, response, next) {
     var urlPath = request.params[0];
-    
+
     models.Resource.findOne({
         'path': urlPath
     }, function(err, resource) {
@@ -36,7 +38,7 @@ function serve(request, response, next) {
                 // instead of serving files from here.
                 var appDir = path.dirname(require.main.filename);
                 var absPath = path.join(appDir, "..", "..", "binary_files",
-                                        resource.localPath);
+                    resource.localPath);
 
                 // TODO: unit test to verify we don't allow directory
                 // travel if localPath contains '..'.
@@ -47,14 +49,14 @@ function serve(request, response, next) {
                     response.end();
                 });
             }
-            
+
         }
     });
 }
 
 function getResource(req, res, next) {
     var path = req.params[0];
-    
+
     models.Resource.findOne({
         'path': path
     }, function(err, resource) {
@@ -70,7 +72,7 @@ function getResource(req, res, next) {
 
 function updateResource(req, res, next) {
     var path = req.params[0];
-    
+
     models.Resource.findOneAndUpdate({
         'path': path
     }, {

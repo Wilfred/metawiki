@@ -14,4 +14,3 @@ var Resource = mongoose.model('Resource', {
 module.exports = {
     Resource: Resource
 };
-
