@@ -37,11 +37,9 @@ async.series([
     db.disconnect
     
 ], function(err) {
-        if (err) {
-            console.log(['Failed:', err]);
-        } else {
-            console.log(['Wrote files:', resourceCount]);
-        }
+    if (err) {
+        console.log(['Failed:', err]);
+    } else {
+        console.log(['Wrote files:', resourceCount]);
     }
-)
-     
+});
