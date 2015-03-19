@@ -1,37 +1,37 @@
-var fs = require('fs')
-var path = require('path')
-var mkdirp = require('mkdirp')
-var async = require('async')
-var db = require('./db.js')
-var models = require('./models.js')
+var fs = require('fs');
+var path = require('path');
+var mkdirp = require('mkdirp');
+var async = require('async');
+var db = require('./db.js');
+var models = require('./models.js');
 
-var resourceCount = 0
+var resourceCount = 0;
 
 async.series([
     db.connect,
 
     function(cb) {
         models.Resource.find({}, function(err, resources) {
-            resourceCount = resources.length
+            resourceCount = resources.length;
 
             async.map(resources, function(resource, _cb) {
 
-                var localPath = "src/frontend/" + path.basename(resource.path)
+                var localPath = "src/frontend/" + path.basename(resource.path);
 
                 if (resource.mimeType == "text/x-markdown") {
-                    localPath = localPath + '.md'
+                    localPath = localPath + '.md';
                 }
                 
                 async.series([
                     function(__cb) {
-                        mkdirp(path.dirname(localPath), {}, __cb)
+                        mkdirp(path.dirname(localPath), {}, __cb);
                     },
                     function(__cb) {
-                        fs.writeFile(localPath, resource.content, __cb)
+                        fs.writeFile(localPath, resource.content, __cb);
                     },
-                ], _cb)
-            }, cb)
-        })
+                ], _cb);
+            }, cb);
+        });
     },
     
     db.disconnect
