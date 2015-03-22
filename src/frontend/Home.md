@@ -1,14 +1,23 @@
 ![logo](/serve/logo.jpg)
 
-# Wikicircle
+# Metawiki
 
-Wikicircle is an experiment in writing a *truly* editable website.
+## What is a metawiki?
+A metawiki is a website where both the content and
+the functionality can be edited within the site itself.
 
-This is a demo site, and the database is reset once an hour.
+This is a demo version of [wikicircle](https://github.com/Wilfred/wikicircle),
+a metawiki implementation.
 
-[Edit this page](#edit?md/Home)!
+## What can I edit?
+You can edit the content on this site. For example, you can 
+[edit this page](#edit?md/Home), or [create a new page](#new).
 
-Or, [edit the JS](#edit?js/wikicircle/app.js), [the CSS](#edit?js/wikicircle/wikicircle.css)
+You can also  [edit the JS](#edit?js/wikicircle/app.js), [the CSS](#edit?js/wikicircle/wikicircle.css)
 or [the HTML](#edit?html/index.html) of the site itself!
 
-Fancy [creating something new](#new)?
+The database is reset once an hour, so feel free to experiment.
+
+## Why should I care?
+Metawikis are really interesting. They're challenging to write. Traditional
+front end practices don't work. They're hard to secure.
