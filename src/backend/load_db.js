@@ -14,7 +14,8 @@ function createResource(mimeType, resourcePath, localPath) {
             mimeType: mimeType,
             content: fs.readFileSync(localPath, {
                 encoding: 'utf8'
-            })
+            }),
+            bootstrapPath: localPath
         }, {
             upsert: true
         }, cb);

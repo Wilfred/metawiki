@@ -16,10 +16,11 @@ async.series([
 
             async.map(resources, function(resource, _cb) {
 
-                var localPath = "src/frontend/" + path.basename(resource.path);
-
-                if (resource.mimeType == "text/x-markdown") {
-                    localPath = localPath + '.md';
+                var localPath;
+                if (resource.bootstrapPath) {
+                    localPath = resource.bootstrapPath;
+                } else {
+                    localPath = "src/frontend/" + path.basename(resource.path);
                 }
 
                 async.series([
