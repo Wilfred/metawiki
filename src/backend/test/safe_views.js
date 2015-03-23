@@ -1,7 +1,12 @@
 /*global describe, it */
 
-var expect = require("chai").expect;
-var request = require('request');
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+
+chai.use(chaiHttp);
+var expect = chai.expect;
+var request = chai.request;
+
 var async = require('async');
 
 var server = require('../server');
@@ -19,12 +24,12 @@ describe("Safe views", function() {
         ], done);
     });
 
-    describe("Safe view", function() {
+    describe("Safe resource view", function() {
         it("should return 200 when accessing index.html", function(done){
-            request.get(
-                'http://localhost:9001/safe/resource/index.html', function (err, res, body){
-                    expect(err).to.equal(null);
-                    expect(res.statusCode).to.equal(200);
+            request('http://localhost:9001')
+                .get('/safe/resource/index.html')
+                .end(function (err, response) {
+                    expect(response).to.have.status(200);
                     done();
                 });
         });
