@@ -42,7 +42,7 @@ function serve(request, response, next) {
                 // instead of serving files from here.
                 var appDir = path.dirname(require.main.filename);
                 var absPath = path.join(appDir, "..", "..", "binary_files",
-                    resource.localPath);
+                                        resource.localPath);
 
                 // TODO: unit test to verify we don't allow directory
                 // travel if localPath contains '..'.
@@ -80,7 +80,7 @@ function updateResource(req, res, next) {
     models.Resource.findOneAndUpdate({
         'path': path
     }, {
-        'content': req.body.content,
+        'content': req.body.content
     }, function(err, resource) {
         if (resource === null) {
             next(new restify.NotFoundError(
