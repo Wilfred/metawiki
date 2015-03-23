@@ -3,7 +3,7 @@
 // The clientside wiki app.
 require(['/serve/js/handlebars/handlebars.js',
          '/serve/js/marked/marked.js',
-         '/serve/js/codemirror/codemirror.js',
+         '/serve/js/codemirror/lib/codemirror.js',
          '/serve/js/routie/routie.js',
          '/serve/js/jquery/jquery.js'
         ], function(Handlebars, marked, CodeMirror) {
