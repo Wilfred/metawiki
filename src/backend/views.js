@@ -95,10 +95,22 @@ function allResources(req, res, next) {
     });
 }
 
+function safeViewResource(request, response, next) {
+    response.setHeader('Content-Type', 'text/html');
+
+    response.writeHead(200);
+    response.end("hello world!");
+    next();
+}
+
 module.exports = {
     serve: serve,
+    
     getResource: getResource,
     updateResource: updateResource,
     allResources: allResources,
+
+    safeViewResource: safeViewResource,
+    
     index: index
 };
