@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Safe mode</h1>
+        <p>This view is immutable and provided by the backend. It's
+        perfect when your metawiki is totally broken.
+        </p>
+
+        {{#if resource}}
+        <h2>{{resource.path}}</h2>
+        <pre>{{resourceStr}}</pre>
+        {{/if}}
+
+        {{#unless resource}}
+        <h2>No resource called {{resourcePath}}</h2>
+        {{/unless}}
+
+    </body>
+</html>

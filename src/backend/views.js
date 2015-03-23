@@ -2,6 +2,8 @@ var restify = require('restify');
 var path = require('path');
 var fs = require('fs');
 
+var Handlebars = require('handlebars');
+
 var models = require('./models');
 
 
@@ -98,11 +100,39 @@ function allResources(req, res, next) {
 }
 
 function safeViewResource(request, response, next) {
+    var resourcePath = request.params[0];
+    
     response.setHeader('Content-Type', 'text/html');
 
-    response.writeHead(200);
-    response.end("hello world!");
-    next();
+    models.Resource.findOne({
+        'path': resourcePath
+    }, function(err, resource) {
+        fs.readFile(path.join(__dirname, "templates/safe_view.html"), {
+            encoding: 'utf8'
+        }, function(err, templateSrc) {
+            if (err) {
+                // TODO: proper logging.
+                console.log(err);
+                throw err;
+            }
+
+            var template;
+            try {
+                template = Handlebars.compile(templateSrc);
+            } catch(e) {
+                console.log(e);
+                throw e;
+            }
+
+            response.writeHead(resource ? 200 : 404);
+            response.end(template({
+                resourceStr: JSON.stringify(resource, null, 4),
+                resource: resource,
+                resourcePath: resourcePath
+            }));
+            next();
+        });
+    });
 }
 
 module.exports = {
