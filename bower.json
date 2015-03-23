@@ -20,6 +20,7 @@
     "routie": "~0.3.2",
     "jquery": "~2.1.1",
     "handlebars": "~2.0.0",
-    "uri.js": "~1.14.1"
+    "uri.js": "~1.14.1",
+    "requirejs": "~2.1.16"
   }
 }

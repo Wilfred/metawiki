@@ -83,6 +83,10 @@ async.series([
                 "bower_components/routie/dist/routie.js"),
 
             createResource("application/javascript",
+                "js/requirejs/require.js",
+                "bower_components/requirejs/require.js"),
+
+            createResource("application/javascript",
                 "js/jquery/jquery.js",
                 "bower_components/jquery/dist/jquery.js"),
 
