@@ -9,7 +9,7 @@ var db = require('../db');
 
 var wikiServer = server.create({log: undefined});
 
-describe("Initial load", function() {
+describe("Resource views", function() {
     before(function(done) {
         async.parallel([
             db.connect,
