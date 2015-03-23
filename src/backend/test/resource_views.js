@@ -2,27 +2,14 @@
 
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-
 chai.use(chaiHttp);
 var expect = chai.expect;
 var request = chai.request;
 
-var async = require('async');
-
-var server = require('../server');
-var db = require('../db');
-
-var wikiServer = server.create({log: undefined});
+var helpers = require('./helpers');
 
 describe("Resource views", function() {
-    before(function(done) {
-        async.parallel([
-            db.connect,
-            function(cb) {
-                wikiServer.listen(9001, 'localhost', cb);
-            }
-        ], done);
-    });
+    before(helpers.startServer);
 
     // TODO: add a sanity check test that we have mongo available.
     
@@ -37,8 +24,5 @@ describe("Resource views", function() {
         });
     });
 
-    after(function(done) {
-        wikiServer.close(); // sync method
-        db.disconnect(done);
-    });
+    after(helpers.teardownServer);
 });
