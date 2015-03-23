@@ -1,3 +1,7 @@
+body {
+    max-width: 700px;
+}
+
 .CodeMirror {
   border: 1px solid #eee;
   height: auto;
