@@ -1,11 +1,16 @@
 /*global require, $, routie */
 
+require.config({
+    baseUrl: "/serve/js"
+});
+
 // The clientside wiki app.
-require(['/serve/js/handlebars/handlebars.js',
-         '/serve/js/marked/marked.js',
-         '/serve/js/codemirror/lib/codemirror.js',
-         '/serve/js/routie/routie.js',
-         '/serve/js/jquery/jquery.js'
+require(['handlebars/handlebars',
+         'marked/marked',
+         'codemirror/lib/codemirror',
+         "codemirror/mode/javascript/javascript",
+         'routie/routie',
+         'jquery/jquery'
         ], function(Handlebars, marked, CodeMirror) {
             // Models.
             var Resource = {

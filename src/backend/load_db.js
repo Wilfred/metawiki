@@ -62,11 +62,12 @@ async.series([
             createResource("application/javascript",
                 "js/codemirror/lib/codemirror.js",
                 "bower_components/codemirror/lib/codemirror.js"),
+
             createResource("application/javascript",
                 "js/codemirror/addon/edit/matchbrackets.js",
                 "bower_components/codemirror/addon/edit/matchbrackets.js"),
             createResource("application/javascript",
-                "js/codemirror/javascript.js",
+                "js/codemirror/mode/javascript/javascript.js",
                 "bower_components/codemirror/mode/javascript/javascript.js"),
             createResource("application/javascript",
                 "js/codemirror/markdown.js",
