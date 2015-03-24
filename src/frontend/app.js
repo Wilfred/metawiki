@@ -9,6 +9,8 @@ require(['handlebars/handlebars',
          'marked/marked',
          'codemirror/lib/codemirror',
          "codemirror/mode/javascript/javascript",
+         "codemirror/mode/css/css",
+         "codemirror/mode/xml/xml",
          'routie/routie',
          'jquery/jquery'
         ], function(Handlebars, marked, CodeMirror) {
