@@ -8,6 +8,7 @@ require.config({
 require(['handlebars/handlebars',
          'marked/marked',
          'codemirror/lib/codemirror',
+         'codemirror/addon/edit/matchbrackets',
          "codemirror/mode/javascript/javascript",
          "codemirror/mode/css/css",
          "codemirror/mode/xml/xml",
