@@ -30,6 +30,8 @@ function createServer(opts) {
     server.put(/^\/resources\/(.+?)$/, views.updateResource);
     server.get(/^\/resources\/$/, views.allResources);
 
+    server.get(/^\/safe\/resource\/(.+?)$/, views.safeViewResource);
+    
     return server;
 }
 

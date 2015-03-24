@@ -2,16 +2,20 @@ var restify = require('restify');
 var path = require('path');
 var fs = require('fs');
 
+var Handlebars = require('handlebars');
+
 var models = require('./models');
 
 
 function index(req, response, next) {
     response.setHeader('Content-Type', 'text/html');
+    // TODO: handle no index.
     models.Resource.findOne({
         'path': 'html/index.html'
     }, function(err, indexResource) {
         response.writeHead(200);
         response.end(indexResource.content);
+        next();
     });
 }
 
@@ -38,7 +42,7 @@ function serve(request, response, next) {
                 // instead of serving files from here.
                 var appDir = path.dirname(require.main.filename);
                 var absPath = path.join(appDir, "..", "..", "binary_files",
-                    resource.localPath);
+                                        resource.localPath);
 
                 // TODO: unit test to verify we don't allow directory
                 // travel if localPath contains '..'.
@@ -49,7 +53,7 @@ function serve(request, response, next) {
                     response.end();
                 });
             }
-
+            next();
         }
     });
 }
@@ -76,7 +80,7 @@ function updateResource(req, res, next) {
     models.Resource.findOneAndUpdate({
         'path': path
     }, {
-        'content': req.body.content,
+        'content': req.body.content
     }, function(err, resource) {
         if (resource === null) {
             next(new restify.NotFoundError(
@@ -95,10 +99,50 @@ function allResources(req, res, next) {
     });
 }
 
+function safeViewResource(request, response, next) {
+    var resourcePath = request.params[0];
+    
+    response.setHeader('Content-Type', 'text/html');
+
+    models.Resource.findOne({
+        'path': resourcePath
+    }, function(err, resource) {
+        fs.readFile(path.join(__dirname, "templates/safe_view.html"), {
+            encoding: 'utf8'
+        }, function(err, templateSrc) {
+            if (err) {
+                // TODO: proper logging.
+                console.log(err);
+                throw err;
+            }
+
+            var template;
+            try {
+                template = Handlebars.compile(templateSrc);
+            } catch(e) {
+                console.log(e);
+                throw e;
+            }
+
+            response.writeHead(resource ? 200 : 404);
+            response.end(template({
+                resourceStr: JSON.stringify(resource, null, 4),
+                resource: resource,
+                resourcePath: resourcePath
+            }));
+            next();
+        });
+    });
+}
+
 module.exports = {
     serve: serve,
+    
     getResource: getResource,
     updateResource: updateResource,
     allResources: allResources,
+
+    safeViewResource: safeViewResource,
+    
     index: index
 };
