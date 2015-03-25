@@ -33,6 +33,15 @@ require(['handlebars/handlebars',
                         // TODO: Handle 404 and 500.
                         callback(null, resource);
                     });
+                }, create: function create(name, content, callback) {
+                    $.ajax({
+                        url:"/resources/" + name,
+                        data: {name: name, content: content},
+                        type: 'POST'
+                    }).done(function(resource) {
+                        // TODO: Handle 404 and 500.
+                        callback(null, resource);
+                    });
                 }
             };
 
@@ -84,10 +93,25 @@ require(['handlebars/handlebars',
             }
 
             function newController() {
-                loadEditor("New", null);
+                var editor = loadEditor("New", null);
+                
+                $('input[type=submit]').click(function() {
+                    var $input = $(this);
+                    var resourceName = $('input[name=path]').val();
+                        
+                    Resource.create(resourceName, editor.getValue(), function() {
+                        // don't go anywhere if we said 'save and continue'
+                        if ($input.attr('name') != 'save-continue') {
+                            // TODO: go to the relevant edited page
+                            routie('md/Home');
+                        }
+                    });
+                    return false;
+                });
             }
 
             // Routing
+            // TODO: all pages view
             routie({
                 'md/:pageName': viewController,
                 'edit*': editController,
