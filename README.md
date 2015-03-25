@@ -1,13 +1,13 @@
 ![screenshot](binary_files/ouroboros.jpg)
 
-# WikiCircle
+# Metawiki
 
 [![Build Status](https://travis-ci.org/Wilfred/wikicircle.svg?branch=master)](https://travis-ci.org/Wilfred/wikicircle)
 [![Dependency Status](https://david-dm.org/wilfred/wikicircle.svg)](https://david-dm.org/wilfred/wikicircle)
 
 Demo site: http://metawiki-demo.wilfred.me.uk/
 
-WikiCircle is a proof of concept self-hosting metawiki. It has basic
+This is a proof of concept self-hosting metawiki. It has basic
 self-editing functionality but no concept of users or history yet.
 
 The backend is a simple node.js application with a JSON REST API. The
