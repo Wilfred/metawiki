@@ -3,6 +3,7 @@
 var server = require('./server');
 var db = require('./db');
 
+// FIXME: this is actually asynchronous.
 db.connect();
 
 var wikiServer = server.create();
