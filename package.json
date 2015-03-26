@@ -1,7 +1,7 @@
 {
-  "name": "wikicircle",
+  "name": "metawiki",
   "version": "0.0.2",
-  "description": "A metawiki.",
+  "description": "A wiki that can be edited from the browser",
   "repository": "https://github.com/Wilfred/wikicircle",
   "main": "server.js",
   "keywords": [
