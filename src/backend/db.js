@@ -2,8 +2,9 @@
 
 var mongoose = require('mongoose');
 
-function connect(cb) {
-    mongoose.connect('mongodb://localhost/test', cb);
+function connect(cb, opts) {
+    var db = opts.db || "metawiki";
+    mongoose.connect('mongodb://localhost/' + db, cb);
 }
 
 function disconnect(cb) {
