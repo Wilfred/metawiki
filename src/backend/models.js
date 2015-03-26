@@ -1,3 +1,5 @@
+"use strict"; 
+
 var mongoose = require('mongoose');
 
 // A resource is a blob of data that can viewed or modified over

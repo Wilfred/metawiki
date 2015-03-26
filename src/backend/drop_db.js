@@ -1,3 +1,5 @@
+"use strict"; 
+
 var async = require('async');
 var db = require('./db.js');
 var models = require('./models.js');

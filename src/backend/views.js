@@ -1,3 +1,5 @@
+"use strict"; 
+
 var restify = require('restify');
 var path = require('path');
 var fs = require('fs');
