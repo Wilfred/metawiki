@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 
 function connect(cb, opts) {
+    opts = opts || {};
     var db = opts.db || "metawiki";
     mongoose.connect('mongodb://localhost/' + db, cb);
 }
