@@ -10,7 +10,7 @@ var request = chai.request;
 var helpers = require('./helpers');
 
 describe("Safe views", function() {
-    before(helpers.startServer);
+    before(helpers.testPrepare);
 
     describe("Safe resource view", function() {
         it("should return 200 when accessing index.html", function(done){

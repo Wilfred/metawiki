@@ -6,19 +6,30 @@ chai.use(chaiHttp);
 
 var server = require('../server');
 var db = require('../db');
+var Resource = require('../models.js').Resource;
 
 var SERVER_PORT = 9001;
+var TEST_DB_NAME = "testing";
 var testServer = null;
 
-// Start the backend server and connect to our database.
-function startServer(cb) {
-    async.parallel([
-        db.connect,
+function freshTestDB(cb) {
+    async.series([
         function(_cb) {
-            testServer = server.create({log: undefined});
-            testServer.listen(SERVER_PORT, 'localhost', _cb);
+            db.connect(_cb, {db: TEST_DB_NAME});
+        },
+        function(_cb) {
+            Resource.remove({}, _cb);
         }
     ], cb);
+}
+
+function startServer(cb) {
+    testServer = server.create({log: undefined});
+    testServer.listen(SERVER_PORT, 'localhost', cb);
+}
+
+function testPrepare(cb) {
+    async.parallel([freshTestDB, startServer], cb);
 }
 
 function teardownServer(cb) {
@@ -27,6 +38,6 @@ function teardownServer(cb) {
 }
 
 module.exports = {
-    startServer: startServer,
+    testPrepare: testPrepare,
     teardownServer: teardownServer
 };

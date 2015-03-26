@@ -10,7 +10,7 @@ var request = chai.request;
 var helpers = require('./helpers');
 
 describe("Resource views", function() {
-    before(helpers.startServer);
+    before(helpers.testPrepare);
 
     // TODO: add a sanity check test that we have mongo available.
     
