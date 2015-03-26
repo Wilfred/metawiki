@@ -52,12 +52,19 @@ describe("Editing resources", function() {
                     }, function(err, resources) {
                         expect(resources.length).to.equal(1);
                         done();
-                        // expect(changedResource.path).to.equal("bar");
                     });
                 });
         });
+    });
 
-        
+    it("should 404 on editing nonexistent resources", function(done) {
+        request('http://localhost:9001')
+            .put('/resources/no-such-resource')
+            .field('content', 'bar')
+            .end(function (err, response) {
+                expect(response).to.have.status(404);
+                done(); 
+            });
     });
 
     after(helpers.teardownServer);
