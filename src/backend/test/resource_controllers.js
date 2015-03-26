@@ -51,6 +51,7 @@ describe("Editing resources", function() {
                         'path': testResource.path
                     }, function(err, resources) {
                         expect(resources.length).to.equal(1);
+                        expect(resources[0].content).to.equal("bar");
                         done();
                     });
                 });
