@@ -94,6 +94,30 @@ function updateResource(req, res, next) {
     });
 }
 
+function createResource(req, res, next) {
+    var path = req.params[0];
+
+    models.Resource.findOne({
+        'path': path
+    }, function(err, existingResource) {
+        if (existingResource === null) {
+            var resource = new models.Resource({
+                path: path,
+                content: req.body.content
+            });
+            resource.save(function() {
+                // TODO: should we send something else?
+                res.send(resource);
+                next();
+            });
+        } else {
+            next(new restify.BadRequestError(
+                "Resource with path '" + path + "' already exists."));
+            next();
+        }
+    });
+}
+
 function allResources(req, res, next) {
     models.Resource.find({}, function(err, resources) {
         res.send(resources);
@@ -141,6 +165,7 @@ module.exports = {
     serve: serve,
     
     getResource: getResource,
+    createResource: createResource,
     updateResource: updateResource,
     allResources: allResources,
 

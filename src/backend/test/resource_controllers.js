@@ -31,6 +31,51 @@ describe("Homepage", function() {
     after(helpers.teardownServer);
 });
 
+describe("Creating resources", function() {
+    before(helpers.testPrepare);
+
+    it("should create a resource", function(done) {
+        request('http://localhost:9001')
+            .post('/resources/foo')
+            .field('content', 'bar')
+            .end(function (err, response) {
+                expect(response).to.have.status(200);
+                
+                Resource.find({
+                    'path': 'foo'
+                }, function(err, resources) {
+                    expect(resources.length).to.equal(1);
+                    expect(resources[0].content).to.equal("bar");
+                    done();
+                });
+            });
+    });
+
+    it("should error if the resource already exists", function(done) {
+        var testResource = new Resource({
+            'path': 'fooz',
+            'content': 'foo'
+        });
+        testResource.save(function() {
+            request('http://localhost:9001')
+                .post('/resources/fooz')
+                .field('content', 'foo')
+                .end(function (err, response) {
+                    expect(response).to.have.status(400);
+                    
+                    Resource.find({
+                        'path': 'foo'
+                    }, function(err, resources) {
+                        expect(resources.length).to.equal(1);
+                        done();
+                    });
+                });
+        });
+    });
+
+    after(helpers.teardownServer);
+});
+
 describe("Editing resources", function() {
     before(helpers.testPrepare);
 

@@ -28,8 +28,11 @@ function createServer(opts) {
 
     server.get('/', controllers.index);
     server.get(/^\/serve\/(.+?)$/, controllers.serve);
+
     server.get(/^\/resources\/(.+?)$/, controllers.getResource);
+    server.post(/^\/resources\/(.+?)$/, controllers.createResource);
     server.put(/^\/resources\/(.+?)$/, controllers.updateResource);
+
     server.get(/^\/resources\/$/, controllers.allResources);
 
     server.get(/^\/safe\/resource\/(.+?)$/, controllers.safeViewResource);
