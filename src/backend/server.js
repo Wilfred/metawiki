@@ -4,7 +4,7 @@ var restify = require('restify');
 var _ = require('underscore');
 
 var log = require('./log');
-var views = require('./views');
+var controllers = require('./controllers');
 
 function createServer(opts) {
     opts = opts || {};
@@ -26,13 +26,13 @@ function createServer(opts) {
         mapParams: false
     }));
 
-    server.get('/', views.index);
-    server.get(/^\/serve\/(.+?)$/, views.serve);
-    server.get(/^\/resources\/(.+?)$/, views.getResource);
-    server.put(/^\/resources\/(.+?)$/, views.updateResource);
-    server.get(/^\/resources\/$/, views.allResources);
+    server.get('/', controllers.index);
+    server.get(/^\/serve\/(.+?)$/, controllers.serve);
+    server.get(/^\/resources\/(.+?)$/, controllers.getResource);
+    server.put(/^\/resources\/(.+?)$/, controllers.updateResource);
+    server.get(/^\/resources\/$/, controllers.allResources);
 
-    server.get(/^\/safe\/resource\/(.+?)$/, views.safeViewResource);
+    server.get(/^\/safe\/resource\/(.+?)$/, controllers.safeViewResource);
     
     return server;
 }
