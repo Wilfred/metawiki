@@ -4,6 +4,12 @@ node_js:
 services:
   - mongodb
 before_script:
+  # Not necessary, but good to check that they work.
   - npm run load-db
+  - npm run dump-db
+  - npm run drop-db
+  # Ensure that we don't have any changes from dump-db
+  # affecting our tests.
+  - git clean -dfx
 script:
   - npm run test
