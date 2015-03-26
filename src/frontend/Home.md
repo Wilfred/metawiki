@@ -21,3 +21,8 @@ The database is reset once an hour, so feel free to experiment.
 ## Why should I care?
 Metawikis are really interesting. They're challenging to write. Traditional
 front end practices don't work. They're hard to secure.
+
+## TODO
+* Handle trying to edit a nonexistent page.
+* Changing mode isn't changing highlighting
+* 'Save and continue editing' doesn't work for new pages
