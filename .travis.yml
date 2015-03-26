@@ -6,10 +6,8 @@ services:
 before_script:
   # Not necessary, but good to check that they work.
   - npm run load-db
-  - npm run dump-db
   - npm run drop-db
-  # Ensure that we don't have any changes from dump-db
-  # affecting our tests.
-  - git clean -dfx
+  # We don't run dump-db to avoid dirtying our local checkout, leading
+  # to confusing test results.
 script:
   - npm run test
