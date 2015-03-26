@@ -1,4 +1,5 @@
-/*global describe, it */
+/*global describe, it, before, after */
+"use strict";
 
 var chai = require('chai');
 var chaiHttp = require('chai-http');
