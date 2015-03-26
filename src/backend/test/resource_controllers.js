@@ -32,6 +32,32 @@ describe("Resource views", function() {
             });
         });
     });
+
+    describe("Editing resources", function() {
+        it("should change the requested resource", function(done) {
+            var testResource = new Resource({
+                'path': 'foo',
+                'content': 'foo'
+            });
+            testResource.save(function() {
+                request('http://localhost:9001')
+                    .put('/resources/' + testResource.path)
+                    .field('content', 'bar')
+                    .end(function (err, response) {
+                        expect(response).to.have.status(200);
+                        
+                        
+                        Resource.find({
+                            'path': testResource.path
+                        }, function(err, resources) {
+                            expect(resources.length).to.equal(1);
+                            done();
+                            // expect(changedResource.path).to.equal("bar");
+                        });
+                    });
+            });
+
+            
         });
     });
 
