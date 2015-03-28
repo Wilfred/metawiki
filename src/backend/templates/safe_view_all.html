@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Wikicircle safe mode</title>
+    </head>
+    <body>
+        <h1>Safe mode</h1>
+        <p>This view is immutable and provided by the backend. It's
+        perfect when your metawiki is totally broken.
+        </p>
+
+        <h2>Resources</h2>
+
+        <ul>
+        {{#each resources}}
+            <li><a href="/safe/resource/{{this.path}}">{{this.path}}</a></li>
+        {{/each}}
+        </ul>
+
+    </body>
+</html>

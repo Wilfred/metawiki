@@ -5,13 +5,9 @@
         <title>Wikicircle safe mode</title>
     </head>
     <body>
-        <h1>Safe mode</h1>
-        <p>This view is immutable and provided by the backend. It's
-        perfect when your metawiki is totally broken.
-        </p>
+        <h1>Safe mode: {{resource.path}}</h1>
 
         {{#if resource}}
-        <h2>{{resource.path}}</h2>
         <pre>{{resourceStr}}</pre>
         {{/if}}
 

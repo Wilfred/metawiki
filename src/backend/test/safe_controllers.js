@@ -39,5 +39,16 @@ describe("Safe views", function() {
         });
     });
 
+    describe("Safe view all reources", function() {
+        it("should return 200", function(done){
+            request("http://localhost:9001")
+                .get('/safe')
+                .end(function (err, response) {
+                    expect(response).to.have.status(200);
+                    done();
+                });
+        });
+    });
+
     after(helpers.teardownServer);
 });

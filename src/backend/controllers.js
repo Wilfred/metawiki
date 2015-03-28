@@ -125,6 +125,36 @@ function allResources(req, res, next) {
     });
 }
 
+function safeViewAllResources(request, response, next) {
+    response.setHeader('Content-Type', 'text/html');
+
+    models.Resource.find({}, function(err, resources) {
+        
+        fs.readFile(path.join(__dirname, "templates/safe_view_all.html"), {
+            encoding: 'utf8'
+        }, function(err, templateSrc) {
+            if (err) {
+                // TODO: proper logging.
+                console.log(err);
+                throw err;
+            }
+
+            var template;
+            try {
+                template = Handlebars.compile(templateSrc);
+            } catch(e) {
+                console.log(e);
+                throw e;
+            }
+
+            response.end(template({
+                resources: resources
+            }));
+            next();
+        });
+    });
+}
+
 function safeViewResource(request, response, next) {
     var resourcePath = request.params[0];
     
@@ -169,6 +199,7 @@ module.exports = {
     updateResource: updateResource,
     allResources: allResources,
 
+    safeViewAllResources: safeViewAllResources,
     safeViewResource: safeViewResource,
     
     index: index

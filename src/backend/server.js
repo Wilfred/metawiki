@@ -35,6 +35,7 @@ function createServer(opts) {
 
     server.get(/^\/resources\/$/, controllers.allResources);
 
+    server.get(/^\/safe$/, controllers.safeViewAllResources);
     server.get(/^\/safe\/resource\/(.+?)$/, controllers.safeViewResource);
     
     return server;
