@@ -106,6 +106,9 @@ async.series([
                 "bower_components/handlebars/handlebars.js"),
 
             createResource("application/javascript",
+                "js/wikicircle/models.js",
+                "src/frontend/models.js"),
+            createResource("application/javascript",
                 "js/wikicircle/app.js",
                 "src/frontend/app.js"),
 
