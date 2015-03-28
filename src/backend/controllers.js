@@ -128,7 +128,7 @@ function allResources(req, res, next) {
 function safeViewAllResources(request, response, next) {
     response.setHeader('Content-Type', 'text/html');
 
-    models.Resource.find({}, function(err, resources) {
+    models.Resource.find({}).sort('path').exec(function(err, resources) {
         
         fs.readFile(path.join(__dirname, "templates/safe_view_all.html"), {
             encoding: 'utf8'
