@@ -125,26 +125,35 @@ function allResources(req, res, next) {
     });
 }
 
+function fetchTemplate(name, cb) {
+    fs.readFile(path.join(__dirname, "templates", name), {
+        encoding: 'utf8'
+    }, function(err, templateSrc) {
+        if (err) {
+            cb(err, null);
+        }
+
+        var template;
+        try {
+            template = Handlebars.compile(templateSrc);
+        } catch(e) {
+            cb(err, null);
+        }
+
+        cb(null, template);
+    });
+}
+
 function safeViewAllResources(request, response, next) {
     response.setHeader('Content-Type', 'text/html');
 
     models.Resource.find({}).sort('path').exec(function(err, resources) {
-        
-        fs.readFile(path.join(__dirname, "templates/safe_view_all.html"), {
-            encoding: 'utf8'
-        }, function(err, templateSrc) {
+
+        fetchTemplate("safe_view_all.html", function(err, template) {
             if (err) {
                 // TODO: proper logging.
                 console.log(err);
                 throw err;
-            }
-
-            var template;
-            try {
-                template = Handlebars.compile(templateSrc);
-            } catch(e) {
-                console.log(e);
-                throw e;
             }
 
             response.end(template({
@@ -163,21 +172,11 @@ function safeViewResource(request, response, next) {
     models.Resource.findOne({
         'path': resourcePath
     }, function(err, resource) {
-        fs.readFile(path.join(__dirname, "templates/safe_view.html"), {
-            encoding: 'utf8'
-        }, function(err, templateSrc) {
+        fetchTemplate("safe_view.html", function(err, template) {
             if (err) {
                 // TODO: proper logging.
                 console.log(err);
                 throw err;
-            }
-
-            var template;
-            try {
-                template = Handlebars.compile(templateSrc);
-            } catch(e) {
-                console.log(e);
-                throw e;
             }
 
             response.writeHead(resource ? 200 : 404);
