@@ -13,7 +13,9 @@ a metawiki implementation.
 You can edit the content on this site. For example, you can 
 [edit this page](#edit?md/Home), or [create a new page](#new).
 
-You can also  [edit the JS](#edit?js/wikicircle/app.js), [the CSS](#edit?js/wikicircle/wikicircle.css)
+You can also  [edit the app JS](#edit?js/wikicircle/app.js),
+[the models JS](#edit?js/wikicircle/models.js),
+[the CSS](#edit?js/wikicircle/wikicircle.css)
 or [the HTML](#edit?html/index.html) of the site itself!
 
 The database is reset once an hour, so feel free to experiment.
