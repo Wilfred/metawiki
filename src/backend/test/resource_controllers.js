@@ -77,7 +77,7 @@ describe("Creating resources", function() {
 });
 
 describe("Editing resources", function() {
-    before(helpers.testPrepare);
+    beforeEach(helpers.testPrepare);
 
     it("should change the requested resource", function(done) {
         var testResource = new Resource({
@@ -113,5 +113,5 @@ describe("Editing resources", function() {
             });
     });
 
-    after(helpers.teardownServer);
+    afterEach(helpers.teardownServer);
 });
