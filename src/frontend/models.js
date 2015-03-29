@@ -6,19 +6,27 @@ define(['jquery/jquery'], function() {
                 callback(null, resource);
                 
             });
-        }, save: function save(name, content, callback) {
+        }, save: function save(name, content, mimeType, callback) {
             $.ajax({
                 url:"/resources/" + name,
-                data: {name: name, content: content},
+                data: {
+                    name: name,
+                    content: content,
+                    mimeType: mimeType
+                },
                 type: 'PUT'
             }).done(function(resource) {
                 // TODO: Handle 404 and 500.
                 callback(null, resource);
             });
-        }, create: function create(name, content, callback) {
+        }, create: function create(name, content, mimeType, callback) {
             $.ajax({
                 url:"/resources/" + name,
-                data: {name: name, content: content},
+                data: {
+                    name: name,
+                    content: content,
+                    mimeType: mimeType
+                },
                 type: 'POST'
             }).done(function(resource) {
                 // TODO: Handle 404 and 500.

@@ -54,8 +54,11 @@ require([
             // TODO: create too.
             $('input[type=submit]').click(function() {
                 var $input = $(this);
+
+                var content = editor.getValue();
+                var mimeType = $('[name=mimeType]').val();
                 
-                Resource.save(resourceName, editor.getValue(), function() {
+                Resource.save(resourceName, content, mimeType, function() {
                     // don't go anywhere if we said 'save and continue'
                     if ($input.attr('name') != 'save-continue') {
                         // TODO: go to the relevant edited page
@@ -74,7 +77,10 @@ require([
             var $input = $(this);
             var resourceName = $('input[name=path]').val();
             
-            Resource.create(resourceName, editor.getValue(), function() {
+            var content = editor.getValue();
+            var mimeType = $('[name=mimeType]').val();
+                
+            Resource.create(resourceName, content, mimeType, function() {
                 // don't go anywhere if we said 'save and continue'
                 if ($input.attr('name') != 'save-continue') {
                     // TODO: go to the relevant edited page
