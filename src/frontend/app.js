@@ -6,5 +6,5 @@ require.config({
 require([
     'wikicircle/routing'
 ], function(routing) {
-    routing.intialize();
+    routing.initialize();
 });

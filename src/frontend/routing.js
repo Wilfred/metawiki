@@ -9,6 +9,10 @@ define([
         'new*': controllers.newController      
     });
     
+    function getHash() {
+        return window.location.hash.substring(1);
+    }
+    
     function initialize() {
         if (getHash() === "") {
             routie('md/Home');
