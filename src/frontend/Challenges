@@ -1,0 +1,89 @@
+# Metawiki Construction Challenges
+
+## Bootstrap
+How do we start a self-hosted metawiki? There's a minimal set of functionality
+we need before we can edit from within the site itself.
+
+The backend for this website has a `npm run load-db` command that
+loads an initial set of resources (JS, HTML and so on) so users
+can start editing.
+
+## No filesystem
+If all of the content is stored in a database, wiki users cannot use 
+normal editors/IDEs to edit the site. We are unable to use many coding
+tools (linters, code formatters, build tools) unless they can run
+entirely within a browser.
+
+No filesystem also means that a metawiki cannot use a VCS, such as git. The
+backend may use a VCS internally, but users can only interact with the backend
+through the browser.
+
+## Testing from within
+How do we test a metawiki whose functionality can change at any time?
+One approach would be to run tests of the clientside code from within thte
+wiki. This is similar to smalltalk implementations, where users can run
+tests from within the smalltalk environment.
+
+However, state is dangerous with internal testing. If a test affects the
+wiki instance currently running, the user cannot trust the test results. A test
+may even break the current instance.
+
+## Recovering from errors
+If a user makes a change that breaks the wiki, how do they recover? Even a simple
+syntax error may be catastrophic.
+
+This wiki provides a [safe mode](/safe) that cannot be edited, so will always
+work regardless of how broken the wiki site may be.
+
+## Incompatible API changes
+How do users make changes to the API of a module that's used elsewhere on the
+wiki? This applies to both wiki modules and third party libraries.
+
+This becomes even more difficult when multiple users may be editing at the
+same time.
+
+## Library dependencies
+How do users add library dependencies to the metawiki? What if different parts
+of the wiki depend on different library versions?
+
+This metawiki loads some libraries from bower during the bootstrap process,
+but that doesn't help the long-term development of the wiki.
+
+## Conflicting changes
+How does a metawiki handle multiple people editing the same JS file? Worse,
+what if two users edit different JS files that depend on each other?
+
+## IDE functionality
+How can a metawiki provide a modern IDE experience? How much JS tooling can
+run in the browser unmodified? How will performance fare?
+
+## User preferences
+Should the metawiki editor provide vim or emacs keybindings? How much
+editor behaviour should be shared and improved collaboratively, and how
+much should be personalizable?
+
+## Upgrading
+The source code for this metawiki is
+[available on GitHub](https://github.com/Wilfred/metawiki). If the original
+metawiki developer releases a new version on GitHub, how do existing deployments
+upgrade?
+
+Is it even possible? Each deployment is effectively a fork.
+
+## Evaluating / live reloading
+For editing markdown, live reloading is fairly safe. Can we safely live reload
+CSS?
+
+For evaluating JS, how do we handle caching? If multiple modules depend on
+(say) JQuery, we only want to load it once, but we want to ensure that
+any changes to our JS can be reloaded without caching.
+
+## Minification / concatenation
+A metawiki has no build step. Should we minify? Should the backend provide
+this? What if the metawiki has an editing bug and users can only see minified
+content when debugging?
+
+Currently, this demo instance just gzips JS but serves it unmodified.
+
+## Security
+This is a big topic, see the [security page](#md/Security).

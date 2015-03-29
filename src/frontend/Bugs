@@ -1,0 +1,5 @@
+# Outstanding work / Bugs
+
+* Handle trying to edit a nonexistent page.
+* Changing mode isn't changing highlighting
+* 'Save and continue editing' doesn't work for new pages

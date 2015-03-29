@@ -1,0 +1,34 @@
+# Related Projects
+
+## Full Metawikis
+The idea of a metawiki is not new. C2 has pages on
+[metawikis](http://c2.com/cgi/wiki?MetaWiki),
+[programmable wikis](http://c2.com/cgi/wiki?WikiWithProgrammableContent)
+and [partly programmable wikis](http://c2.com/cgi/wiki?SmartWiki).
+
+However, most of metawikis mentioned are long dead.
+
+The only full metawiki I'm aware of today is
+[alphawiki](http://epsilonwiki.free.fr/alphawiki_2/).
+Since it contains a custom programming language and syntax
+it's hard to directly compare to this implementation.
+
+## Partial Metawikis
+Mediawiki supports
+[a lua sandbox for scripting templates](http://www.mediawiki.org/wiki/Lua_scripting).
+These templates are used for common layouts within pages, rather than
+basic wiki functionalitiy.
+
+## Self-Hosting Editors
+The idea of a self-hosting editing environment is well established in the lisp
+(lisp machines, Emacs) and smalltalk (Squeak, Smalltalk) languages.
+
+There's very little self-hosting tooling on the web.
+
+[Amber Smalltalk](http://amber-lang.net/) is a smalltalk implementation that
+is compiled to JS. Amber provides a full set of development tools (editor, REPL,
+unit tests, debugger) that run inside the browser.
+
+The [Lively Kernel](http://lively-kernel.org/) is a set of JS libraries that
+allow you to develop web applications with an IDE in the browser. It is developed
+by Dan Ingalls, a notable Smalltalk developer.

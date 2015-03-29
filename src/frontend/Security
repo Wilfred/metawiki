@@ -1,0 +1,54 @@
+# Securing a metawiki
+
+Most metawiki implementations are no longer available, partly
+because it's really hard to secure.
+
+## Threat model
+Many developer teams have internal wikis. Often, anyone in the team can deploy
+a new version anyway. In this environment, a metawiki could work and we only
+need to worry about accidental problems.
+
+For a public-facing wiki, I believe a metawiki could work. You allow users
+to propose changes, but only trusted users can approve them. The German
+Wikipedia [uses this approach](http://en.wikipedia.org/wiki/Flagged_revisions)
+for its content.
+
+## Malicious content editing
+This is not a problem specific to metawikis, and changes can be simply rolled
+back.
+
+Content here is written in markdown, which must be carefully escaped to prevent
+XSS. This is not yet implemented.
+
+## Malicious CSS editing
+CSS may be used to hide metawiki page elements, stopping parts of the site being
+used or breaking the site entirely. In this situation, users may be able to
+use their browsers developer tools to fix the CSS. If not, they will need to use
+the safe mode.
+
+A clever malicious user could make CSS changes that change the functionality.
+For example, changing a 'delete' link so it appears to be an 'edit' link.
+
+With this in mind, CSS is just as dangerous to edit as JS.
+
+## Malicious HTML editing
+If we do not escape HTML, then full XSS is possible by permitting HTML editing.
+
+Even if we do escape HTML, the HTML could be edited to impersonate different
+parts of the metawiki (as discussed with CSS).
+
+## Malicious JS editing
+If we allow JS editing, users have full power over any part of the wiki.
+
+Wikis keep history of who made each change, but with XSS a malicious user could
+make changes attributed to others.
+
+Even if we have different privilege levels, if a user can edit JS they can
+modify the home page so a visiting superuser unwittingly gives that user full
+powers.
+
+Users could even write a worm that propagates across the entire metawiki.
+
+## Accidental JS problems
+Accidents could break the wiki entirely. This metawiki provides a
+[safe mode](/safe) to help users restore their metawiki to a working state.

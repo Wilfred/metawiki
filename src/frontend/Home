@@ -6,8 +6,8 @@
 A metawiki is a website where both the content and
 the functionality can be edited within the site itself.
 
-This is a demo version of [wikicircle](https://github.com/Wilfred/wikicircle),
-a metawiki implementation.
+This is a pure JavaScript metawiki, and the source
+is [available on GitHub](https://github.com/Wilfred/metawiki).
 
 ## What can I edit?
 You can edit the content on this site. For example, you can 
@@ -23,10 +23,14 @@ or [the HTML](#edit?html/index.html) of the site itself!
 The database is reset once an hour, so feel free to experiment.
 
 ## Why should I care?
-Metawikis are really interesting. They're challenging to write. Traditional
-front end practices don't work. They're hard to secure.
+Metawikis are really interesting because they test the limits of the
+web as an application platform.
 
-## TODO
-* Handle trying to edit a nonexistent page.
-* Changing mode isn't changing highlighting
-* 'Save and continue editing' doesn't work for new pages
+They present [many programming challenges](#md/Challenges) because
+traditional software engineering doesn't work here. Metawikis
+are also [difficult to secure](#md/Security).
+
+## Tell me more!
+You might like to read about [related projects](#md/Related) and
+[design decisions](#md/Design). There's also a list of
+[known bugs](#md/Bugs).

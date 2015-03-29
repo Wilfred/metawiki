@@ -123,8 +123,23 @@ async.series([
                 "src/frontend/wikicircle.css"),
 
             createResource("text/x-markdown",
-                "md/Home",
-                "src/frontend/Home.md")
+                           "md/Home",
+                           "src/frontend/Home"),
+            createResource("text/x-markdown",
+                           "md/Bugs",
+                           "src/frontend/Bugs"),
+            createResource("text/x-markdown",
+                           "md/Challenges",
+                           "src/frontend/Challenges"),
+            createResource("text/x-markdown",
+                           "md/Bugs",
+                           "src/frontend/Bugs"),
+            createResource("text/x-markdown",
+                           "md/Related",
+                           "src/frontend/Related"),
+            createResource("text/x-markdown",
+                           "md/Security",
+                           "src/frontend/Security"),
         ], cb);
     },
     db.disconnect
