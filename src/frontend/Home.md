@@ -13,8 +13,10 @@ a metawiki implementation.
 You can edit the content on this site. For example, you can 
 [edit this page](#edit?md/Home), or [create a new page](#new).
 
-You can also  [edit the app JS](#edit?js/wikicircle/app.js),
-[the models JS](#edit?js/wikicircle/models.js),
+You can also edit the JS ([models](#edit?js/wikicircle/models.js),
+[routing](#edit?js/wikicircle/routing.js), 
+[controllers](#edit?js/wikicircle/controllers.js), 
+[app](#edit?js/wikicircle/app.js)),
 [the CSS](#edit?js/wikicircle/wikicircle.css)
 or [the HTML](#edit?html/index.html) of the site itself!
 
