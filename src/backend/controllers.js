@@ -5,6 +5,7 @@ var path = require('path');
 var fs = require('fs');
 
 var Handlebars = require('handlebars');
+var _ = require('underscore');
 
 var models = require('./models');
 
@@ -79,10 +80,17 @@ function getResource(req, res, next) {
 function updateResource(req, res, next) {
     var path = req.params[0];
 
+    if (!_.isString(req.body.content) || !_.isString(req.body.mimeType)) {
+        next(new restify.BadRequestError(
+            "You need to provide a body and a mimeType."));
+        next();
+    }
+
     models.Resource.findOneAndUpdate({
         'path': path
     }, {
-        'content': req.body.content
+        content: req.body.content,
+        mimeType: req.body.mimeType
     }, function(err, resource) {
         if (resource === null) {
             next(new restify.NotFoundError(

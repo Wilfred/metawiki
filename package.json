@@ -20,7 +20,7 @@
     "mocha": "^2.0.1",
     "mongoose": "^3.8.19",
     "restify": "~2.8.0",
-    "underscore": "^1.7.0"
+    "underscore": "^1.8.2"
   },
   "scripts": {
     "start": "node src/backend/main.js",

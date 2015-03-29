@@ -79,15 +79,17 @@ describe("Creating resources", function() {
 describe("Editing resources", function() {
     beforeEach(helpers.testPrepare);
 
-    it("should change the requested resource", function(done) {
+    it("should change resource content", function(done) {
         var testResource = new Resource({
             'path': 'foo',
-            'content': 'foo'
+            'content': 'foo',
+            'mimeType': 'application/javascript'
         });
         testResource.save(function() {
             request('http://localhost:9001')
                 .put('/resources/' + testResource.path)
                 .field('content', 'bar')
+                .field('mimeType', 'application/javascript')
                 .end(function (err, response) {
                     expect(response).to.have.status(200);
                     
@@ -103,14 +105,57 @@ describe("Editing resources", function() {
         });
     });
 
+    it("should change resource mime type", function(done) {
+        var testResource = new Resource({
+            path: 'foo',
+            content: 'foo',
+            mimeType: 'application/javascript'
+        });
+        testResource.save(function() {
+            request('http://localhost:9001')
+                .put('/resources/' + testResource.path)
+                .field('content', 'foo')
+                .field('mimeType', 'text/css')
+                .end(function (err, response) {
+                    expect(response).to.have.status(200);
+                    
+                    Resource.find({
+                        'path': testResource.path
+                    }, function(err, resources) {
+                        expect(resources.length).to.equal(1);
+                        expect(resources[0].mimeType).to.equal("text/css");
+                        done();
+                    });
+                });
+        });
+    });
+
     it("should 404 on editing nonexistent resources", function(done) {
         request('http://localhost:9001')
             .put('/resources/no-such-resource')
             .field('content', 'bar')
+            .field('mimeType', 'text/css')
             .end(function (err, response) {
                 expect(response).to.have.status(404);
                 done(); 
             });
+    });
+
+    it("should 400 on missing parameters", function(done) {
+        var testResource = new Resource({
+            path: 'foo',
+            content: 'foo',
+            mimeType: 'application/javascript'
+        });
+        testResource.save(function() {
+            request('http://localhost:9001')
+                .put('/resources/' + testResource.path)
+                .field('mimeType', 'text/css')
+                .end(function (err, response) {
+                    expect(response).to.have.status(400);
+                    done();
+                });
+        });
     });
 
     afterEach(helpers.teardownServer);
