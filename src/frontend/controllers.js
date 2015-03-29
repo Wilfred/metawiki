@@ -144,8 +144,11 @@ define([
             Resource.create(resourceName, content, mimeType, function() {
                 // don't go anywhere if we said 'save and continue'
                 if ($input.attr('name') != 'save-continue') {
-                    // TODO: go to the relevant edited page
-                    routie('md/Home');
+                    if (mimeType == "text/x-markdown") {
+                        routie(resourceName);
+                    } else {
+                        routie("md/Home");
+                    }
                 }
             });
             return false;
