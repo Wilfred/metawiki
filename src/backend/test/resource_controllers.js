@@ -31,6 +31,31 @@ describe("Homepage", function() {
     after(helpers.teardownServer);
 });
 
+describe("Serving resources", function() {
+    before(helpers.testPrepare);
+    
+    it("should be able to serve HTML", function(done) {
+        new Resource({
+            'path': 'html/index.html',
+            'content': 'foo',
+            'mimeType': 'text/html'
+        }).save(function() {
+            request('http://localhost:9001')
+                .get('/serve/html/index.html')
+                .end(function (err, response) {
+                    expect(response).to.have.status(200);
+
+                    expect(response.headers['content-type'])
+                        .to.equal('text/html; charset=UTF-8');
+
+                    done();
+                });
+        });
+    });
+
+    after(helpers.teardownServer);
+});
+
 describe("Creating resources", function() {
     before(helpers.testPrepare);
 
