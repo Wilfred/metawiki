@@ -10,4 +10,8 @@ before_script:
   # We don't run dump-db to avoid dirtying our local checkout, leading
   # to confusing test results.
 script:
-  - npm run test
+  - cd src/backend && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec
+after_success:
+  # FIXME: taken from the docs at https://www.npmjs.com/package/coveralls,
+  # but this is a pointless use of cat.
+  - cd src/backend && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
