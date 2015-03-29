@@ -114,8 +114,8 @@ define([
                 Resource.save(resourceName, content, mimeType, function() {
                     // don't go anywhere if we said 'save and continue'
                     if ($input.attr('name') != 'save-continue') {
-                        // TODO: go to the relevant edited page
-                        routie('md/Home');
+                        // FIXME: what if we create a page called 'edit'?
+                        routie(resourceName);
                     }
                 });
                 return false;
