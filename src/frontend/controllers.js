@@ -36,7 +36,8 @@ define([
     
     // Views.
     function loadEditor(heading, resource) {
-        var mimeType = resource ? resource.mimeType : "text/x-markdown";
+        resource = resource || {};
+        var mimeType = resource.mimeType || "text/x-markdown";
         var mode = "javascript";
         
         if (mimeType == "text/x-markdown") {
@@ -48,9 +49,9 @@ define([
         }
         
         $content.html(editorTemplate({
-            content: resource ? resource.content : "",
+            content: resource.content || "",
             mimeType: mimeType,
-            path: resource ? resource.path : "",
+            path: resource.path || "",
             heading: heading
         }));
         
@@ -116,7 +117,11 @@ define([
     }
     
     function newController() {
-        var editor = loadEditor("New", null);
+        var hashPath = window.location.hash.substring(1);
+        var resourceName = hashPath.split('?')[1];
+        
+        // FIXME: we should use either 'name' or 'path' consistently
+        var editor = loadEditor("New", {path: resourceName});
         
         $('input[type=submit]').click(function() {
             var $input = $(this);
