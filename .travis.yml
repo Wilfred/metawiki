@@ -4,15 +4,17 @@ node_js:
 services:
   - mongodb
 before_script:
-  # TODO: we should do everything from our package.json
+  # TODO: we should do everything from our package.json, as this may
+  # install newer versions than we wanted.
   - npm install -g istanbul
+  - npm install -g mocha
   # Not necessary, but good to check that they work.
   - npm run load-db
   - npm run drop-db
   # We don't run dump-db to avoid dirtying our local checkout, leading
   # to confusing test results.
 script:
-  - cd src/backend && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec
+  - cd src/backend && istanbul cover _mocha --report lcovonly -- -R spec
 after_success:
   # FIXME: taken from the docs at https://www.npmjs.com/package/coveralls,
   # but this is a pointless use of cat.
