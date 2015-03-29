@@ -115,7 +115,11 @@ define([
                     // don't go anywhere if we said 'save and continue'
                     if ($input.attr('name') != 'save-continue') {
                         // FIXME: what if we create a page called 'edit'?
-                        routie(resourceName);
+                        if (mimeType == "text/x-markdown") {
+                            routie(resourceName);
+                        } else {
+                            routie("md/Home");
+                        }
                     }
                 });
                 return false;
