@@ -14,7 +14,9 @@ before_script:
   # We don't run dump-db to avoid dirtying our local checkout, leading
   # to confusing test results.
 script:
-  - cd src/backend && istanbul cover _mocha --report lcovonly -- -R spec
+  - cd src/backend
+  - istanbul cover _mocha --report lcovonly -- -R spec
+  - cd ../..
 after_success:
   # FIXME: taken from the docs at https://www.npmjs.com/package/coveralls,
   # but this is a pointless use of cat.
