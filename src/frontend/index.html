@@ -23,6 +23,12 @@
             </p>
         </div>
         
+        <script type="text/template" id="page-template">
+            <a href="/">Home</a> <a href="/#edit?{{path}}">Edit</a>
+            <hr>
+            {{content}}
+        </script>
+        
         <script type="text/template" id="page-missing-template">
             <h2>No such page: {{path}}</h2>
             

@@ -25,6 +25,9 @@ define([
     
     var editorTemplateSrc = $("#editor-template").html();
     var editorTemplate = Handlebars.compile(editorTemplateSrc);
+
+    var pageTemplateSrc = $('#page-template').html();
+    var pageTemplate = Handlebars.compile(pageTemplateSrc);
     
     var pageMissingTemplateSrc = $('#page-missing-template').html();
     var pageMissingTemplate = Handlebars.compile(pageMissingTemplateSrc);
@@ -32,7 +35,6 @@ define([
     function getHash() {
         return window.location.hash.substring(1);
     }
-    
     
     // Views.
     function loadEditor(heading, resource) {
@@ -81,10 +83,15 @@ define([
         var path = "md/" + pageName;
         Resource.fetch(path, function(err, page) {
             if (err) {
-                $content.html(pageMissingTemplate({path: path}));
+                $content.html(pageMissingTemplate({
+                    path: path
+                }));
                 return;
             }
-            $content.html(marked(page.content));
+            $content.html(pageTemplate({
+                path: path,
+                content: new Handlebars.SafeString(marked(page.content))
+            }));
         });
     }
     
