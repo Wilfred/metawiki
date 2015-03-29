@@ -2,9 +2,9 @@ define(['jquery/jquery'], function() {
     var Resource = {
         fetch: function fetch(resourceName, callback) {
             $.ajax({url:"/resources/" + resourceName}).done(function(resource) {
-                // TODO: Handle 404 and 500.
-                callback(null, resource);
-                
+                callback(null, resource);                
+            }).fail(function(xhr, status, err) {
+                callback(xhr.status, null);
             });
         }, save: function save(name, content, mimeType, callback) {
             $.ajax({

@@ -21,8 +21,13 @@ define([
         return options.inverse(this);
     });
     
-    var $content = $("#content"),
-        editorTemplate = Handlebars.compile($("#editor-template").html());
+    var $content = $("#content");
+    
+    var editorTemplateSrc = $("#editor-template").html();
+    var editorTemplate = Handlebars.compile(editorTemplateSrc);
+    
+    var pageMissingTemplateSrc = $('#page-missing-template').html();
+    var pageMissingTemplate = Handlebars.compile(pageMissingTemplateSrc);
     
     function getHash() {
         return window.location.hash.substring(1);
@@ -72,7 +77,12 @@ define([
     
     // Controllers
     function viewController(pageName) {
-        Resource.fetch("md/" + pageName, function(err, page) {
+        var path = "md/" + pageName;
+        Resource.fetch(path, function(err, page) {
+            if (err) {
+                $content.html(pageMissingTemplate({path: path}));
+                return;
+            }
             $content.html(marked(page.content));
         });
     }
