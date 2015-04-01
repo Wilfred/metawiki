@@ -30,9 +30,10 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
     color: #2980b9;
-    border-bottom: 1px solid #2980b9;
     text-decoration: none;
-    
+}
+a:hover {
+    border-bottom: 1px solid #2980b9;
 }
 a:visited {
     color: #8e44ad;
