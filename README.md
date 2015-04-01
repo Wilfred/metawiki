@@ -2,8 +2,8 @@
 
 # Metawiki
 
-[![Build Status](https://travis-ci.org/Wilfred/wikicircle.svg?branch=master)](https://travis-ci.org/Wilfred/wikicircle)
-[![Dependency Status](https://david-dm.org/wilfred/wikicircle.svg)](https://david-dm.org/wilfred/wikicircle)
+[![Build Status](https://travis-ci.org/Wilfred/metawiki.svg?branch=master)](https://travis-ci.org/Wilfred/metawiki)
+[![Dependency Status](https://david-dm.org/wilfred/metawiki.svg)](https://david-dm.org/wilfred/metawiki)
 [![Coverage Status](https://coveralls.io/repos/Wilfred/metawiki/badge.svg)](https://coveralls.io/r/Wilfred/metawiki)
 
 Demo site: http://metawiki-demo.wilfred.me.uk/

@@ -10,7 +10,7 @@ function createServer(opts) {
     opts = opts || {};
 
     var defaultOpts = {
-        name: 'wikicircle',
+        name: 'metawiki',
         log: log
     };
 

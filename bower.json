@@ -1,12 +1,12 @@
 {
-  "name": "wikicircle",
+  "name": "metawiki",
   "version": "0.0.0",
   "authors": [
     "Wilfred Hughes <me@wilfred.me.uk>"
   ],
-  "description": "A JS metawiki",
+  "description": "A website where *everything* can be edited.",
   "license": "AGPLv3",
-  "homepage": "https://github.com/Wilfred/wikicircle",
+  "homepage": "https://github.com/Wilfred/metawiki",
   "ignore": [
     "**/.*",
     "node_modules",
