@@ -13,8 +13,8 @@ nav {
 }
 nav a, nav a:visited {
     margin-right: 10px;
+    border-bottom: 0;
     color: white;
-    text-decoration: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -25,9 +25,13 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
     color: #2980b9;
+    border-bottom: 1px solid #2980b9;
+    text-decoration: none;
+    
 }
 a:visited {
     color: #8e44ad;
+    border-bottom: 1px solid #8e44ad;
 }
 
 p {
