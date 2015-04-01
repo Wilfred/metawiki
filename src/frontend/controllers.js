@@ -81,6 +81,12 @@ define([
         var resourceName = hashPath.split('?')[1];
         
         Resource.fetch(resourceName, function(err, resource) {
+            if (err) {
+                // Page doesn't exist
+                // FIXME: need to set URL too.
+                return newController();
+            }
+            
             var editor = loadEditor("Editing", resource);
             
             // TODO: we should narrow this to children of the edit form.
