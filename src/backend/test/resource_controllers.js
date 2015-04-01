@@ -1,4 +1,4 @@
-/*global describe, it, before, after */
+/*global describe, it, before, after, beforeEach, afterEach */
 "use strict";
 
 var chai = require('chai');
@@ -32,7 +32,7 @@ describe("Homepage", function() {
 });
 
 describe("Serving resources", function() {
-    before(helpers.testPrepare);
+    beforeEach(helpers.testPrepare);
     
     it("should be able to serve HTML", function(done) {
         new Resource({
@@ -53,7 +53,46 @@ describe("Serving resources", function() {
         });
     });
 
-    after(helpers.teardownServer);
+    it("should 404 if no resource with that path", function(done) {
+        request('http://localhost:9001')
+            .get('/no/such/resource')
+            .end(function (err, response) {
+                expect(response).to.have.status(404);
+
+                done();
+            });
+    });
+
+    afterEach(helpers.teardownServer);
+});
+
+describe("Accessing resources", function() {
+    beforeEach(helpers.testPrepare);
+
+    it("should return the resource requested", function(done) {
+        var testResource = new Resource({
+            'path': 'foo',
+            'content': 'foo'
+        });
+        testResource.save(function() {
+            request('http://localhost:9001')
+                .get('/resources/foo')
+                .end(function (err, response) {
+                    expect(response).to.have.status(200);
+
+                    var expected = testResource.toObject();
+                    // Ignore ID for the time being.
+                    response.body._id = null;
+                    expected._id = null;
+
+                    expect(response.body).to.deep.equal(expected);
+                    
+                    done();
+                });
+        });
+    });
+
+    afterEach(helpers.teardownServer);
 });
 
 describe("Creating resources", function() {
