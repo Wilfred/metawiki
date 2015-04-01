@@ -41,6 +41,6 @@ async.series([
     if (err) {
         console.log(['Failed:', err]);
     } else {
-        console.log(['Wrote files:', resourceCount]);
+        console.log('Wrote %s resources to disk.', resourceCount);
     }
 });

@@ -147,6 +147,6 @@ async.series([
     if (err) {
         console.log(['Failed:', err]);
     } else {
-        console.log(['Created/updated:', total]);
+        console.log('Created/updated %s resources.', total);
     }
 });
