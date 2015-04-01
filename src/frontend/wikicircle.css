@@ -16,6 +16,11 @@ nav a, nav a:visited {
     border-bottom: 0;
     color: white;
 }
+nav h2 {
+    font-style: italic;
+    text-transform: lowercase;
+    margin: 0;
+}
 
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;

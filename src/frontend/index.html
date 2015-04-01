@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Wikicircle - A truly editable website</title>
+        <title>Metawiki -- A truly editable website</title>
 
         <link rel="stylesheet" href="/serve/css/codemirror.css">
         <link rel="stylesheet" href="/serve/js/wikicircle/wikicircle.css">
@@ -25,7 +25,8 @@
         
         <script type="text/template" id="page-template">
             <nav>
-                <a href="#md/Home">Home</a> <a href="#edit?{{path}}">Edit</a>
+                <h2><a href="#md/Home">Metawiki</a></h2>
+                <a href="#edit?{{path}}">Edit</a>
             </nav>
             {{content}}
         </script>
@@ -63,7 +64,7 @@
                 <input type="submit" value="Execute" name="execute">
                 {{/ifEqual}}
                 <input type="submit" value="Save">
-                <input type="submit" value="Save and continue editing" name="save-continue">                    
+                <input type="submit" value="Save and continue editing" name="save-continue">
             </form>
         </script>
 
