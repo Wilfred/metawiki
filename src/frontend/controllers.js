@@ -1,6 +1,7 @@
 // The clientside wiki app.
 define([
     'wikicircle/models',
+    'wikicircle/templates',
     'handlebars/handlebars',
     'marked/marked',
     'codemirror/lib/codemirror',
@@ -10,31 +11,8 @@ define([
     "codemirror/mode/css/css",
     "codemirror/mode/xml/xml",
     'jquery/jquery'
-], function(models, Handlebars, marked, CodeMirror) {
+], function(models, templates, Handlebars, marked, CodeMirror) {
     var Resource = models.Resource;
-    
-    // Templating.
-    Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
-        if (v1 === v2) {
-            return options.fn(this);
-        }
-        return options.inverse(this);
-    });
-    
-    var $content = $("#content");
-    
-    var editorTemplateSrc = $("#editor-template").html();
-    var editorTemplate = Handlebars.compile(editorTemplateSrc);
-
-    var pageTemplateSrc = $('#page-template').html();
-    var pageTemplate = Handlebars.compile(pageTemplateSrc);
-    
-    var pageMissingTemplateSrc = $('#page-missing-template').html();
-    var pageMissingTemplate = Handlebars.compile(pageMissingTemplateSrc);
-    
-    function getHash() {
-        return window.location.hash.substring(1);
-    }
     
     // Views.
     function loadEditor(heading, resource) {
@@ -50,11 +28,14 @@ define([
             mode = "css";
         }
         
-        $content.html(editorTemplate({
-            content: resource.content || "",
-            mimeType: mimeType,
-            path: resource.path || "",
-            heading: heading
+        templates.$content.html(
+            templates.pageTemplate({
+                content: new Handlebars.SafeString(templates.editorTemplate({
+                    content: resource.content || "",
+                    mimeType: mimeType,
+                    path: resource.path || "",
+                    heading: heading
+                }))
         }));
         
         var cm = CodeMirror.fromTextArea($('#editor').get(0), {
@@ -68,10 +49,9 @@ define([
             Tab: "indentAuto"
         });
         
-        $('input[name=execute]').click(function() {
-            /* jshint evil: true */
+        $('input[name=execute]').click(function(e) {
             eval(cm.getValue());
-            /* jshint evil: false */
+            e.preventDefault();
             return false;
         });
         
@@ -83,12 +63,12 @@ define([
         var path = "md/" + pageName;
         Resource.fetch(path, function(err, page) {
             if (err) {
-                $content.html(pageMissingTemplate({
+                templates.$content.html(templates.pageMissingTemplate({
                     path: path
                 }));
                 return;
             }
-            $content.html(pageTemplate({
+            templates.$content.html(templates.pageTemplate({
                 path: path,
                 content: new Handlebars.SafeString(marked(page.content))
             }));

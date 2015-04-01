@@ -115,6 +115,9 @@ async.series([
                 "js/wikicircle/controllers.js",
                 "src/frontend/controllers.js"),
             createResource("application/javascript",
+                "js/wikicircle/templates.js",
+                "src/frontend/templates.js"),
+            createResource("application/javascript",
                 "js/wikicircle/app.js",
                 "src/frontend/app.js"),
 
