@@ -4,9 +4,9 @@ define([
 ], function(controllers) {
     // TODO: all pages view
     routie({
-        'md/:pageName': controllers.viewController,
-        'edit*': controllers.editController,
-        'new*': controllers.newController      
+        'md/:pageName': controllers.viewPage,
+        'edit*': controllers.editPage,
+        'new*': controllers.newPage      
     });
     
     function getHash() {

@@ -14,7 +14,6 @@ define([
 ], function(models, templates, Handlebars, marked, CodeMirror) {
     var Resource = models.Resource;
     
-    // Views.
     function loadEditor(heading, resource) {
         resource = resource || {};
         var mimeType = resource.mimeType || "text/x-markdown";
@@ -58,8 +57,7 @@ define([
         return cm;
     }
     
-    // Controllers
-    function viewController(pageName) {
+    function viewPage(pageName) {
         var path = "md/" + pageName;
         Resource.fetch(path, function(err, page) {
             if (err) {
@@ -75,7 +73,7 @@ define([
         });
     }
     
-    function editController() {    
+    function editPage() {    
         // Of the form 'edit?foo/bar'
         var hashPath = window.location.hash.substring(1);
         var resourceName = hashPath.split('?')[1];
@@ -113,7 +111,7 @@ define([
         }); 
     }
     
-    function newController() {
+    function newPage() {
         var hashPath = window.location.hash.substring(1);
         var resourceName = hashPath.split('?')[1];
         
@@ -141,10 +139,9 @@ define([
         });
     }
     
-    // TODO: these names are a little redundant with the module name
     return {
-        viewController: viewController,
-        editController: editController,
-        newController: newController
+        viewPage: viewPage,
+        editPage: editPage,
+        newPage: newPage
     };
 });
