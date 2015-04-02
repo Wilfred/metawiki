@@ -92,6 +92,23 @@ describe("Accessing resources", function() {
         });
     });
 
+    it("should return all resources", function(done) {
+        var testResource = new Resource({
+            'path': 'foo',
+            'content': 'foo'
+        });
+        testResource.save(function() {
+            request('http://localhost:9001')
+                .get('/resources/')
+                .end(function (err, response) {
+                    expect(response).to.have.status(200);
+                    expect(response.body.length).to.equal(1);
+
+                    done();
+                });
+        });
+    });
+
     afterEach(helpers.teardownServer);
 });
 
