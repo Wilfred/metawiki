@@ -29,11 +29,12 @@ function createServer(opts) {
     server.get('/', controllers.index);
     server.get(/^\/serve\/(.+?)$/, controllers.serve);
 
-    server.get(/^\/resources\/(.+?)$/, controllers.getResource);
-    server.post(/^\/resources\/(.+?)$/, controllers.createResource);
-    server.put(/^\/resources\/(.+?)$/, controllers.updateResource);
+    // TODO: can we treat /resources/ as /resources ?
+    server.get('/resources', controllers.allResources);
 
-    server.get(/^\/resources\/$/, controllers.allResources);
+    server.get('/resources/:path', controllers.getResource);
+    server.post('/resources/:path', controllers.createResource);
+    server.put('/resources/:path', controllers.updateResource);
 
     server.get(/^\/safe$/, controllers.safeViewAllResources);
     server.get(/^\/safe\/resource\/(.+?)$/, controllers.safeViewResource);

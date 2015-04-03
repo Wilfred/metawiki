@@ -99,7 +99,7 @@ describe("Accessing resources", function() {
         });
         testResource.save(function() {
             request('http://localhost:9001')
-                .get('/resources/')
+                .get('/resources')
                 .end(function (err, response) {
                     expect(response).to.have.status(200);
                     expect(response.body.length).to.equal(1);
@@ -168,7 +168,7 @@ describe("Editing resources", function() {
         });
         testResource.save(function() {
             request('http://localhost:9001')
-                .put('/resources/' + testResource.path)
+                .put('/resources/' + encodeURIComponent(testResource.path))
                 .field('content', 'bar')
                 .field('mimeType', 'application/javascript')
                 .end(function (err, response) {

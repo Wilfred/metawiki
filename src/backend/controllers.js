@@ -1,4 +1,4 @@
-"use strict"; 
+"use strict";
 
 var restify = require('restify');
 var path = require('path');
@@ -62,7 +62,7 @@ function serve(request, response, next) {
 }
 
 function getResource(req, res, next) {
-    var path = req.params[0];
+    var path = req.params.path;
 
     models.Resource.findOne({
         'path': path
@@ -78,7 +78,7 @@ function getResource(req, res, next) {
 }
 
 function updateResource(req, res, next) {
-    var path = req.params[0];
+    var path = req.params.path;
 
     if (!_.isString(req.body.content) || !_.isString(req.body.mimeType)) {
         next(new restify.BadRequestError(
@@ -103,7 +103,7 @@ function updateResource(req, res, next) {
 }
 
 function createResource(req, res, next) {
-    var path = req.params[0];
+    var path = req.params.path;
 
     models.Resource.findOne({
         'path': path
