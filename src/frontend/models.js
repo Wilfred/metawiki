@@ -1,4 +1,4 @@
-define(['jquery/jquery'], function() {
+define(['jquery'], function(Backbone) {
     var Resource = {
         fetch: function fetch(resourceName, callback) {
             $.ajax({url:"/resources/" + resourceName}).done(function(resource) {

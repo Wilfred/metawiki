@@ -102,7 +102,7 @@ async.series([
                 "bower_components/underscore/underscore.js"),
 
             createResource("application/javascript",
-                "js/jquery/jquery.js",
+                "js/jquery.js",
                 "bower_components/jquery/dist/jquery.js"),
 
             createResource("application/javascript",

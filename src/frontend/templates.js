@@ -1,6 +1,6 @@
 define([
     'handlebars/handlebars',
-    'jquery/jquery'
+    'jquery'
 ], function(Handlebars) {
     Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
         if (v1 === v2) {

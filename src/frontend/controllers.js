@@ -10,7 +10,7 @@ define([
     "codemirror/mode/markdown/markdown",
     "codemirror/mode/css/css",
     "codemirror/mode/xml/xml",
-    'jquery/jquery'
+    'jquery'
 ], function(models, templates, Handlebars, marked, CodeMirror) {
     var Resource = models.Resource;
     
