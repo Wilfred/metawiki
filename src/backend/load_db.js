@@ -94,6 +94,14 @@ async.series([
                 "bower_components/requirejs/require.js"),
 
             createResource("application/javascript",
+                "js/backbone.js",
+                "bower_components/backbone/backbone.js"),
+
+            createResource("application/javascript",
+                "js/underscore.js",
+                "bower_components/underscore/underscore.js"),
+
+            createResource("application/javascript",
                 "js/jquery/jquery.js",
                 "bower_components/jquery/dist/jquery.js"),
 
