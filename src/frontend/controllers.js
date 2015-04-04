@@ -1,4 +1,3 @@
-// The clientside wiki app.
 define([
     'wikicircle/models',
     'wikicircle/templates',
@@ -12,11 +11,13 @@ define([
     "codemirror/mode/xml/xml",
     'jquery'
 ], function(models, templates, Handlebars, marked, CodeMirror) {
+    "use strict";
+    
     var Resource = models.Resource;
     
     function loadEditor(heading, resource) {
-        resource = resource || {};
-        var mimeType = resource.mimeType || "text/x-markdown";
+        resource = resource || new Resource();
+        var mimeType = resource.get('mimeType') || "text/x-markdown";
         var mode = "javascript";
         
         if (mimeType == "text/x-markdown") {
@@ -30,9 +31,9 @@ define([
         templates.$content.html(
             templates.pageTemplate({
                 content: new Handlebars.SafeString(templates.editorTemplate({
-                    content: resource.content || "",
+                    content: resource.get('content') || "",
                     mimeType: mimeType,
-                    path: resource.path || "",
+                    path: resource.get('path') || "",
                     heading: heading
                 }))
         }));
@@ -58,65 +59,82 @@ define([
     }
     
     function viewPage(pageName) {
-        var path = "md/" + pageName;
-        Resource.fetch(path, function(err, page) {
-            if (err) {
-                templates.$content.html(templates.pageMissingTemplate({
-                    path: path
+        var page = new Resource({id: 'md/' + pageName});
+        
+        page.fetch({
+            success: function() {
+                var renderedContent = new Handlebars.SafeString(
+                    marked(page.get('content')));
+                
+                templates.$content.html(templates.pageTemplate({
+                    path: page.get('path'),
+                    content: renderedContent
                 }));
-                return;
+            },
+            error: function() {
+                templates.$content.html(templates.pageMissingTemplate({
+                    path: page.get('id')
+                }));            
             }
-            templates.$content.html(templates.pageTemplate({
-                path: path,
-                content: new Handlebars.SafeString(marked(page.content))
-            }));
         });
     }
     
     function editPage() {    
         // Of the form 'edit?foo/bar'
+        // TODO: factor out
         var hashPath = window.location.hash.substring(1);
         var resourceName = hashPath.split('?')[1];
         
-        Resource.fetch(resourceName, function(err, resource) {
-            if (err) {
+        var resource = new Resource({id: resourceName});
+ 
+        resource.fetch({
+            success: function() {
+                var editor = loadEditor("Editing", resource);
+            
+                // TODO: we should narrow this to children of the edit form.
+                $('input[type=submit]').click(function() {
+                    var $input = $(this);
+                    var mimeType = $('[name=mimeType]').val()
+                    
+                    resource.save({
+                        content: editor.getValue(),
+                        mimeType: mimeType
+                    },{
+                        success: function() {
+                            // don't go anywhere if we said 'save and continue'
+                            if ($input.attr('name') != 'save-continue') {
+                                // FIXME: what if we create a page called 'edit'?
+                                if (mimeType == "text/x-markdown") {
+                                    routie(resourceName);
+                                } else {
+                                    routie("md/Home");
+                                }
+                            }
+                        }
+                    });
+                    
+                    return false;
+                    
+                });
+                 
+            }, error: function() {
                 // Page doesn't exist
                 // FIXME: need to set URL too.
-                return newController();
+                return newPage();       
             }
-            
-            var editor = loadEditor("Editing", resource);
-            
-            // TODO: we should narrow this to children of the edit form.
-            // TODO: create too.
-            $('input[type=submit]').click(function() {
-                var $input = $(this);
-                
-                var content = editor.getValue();
-                var mimeType = $('[name=mimeType]').val();
-
-                Resource.save(resourceName, content, mimeType, function() {
-                    // don't go anywhere if we said 'save and continue'
-                    if ($input.attr('name') != 'save-continue') {
-                        // FIXME: what if we create a page called 'edit'?
-                        if (mimeType == "text/x-markdown") {
-                            routie(resourceName);
-                        } else {
-                            routie("md/Home");
-                        }
-                    }
-                });
-                return false;
-            });
-        }); 
+        });
     }
     
     function newPage() {
         var hashPath = window.location.hash.substring(1);
         var resourceName = hashPath.split('?')[1];
+        // FIXME: duplication between path and ID is silly.
+        var resource = new Resource({
+            id: resourceName, 
+            path: resourceName});
         
         // FIXME: we should use either 'name' or 'path' consistently
-        var editor = loadEditor("New", {path: resourceName});
+        var editor = loadEditor("New", resource);
         
         $('input[type=submit]').click(function() {
             var $input = $(this);
@@ -125,16 +143,22 @@ define([
             var content = editor.getValue();
             var mimeType = $('[name=mimeType]').val();
             
-            Resource.create(resourceName, content, mimeType, function() {
-                // don't go anywhere if we said 'save and continue'
-                if ($input.attr('name') != 'save-continue') {
-                    if (mimeType == "text/x-markdown") {
-                        routie(resourceName);
-                    } else {
-                        routie("md/Home");
-                    }
-                }
+            var resource = new Resource({
+                id: resourceName,
+                content: content,
+                mimeType: mimeType
             });
+            resource.save();
+            
+            // don't go anywhere if we said 'save and continue'
+            if ($input.attr('name') != 'save-continue') {
+                if (mimeType == "text/x-markdown") {
+                    routie(resourceName);
+                } else {
+                    routie("md/Home");
+                }
+            }
+
             return false;
         });
     }

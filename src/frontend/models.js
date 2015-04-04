@@ -1,39 +1,9 @@
-define(['jquery'], function(Backbone) {
-    var Resource = {
-        fetch: function fetch(resourceName, callback) {
-            $.ajax({url:"/resources/" + resourceName}).done(function(resource) {
-                callback(null, resource);                
-            }).fail(function(xhr, status, err) {
-                callback(xhr.status, null);
-            });
-        }, save: function save(name, content, mimeType, callback) {
-            $.ajax({
-                url:"/resources/" + name,
-                data: {
-                    name: name,
-                    content: content,
-                    mimeType: mimeType
-                },
-                type: 'PUT'
-            }).done(function(resource) {
-                // TODO: Handle 404 and 500.
-                callback(null, resource);
-            });
-        }, create: function create(name, content, mimeType, callback) {
-            $.ajax({
-                url:"/resources/" + name,
-                data: {
-                    name: name,
-                    content: content,
-                    mimeType: mimeType
-                },
-                type: 'POST'
-            }).done(function(resource) {
-                // TODO: Handle 404 and 500.
-                callback(null, resource);
-            });
-        }
-    };
+define(['backbone', 'jquery'], function(Backbone) {
+    var Resource = Backbone.Model.extend({
+        urlRoot: '/resources/'
+    });
     
-    return {Resource: Resource};
+    return {
+        Resource: Resource
+    };
 });
