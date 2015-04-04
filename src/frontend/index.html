@@ -7,21 +7,32 @@
         <link rel="stylesheet" href="/serve/css/codemirror.css">
         <link rel="stylesheet" href="/serve/js/wikicircle/wikicircle.css">
     </head>
+            
     <body>
+        
+        <noscript>
+            <div style="position: fixed; top: 0px; left: 0px; z-index: 3000; 
+                        height: 100%; width: 100%; background-color: #FFFFFF">
+                <p style="margin-left: 10px">It
+                    looks like you've disabled JavaScript. Please enable it.
+                    JS is fundamental to how this metawiki is designed.
+                </p>
+            </div>
+        </noscript>
+        
         <div id="content">
             <h2>Oh no!</h2>
-            <p>If you can see this, something has gone wrong.
+            
+            <p>If you can see this, something has gone wrong. Please
+                take a look at your browser console.
             </p>
 
-            <p>If you've turned JS off, please enable it. JS is fundamental
-                to how this metawiki is designed.</p>
+            <p>If you still
+                have tab open with a working wiki instance, you may be
+                able to use that to fix the bug.
 
-            <p>If JS is available, we've crashed. Please take a look
-                at your browser console. There's
-                a <a href="/safe">safe
-                mode</a> where you can look at content without clientside JS.
-                If you still have tab open with a working wiki instance,
-                you may be able to use that to fix the bug.
+                Otherwise, you can use <a href="/safe">safe mode</a>
+                to access your metawiki even when the JS is broken.
             </p>
         </div>
         
