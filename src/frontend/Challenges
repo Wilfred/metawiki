@@ -28,6 +28,8 @@ However, state is dangerous with internal testing. If a test affects the
 wiki instance currently running, the user cannot trust the test results. A test
 may even break the current instance.
 
+Even if we do have internal tests, how do we measure test coverage?
+
 ## Recovering from errors
 If a user makes a change that breaks the wiki, how do they recover? Even a simple
 syntax error may be catastrophic.
