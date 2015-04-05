@@ -4,7 +4,10 @@ require.config({
 
 // The clientside wiki app.
 require([
-    'wikicircle/routing'
-], function(routing) {
-    routing.initialize();
+    'backbone',
+    'wikicircle/routing', // defines our routes
+], function(Backbone, routing) {
+    Backbone.history.start();
+
+    routing.navigate('md/Home', {trigger: true});
 });

@@ -1,25 +1,18 @@
 define([
+    'backbone',
     'wikicircle/controllers',
-    'routie/routie'
-], function(controllers) {
-    // TODO: all pages view
-    routie({
-        'md/:pageName': controllers.viewPage,
-        'edit*': controllers.editPage,
-        'new*': controllers.newPage      
+], function(Backbone, controllers) {
+    var Router = Backbone.Router.extend({
+        initialize: function(options) {
+            this.route('all', 'allPages', controllers.allPages);
+            
+            this.route('md/:pageName', 'viewPage', controllers.viewPage);
+            this.route('edit*', 'editPage', controllers.editPage);
+            this.route('new*', 'newPage', controllers.newPage);
+        }
     });
     
-    function getHash() {
-        return window.location.hash.substring(1);
-    }
+    var router = new Router;
     
-    function initialize() {
-        if (getHash() === "") {
-            routie('md/Home');
-        }
-    }
-    
-    return {
-        initialize: initialize
-    };
+    return router;
 });

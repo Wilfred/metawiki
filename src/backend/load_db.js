@@ -86,10 +86,6 @@ async.series([
                 "bower_components/codemirror/mode/css/css.js"),
 
             createResource("application/javascript",
-                "js/routie/routie.js",
-                "bower_components/routie/dist/routie.js"),
-
-            createResource("application/javascript",
                 "js/requirejs/require.js",
                 "bower_components/requirejs/require.js"),
 

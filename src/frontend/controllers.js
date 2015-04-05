@@ -1,4 +1,5 @@
 define([
+    'require',
     'wikicircle/models',
     'wikicircle/templates',
     'handlebars/handlebars',
@@ -10,7 +11,7 @@ define([
     "codemirror/mode/css/css",
     "codemirror/mode/xml/xml",
     'jquery'
-], function(models, templates, Handlebars, marked, CodeMirror) {
+], function(require, models, templates, Handlebars, marked, CodeMirror) {
     "use strict";
     
     var Resource = models.Resource;
@@ -79,6 +80,17 @@ define([
         });
     }
     
+    var routing = null;
+    /** Navigate to path. Routing depends on controllers, so we
+    * have to require() here to avoid a cyclic dependency.
+    */
+    function navigate(path) {
+        if (routing === null) {
+            routing = require('wikicircle/routing');
+        }
+        routing.navigate(path, {trigger: true});
+    }
+    
     function editPage() {    
         // Of the form 'edit?foo/bar'
         // TODO: factor out
@@ -105,9 +117,9 @@ define([
                             if ($input.attr('name') != 'save-continue') {
                                 // FIXME: what if we create a page called 'edit'?
                                 if (mimeType == "text/x-markdown") {
-                                    routie(resourceName);
+                                    navigate(resourceName);
                                 } else {
-                                    routie("md/Home");
+                                    navigate("md/Home");
                                 }
                             }
                         }
@@ -153,9 +165,9 @@ define([
             // don't go anywhere if we said 'save and continue'
             if ($input.attr('name') != 'save-continue') {
                 if (mimeType == "text/x-markdown") {
-                    routie(resourceName);
+                    navigate(resourceName);
                 } else {
-                    routie("md/Home");
+                    navigate("md/Home");
                 }
             }
 
