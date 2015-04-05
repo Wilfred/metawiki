@@ -49,6 +49,17 @@ powers.
 
 Users could even write a worm that propagates across the entire metawiki.
 
+## Malicious Server JS editing
+Currently, this metawiki does not support editing the JS of the backend. This
+prevents code execution on our server.
+
+However, the backend has been written with node.js, so in principle we
+could run user-supplied JS on the backend too. There are libraries
+such as [jailed](https://github.com/asvd/jailed) that provide this.
+
+This would speed up the initial page load, and increase the editability
+of the project.
+
 ## Accidental JS problems
 Accidents could break the wiki entirely. This metawiki provides a
 [safe mode](/safe) to help users restore their metawiki to a working state.
