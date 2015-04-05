@@ -18,7 +18,7 @@ This is not a problem specific to metawikis, and changes can be simply rolled
 back.
 
 Content here is written in markdown, which must be carefully escaped to prevent
-XSS. This is not yet implemented.
+XSS. The markdown library used provides a `sanitize` option, which we use.
 
 ## Malicious CSS editing
 CSS may be used to hide metawiki page elements, stopping parts of the site being

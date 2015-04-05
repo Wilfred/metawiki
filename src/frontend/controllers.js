@@ -16,6 +16,10 @@ define([
     
     var Resource = models.Resource;
     
+    marked.setOptions({
+        sanitize: true
+    });
+    
     function loadEditor(heading, resource) {
         resource = resource || new Resource();
         var mimeType = resource.get('mimeType') || "text/x-markdown";
