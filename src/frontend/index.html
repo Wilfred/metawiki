@@ -65,6 +65,7 @@
                     <tr>
                         <th>Path</th>
                         <th>Mime Type</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +73,12 @@
                     <tr>
                         <td>{{path}}</td>
                         <td>{{mimeType}}</td>
+                        <td>
+                            <a href="#edit?{{path}}">edit</a>
+                            {{#ifEqual mimeType "text/x-markdown"}}
+                            <a href="#{{path}}">view</a>
+                            {{/ifEqual}}
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>
