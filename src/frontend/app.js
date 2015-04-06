@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: "/serve/js"
+    baseUrl: "/serve"
 });
 
 // The clientside wiki app.

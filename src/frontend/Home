@@ -13,12 +13,12 @@ is [available on GitHub](https://github.com/Wilfred/metawiki).
 You can edit the content on this site. For example, you can 
 [edit this page](#edit?md/Home), or [create a new page](#new).
 
-You can also edit the JS ([models](#edit?js/metawiki/models.js),
-[routing](#edit?js/metawiki/routing.js), 
-[controllers](#edit?js/metawiki/controllers.js),
-[templates](#edit?js/metawiki/templates.js), 
-[app](#edit?js/metawiki/app.js)),
-[the CSS](#edit?js/metawiki/metawiki.css)
+You can also edit the JS ([models](#edit?metawiki/models.js),
+[routing](#edit?metawiki/routing.js), 
+[controllers](#edit?metawiki/controllers.js),
+[templates](#edit?metawiki/templates.js), 
+[app](#edit?metawiki/app.js)),
+[the CSS](#edit?metawiki/metawiki.css)
 or [the HTML](#edit?html/index.html) of the site itself!
 
 The database is reset once an hour, so feel free to experiment.
