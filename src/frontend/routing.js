@@ -6,7 +6,7 @@ define([
         initialize: function(options) {
             this.route('all', 'allPages', controllers.allPages);
             
-            this.route('md/:pageName', 'viewPage', controllers.viewPage);
+            this.route('page/:pageName', 'viewPage', controllers.viewPage);
             this.route('edit*', 'editPage', controllers.editPage);
             this.route('new*', 'newPage', controllers.newPage);
         }

@@ -9,5 +9,5 @@ require([
 ], function(Backbone, routing) {
     Backbone.history.start();
 
-    routing.navigate('md/Home', {trigger: true});
+    routing.navigate('page/Home', {trigger: true});
 });

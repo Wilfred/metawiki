@@ -11,7 +11,7 @@ is [available on GitHub](https://github.com/Wilfred/metawiki).
 
 ## What can I edit?
 You can edit the content on this site. For example, you can 
-[edit this page](#edit?md/Home), or [create a new page](#new).
+[edit this page](#edit?page/Home), or [create a new page](#new).
 
 You can also edit the JS ([models](#edit?metawiki/models.js),
 [routing](#edit?metawiki/routing.js), 
@@ -27,11 +27,11 @@ The database is reset once an hour, so feel free to experiment.
 Metawikis are really interesting because they test the limits of the
 web as an application platform.
 
-They present [many programming challenges](#md/Challenges) because
+They present [many programming challenges](#page/Challenges) because
 traditional software engineering doesn't work here. Metawikis
-are also [difficult to secure](#md/Security).
+are also [difficult to secure](#page/Security).
 
 ## Tell me more!
-You might like to read about [related projects](#md/Related) and
-[design decisions](#md/Design). There's also a list of
-[known bugs](#md/Bugs).
+You might like to read about [related projects](#page/Related) and
+[design decisions](#page/Design). There's also a list of
+[known bugs](#page/Bugs).

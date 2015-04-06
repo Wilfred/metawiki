@@ -88,4 +88,4 @@ content when debugging?
 Currently, this demo instance just gzips JS but serves it unmodified.
 
 ## Security
-This is a big topic, see the [security page](#md/Security).
+This is a big topic, see the [security page](#page/Security).

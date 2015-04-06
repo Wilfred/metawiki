@@ -79,7 +79,7 @@ define([
     }
     
     function viewPage(pageName) {
-        var path = 'md/' + pageName;
+        var path = 'page/' + pageName;
         var page = new Resource({path: path, id: path});
         
         page.fetch({
@@ -139,7 +139,7 @@ define([
                                 if (mimeType == "text/x-markdown") {
                                     navigate(resourceName);
                                 } else {
-                                    navigate("md/Home");
+                                    navigate("page/Home");
                                 }
                             }
                         }
@@ -187,7 +187,7 @@ define([
                 if (mimeType == "text/x-markdown") {
                     navigate(resourceName);
                 } else {
-                    navigate("md/Home");
+                    navigate("page/Home");
                 }
             }
 
