@@ -15,19 +15,32 @@ define([
         sanitize: true
     });
     
+    var AllPages = Backbone.View.extend({
+        // todo: separate out a main view
+        el: $('#content'),
+        render: function() {
+            var self = this;
+            
+            // todo: we should probably do this in initialize.
+            var resources = new models.AllResources;
+            resources.fetch({
+                success: function() {
+                    var renderedContent = new Handlebars.SafeString(
+                        templates.allResources(resources.toJSON())
+                    );
+                    
+                    self.$el.html(templates.pageTemplate({
+                        content: renderedContent
+                    }));
+                }
+            });
+            
+            return this;
+        }
+    });
+    
     function allPages() {
-        var resources = new models.AllResources;
-        resources.fetch({
-            success: function() {
-                var renderedContent = new Handlebars.SafeString(
-                    templates.allResources(resources.toJSON())
-                );
-        
-                templates.$content.html(templates.pageTemplate({
-                    content: renderedContent
-                }));
-            }
-        });
+
     }
     
     function viewPage(pageName) {
@@ -153,7 +166,7 @@ define([
     }
     
     return {
-        allPages: allPages,
+        AllPages: AllPages,
         viewPage: viewPage,
         editPage: editPage,
         newPage: newPage
