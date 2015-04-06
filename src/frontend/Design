@@ -1,0 +1,12 @@
+# Design Decisions
+
+## Libraries
+
+This metawiki seeks to use mainstream libraries wherever possible.
+Our complexity budget is mostly spent on core functionality rather
+than exploring libraries.
+
+## Colours
+
+Our colour palette is taken from 
+[flat UI Colours](http://flatuicolors.com/).

@@ -147,6 +147,9 @@ async.series([
             createResource("text/x-markdown",
                            "md/Security",
                            "src/frontend/Security"),
+            createResource("text/x-markdown",
+                           "md/Design",
+                           "src/frontend/Design"),
         ], cb);
     },
     db.disconnect
