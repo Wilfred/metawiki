@@ -2,16 +2,11 @@ define([
     'require',
     'metawiki/models',
     'metawiki/templates',
+    'metawiki/editor',
     'handlebars/handlebars',
     'marked/marked',
-    'codemirror/lib/codemirror',
-    'codemirror/addon/edit/matchbrackets',
-    "codemirror/mode/javascript/javascript",
-    "codemirror/mode/markdown/markdown",
-    "codemirror/mode/css/css",
-    "codemirror/mode/xml/xml",
     'jquery'
-], function(require, models, templates, Handlebars, marked, CodeMirror) {
+], function(require, models, templates, editor, Handlebars, marked) {
     "use strict";
     
     var Resource = models.Resource;
@@ -19,49 +14,6 @@ define([
     marked.setOptions({
         sanitize: true
     });
-    
-    function loadEditor(heading, resource) {
-        resource = resource || new Resource();
-        var mimeType = resource.get('mimeType') || "text/x-markdown";
-        var mode = "javascript";
-        
-        if (mimeType == "text/x-markdown") {
-            mode = "markdown";
-        } else if (mimeType == "text/html") {
-            mode = "xml";
-        } else if (mimeType == "text/css") {
-            mode = "css";
-        }
-        
-        templates.$content.html(
-            templates.pageTemplate({
-                content: new Handlebars.SafeString(templates.editorTemplate({
-                    content: resource.get('content') || "",
-                    mimeType: mimeType,
-                    path: resource.get('path') || "",
-                    heading: heading
-                }))
-        }));
-        
-        var cm = CodeMirror.fromTextArea($('#editor').get(0), {
-            lineNumbers: true,
-            indentUnit: 4,
-            matchBrackets: true,
-            mode: mode
-        });
-        
-        cm.setOption("extraKeys", {
-            Tab: "indentAuto"
-        });
-        
-        $('input[name=execute]').click(function(e) {
-            eval(cm.getValue());
-            e.preventDefault();
-            return false;
-        });
-        
-        return cm;
-    }
     
     function allPages() {
         var resources = new models.AllResources;
@@ -111,7 +63,12 @@ define([
         routing.navigate(path, {trigger: true});
     }
     
-    function editPage() {    
+    function editPage() {
+        // 'editor' is undefined due to our cyclic dependency.
+        if (editor === undefined) {
+            editor = require('metawiki/editor');
+        }
+        
         // Of the form 'edit?foo/bar'
         // TODO: this should be from the router directly
         var hashPath = window.location.hash.substring(1);
@@ -121,7 +78,7 @@ define([
  
         resource.fetch({
             success: function() {
-                var editor = loadEditor("Editing", resource);
+                var editorInstance = editor.load("Editing", resource);
             
                 // TODO: we should narrow this to children of the edit form.
                 $('input[type=submit]').click(function() {
@@ -129,7 +86,7 @@ define([
                     var mimeType = $('[name=mimeType]').val()
                     
                     resource.save({
-                        content: editor.getValue(),
+                        content: editorInstance.getValue(),
                         mimeType: mimeType
                     },{
                         success: function() {
@@ -166,13 +123,13 @@ define([
             path: resourceName});
         
         // FIXME: we should use either 'name' or 'path' consistently
-        var editor = loadEditor("New", resource);
+        var editorInstance = editor.load("New", resource);
         
         $('input[type=submit]').click(function() {
             var $input = $(this);
             var resourceName = $('input[name=path]').val();
             
-            var content = editor.getValue();
+            var content = editorInstance.getValue();
             var mimeType = $('[name=mimeType]').val();
             
             var resource = new Resource({

@@ -122,6 +122,9 @@ async.series([
                 "metawiki/templates.js",
                 "src/frontend/templates.js"),
             createResource("application/javascript",
+                "metawiki/editor.js",
+                "src/frontend/editor.js"),
+            createResource("application/javascript",
                 "metawiki/app.js",
                 "src/frontend/app.js"),
 
