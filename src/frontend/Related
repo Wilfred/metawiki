@@ -32,3 +32,6 @@ unit tests, debugger) that run inside the browser.
 The [Lively Kernel](http://lively-kernel.org/) is a set of JS libraries that
 allow you to develop web applications with an IDE in the browser. It is developed
 by Dan Ingalls, a notable Smalltalk developer.
+
+[Untrusted](http://alexnisnevich.github.io/untrusted/) is a JS game that
+also explores ideas of editing a site as you use it.
