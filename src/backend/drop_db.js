@@ -16,6 +16,6 @@ async.series([
     if (err) {
         console.log(['Failed:', err]);
     } else {
-        console.log(['Deleted all resources.']);
+        console.log('Deleted all resources.');
     }
 });
