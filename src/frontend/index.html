@@ -39,8 +39,11 @@
         <script type="text/template" id="page-template">
             <nav>
                 <h2><a href="#md/Home">Metawiki</a></h2>
+                {{#if path}}
                 <a href="#edit?{{path}}">Edit</a>
+                {{/if}}
                 <a href="#new">New</a>
+                <a href="#all">All</a>
             </nav>
             {{content}}
         </script>
@@ -52,6 +55,28 @@
                 There's no such page '{{path}}'. Would you like to
                 <a href="#new?{{path}}">create it</a>?
             </p>
+        </script>
+        
+        <script type="text/template" id="all-resources-template">
+            <h2>All Resources</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Path</th>
+                        <th>Mime Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each this}}
+                    <tr>
+                        <td>{{path}}</td>
+                        <td>{{mimeType}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
         </script>
 
         <script type="text/template" id="editor-template">

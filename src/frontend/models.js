@@ -9,7 +9,13 @@ define(['backbone'], function(Backbone) {
         urlRoot: '/resources/'
     });
     
+    var AllResources = Backbone.Collection.extend({
+        model: Resource,
+        url: '/resources'
+    });
+    
     return {
+        AllResources: AllResources,
         Resource: Resource
     };
 });

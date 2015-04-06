@@ -19,11 +19,15 @@ define([
     
     var pageMissingTemplateSrc = $('#page-missing-template').html();
     var pageMissingTemplate = Handlebars.compile(pageMissingTemplateSrc);
+    
+    var allResourcesSrc = $('#all-resources-template').html();
+    var allResources = Handlebars.compile(allResourcesSrc);
 
     return {
         $content: $content,
         editorTemplate: editorTemplate,
         pageTemplate: pageTemplate,
-        pageMissingTemplate: pageMissingTemplate
+        pageMissingTemplate: pageMissingTemplate,
+        allResources: allResources
     };
 });

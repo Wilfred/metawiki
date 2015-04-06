@@ -63,6 +63,21 @@ define([
         return cm;
     }
     
+    function allPages() {
+        var resources = new models.AllResources;
+        resources.fetch({
+            success: function() {
+                var renderedContent = new Handlebars.SafeString(
+                    templates.allResources(resources.toJSON())
+                );
+        
+                templates.$content.html(templates.pageTemplate({
+                    content: renderedContent
+                }));
+            }
+        });
+    }
+    
     function viewPage(pageName) {
         var path = 'md/' + pageName;
         var page = new Resource({path: path, id: path});
@@ -79,7 +94,7 @@ define([
             },
             error: function() {
                 templates.$content.html(templates.pageMissingTemplate({
-                    path: page.get('id')
+                    path: page.get('path')
                 }));            
             }
         });
@@ -98,7 +113,7 @@ define([
     
     function editPage() {    
         // Of the form 'edit?foo/bar'
-        // TODO: factor out
+        // TODO: this should be from the router directly
         var hashPath = window.location.hash.substring(1);
         var resourceName = hashPath.split('?')[1];
         
@@ -181,6 +196,7 @@ define([
     }
     
     return {
+        allPages: allPages,
         viewPage: viewPage,
         editPage: editPage,
         newPage: newPage
