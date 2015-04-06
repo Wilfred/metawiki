@@ -8,6 +8,8 @@ require([
     'metawiki/routing', // defines our routes
 ], function(Backbone, routing) {
     Backbone.history.start();
-
-    routing.navigate('page/Home', {trigger: true});
+    
+    if (Backbone.history.getHash() === "") {
+        routing.navigate('page/Home', {trigger: true});
+    }
 });
