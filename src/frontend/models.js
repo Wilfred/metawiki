@@ -9,12 +9,17 @@ define(['backbone'], function(Backbone) {
         urlRoot: '/resources/'
     });
     
-    var AllResources = Backbone.Collection.extend({
+    var ResourceList = Backbone.Collection.extend({
         model: Resource,
+        comparator: 'path'
+    });
+    
+    var AllResources = ResourceList.extend({
         url: '/resources'
     });
     
     return {
+        ResourceList: ResourceList,
         AllResources: AllResources,
         Resource: Resource
     };
