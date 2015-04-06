@@ -1,7 +1,7 @@
 define([
     'require',
-    'wikicircle/models',
-    'wikicircle/templates',
+    'metawiki/models',
+    'metawiki/templates',
     'handlebars/handlebars',
     'marked/marked',
     'codemirror/lib/codemirror',
@@ -106,7 +106,7 @@ define([
     */
     function navigate(path) {
         if (routing === null) {
-            routing = require('wikicircle/routing');
+            routing = require('metawiki/routing');
         }
         routing.navigate(path, {trigger: true});
     }

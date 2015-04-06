@@ -5,7 +5,7 @@ require.config({
 // The clientside wiki app.
 require([
     'backbone',
-    'wikicircle/routing', // defines our routes
+    'metawiki/routing', // defines our routes
 ], function(Backbone, routing) {
     Backbone.history.start();
 

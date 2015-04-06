@@ -1,6 +1,6 @@
 define([
     'backbone',
-    'wikicircle/controllers',
+    'metawiki/controllers',
 ], function(Backbone, controllers) {
     var Router = Backbone.Router.extend({
         initialize: function(options) {
