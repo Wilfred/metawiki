@@ -64,7 +64,8 @@ define([
     }
     
     function viewPage(pageName) {
-        var page = new Resource({id: 'md/' + pageName});
+        var path = 'md/' + pageName;
+        var page = new Resource({path: path, id: path});
         
         page.fetch({
             success: function() {
@@ -101,7 +102,7 @@ define([
         var hashPath = window.location.hash.substring(1);
         var resourceName = hashPath.split('?')[1];
         
-        var resource = new Resource({id: resourceName});
+        var resource = new Resource({path: resourceName, id: resourceName});
  
         resource.fetch({
             success: function() {
@@ -144,9 +145,9 @@ define([
     function newPage() {
         var hashPath = window.location.hash.substring(1);
         var resourceName = hashPath.split('?')[1];
+        
         // FIXME: duplication between path and ID is silly.
         var resource = new Resource({
-            id: resourceName, 
             path: resourceName});
         
         // FIXME: we should use either 'name' or 'path' consistently
@@ -160,7 +161,7 @@ define([
             var mimeType = $('[name=mimeType]').val();
             
             var resource = new Resource({
-                id: resourceName,
+                path: resourceName,
                 content: content,
                 mimeType: mimeType
             });
