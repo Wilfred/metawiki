@@ -15,6 +15,7 @@ define([
         sanitize: true
     });
     
+    // FIXME: this applies to all resources, not just pages.
     var AllPages = Backbone.View.extend({
         // todo: separate out a main view
         el: $('#content'),
@@ -35,35 +36,42 @@ define([
                 }
             });
             
-            return this;
+            return self;
         }
     });
     
-    function allPages() {
-
-    }
-    
-    function viewPage(pageName) {
-        var path = 'page/' + pageName;
-        var page = new Resource({path: path, id: path});
+    // TODO: factor out a Nav view
+    var ViewPage = Backbone.View.extend({
+        el: $('#content'),
         
-        page.fetch({
-            success: function() {
-                var renderedContent = new Handlebars.SafeString(
-                    marked(page.get('content')));
-                
-                templates.$content.html(templates.pageTemplate({
-                    path: page.get('path'),
-                    content: renderedContent
-                }));
-            },
-            error: function() {
-                templates.$content.html(templates.pageMissingTemplate({
-                    path: page.get('path')
-                }));            
-            }
-        });
-    }
+        // TODO: we should probably take the page name in 
+        // initialize instead.
+        render: function(pageName) {
+            var self = this;
+            
+            var path = 'page/' + pageName;
+            var page = new Resource({path: path, id: path});
+            
+            page.fetch({
+                success: function() {
+                    var renderedContent = new Handlebars.SafeString(
+                        marked(page.get('content')));
+                    
+                    self.$el.html(templates.pageTemplate({
+                        path: page.get('path'),
+                        content: renderedContent
+                    }));
+                },
+                error: function() {
+                    self.$el.html(templates.pageMissingTemplate({
+                        path: page.get('path')
+                    }));            
+                }
+            });
+            
+            return self;     
+        }
+    });
     
     var routing = null;
     /** Navigate to path. Routing depends on controllers, so we
@@ -167,7 +175,7 @@ define([
     
     return {
         AllPages: AllPages,
-        viewPage: viewPage,
+        ViewPage: ViewPage,
         editPage: editPage,
         newPage: newPage
     };

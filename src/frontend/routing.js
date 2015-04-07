@@ -9,7 +9,10 @@ define([
                 allPages.render();
             });
             
-            this.route('page/:pageName', 'viewPage', controllers.viewPage);
+            this.route('page/:pageName', 'viewPage', function(pageName) {
+                var viewPage = new controllers.ViewPage;
+                viewPage.render(pageName);
+            });
             this.route('edit*', 'editPage', controllers.editPage);
             this.route('new*', 'newPage', controllers.newPage);
         }
