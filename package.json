@@ -1,6 +1,6 @@
 {
   "name": "metawiki",
-  "version": "0.3",
+  "version": "0.3.0",
   "description": "A wiki that can be edited from the browser",
   "repository": "https://github.com/Wilfred/metawiki",
   "main": "server.js",
