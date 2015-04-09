@@ -13,7 +13,10 @@ define([
                 var viewPage = new controllers.ViewPage;
                 viewPage.render(pageName);
             });
-            this.route('edit*', 'editPage', controllers.editPage);
+            this.route('edit*', 'editResource', function() {
+                var editResource = new controllers.EditResource;
+                editResource.render();
+            });
             this.route('new*', 'newPage', controllers.newPage);
         }
     });
