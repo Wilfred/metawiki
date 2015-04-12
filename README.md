@@ -1,4 +1,4 @@
-![screenshot](binary_files/ouroboros.jpg)
+![logo](binary_files/ouroboros.jpg)
 
 # Metawiki
 
