@@ -17,7 +17,10 @@ define([
                 var editResource = new controllers.EditResource;
                 editResource.render();
             });
-            this.route('new*', 'newPage', controllers.newPage);
+            this.route('new*', 'newPage', function() {
+                var newResource = new controllers.NewResource;
+                newResource.render();
+            });
         }
     });
     

@@ -138,48 +138,52 @@ define([
         }
     });
     
-    function newPage() {
-        var hashPath = window.location.hash.substring(1);
-        var resourceName = hashPath.split('?')[1];
-        
-        // FIXME: duplication between path and ID is silly.
-        var resource = new Resource({
-            path: resourceName});
-        
-        // FIXME: we should use either 'name' or 'path' consistently
-        var editorInstance = editor.load("New", resource);
-        
-        $('input[type=submit]').click(function() {
-            var $input = $(this);
-            var resourceName = $('input[name=path]').val();
-            
-            var content = editorInstance.getValue();
-            var mimeType = $('[name=mimeType]').val();
-            
-            var resource = new Resource({
-                path: resourceName,
-                content: content,
-                mimeType: mimeType
-            });
-            resource.save();
-            
-            // don't go anywhere if we said 'save and continue'
-            if ($input.attr('name') != 'save-continue') {
-                if (mimeType == "text/x-markdown") {
-                    navigate(resourceName);
-                } else {
-                    navigate("page/Home");
-                }
-            }
+    var NewResource = Backbone.View.extend({
+        el: $('#content'),
 
-            return false;
-        });
-    }
+        render: function() {
+            // FIXME: we should use either 'name' or 'path' consistently
+            var hashPath = window.location.hash.substring(1);
+            var resourceName = hashPath.split('?')[1];
+        
+            // FIXME: duplication between path and ID is silly.
+            var resource = new Resource({
+                path: resourceName});
+        
+            var editorInstance = editor.load("New", resource);
+        
+            $('input[type=submit]').click(function() {
+                var $input = $(this);
+                var resourceName = $('input[name=path]').val();
+                
+                var content = editorInstance.getValue();
+                var mimeType = $('[name=mimeType]').val();
+                
+                var resource = new Resource({
+                    path: resourceName,
+                    content: content,
+                    mimeType: mimeType
+                });
+                resource.save();
+            
+                // don't go anywhere if we said 'save and continue'
+                if ($input.attr('name') != 'save-continue') {
+                    if (mimeType == "text/x-markdown") {
+                        navigate(resourceName);
+                    } else {
+                        navigate("page/Home");
+                    }
+                }
+
+                return false;
+            });        
+        }
+    });
     
     return {
         AllPages: AllPages,
         ViewPage: ViewPage,
         EditResource: EditResource,
-        newPage: newPage
+        NewResource: NewResource
     };
 });
