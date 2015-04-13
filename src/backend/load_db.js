@@ -66,6 +66,9 @@ async.series([
                 "node_modules/codemirror/lib/codemirror.js"),
 
             createResource("application/javascript",
+                "codemirror/addon/edit/closebrackets.js",
+                "node_modules/codemirror/addon/edit/closebrackets.js"),
+            createResource("application/javascript",
                 "codemirror/addon/edit/matchbrackets.js",
                 "node_modules/codemirror/addon/edit/matchbrackets.js"),
             createResource("application/javascript",

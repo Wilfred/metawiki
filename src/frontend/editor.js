@@ -4,6 +4,7 @@ define([
     'handlebars/handlebars',
     'codemirror/lib/codemirror',
     'codemirror/addon/edit/matchbrackets',
+    'codemirror/addon/edit/closebrackets',
     'codemirror/addon/selection/active-line',
     "codemirror/mode/javascript/javascript",
     "codemirror/mode/markdown/markdown",
@@ -41,6 +42,7 @@ define([
             indentUnit: 4,
             matchBrackets: true,
             styleActiveLine: true,
+            autoCloseBrackets: true,
             mode: mode
         });
         
