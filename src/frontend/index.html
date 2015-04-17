@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8"/>
         <title>Metawiki -- A truly editable website</title>
 
-        <link rel="stylesheet" href="/serve/codemirror/lib/codemirror.css">
-        <link rel="stylesheet" href="/serve/metawiki/metawiki.css">
+        <link rel="stylesheet" href="/serve/codemirror/lib/codemirror.css"/>
+        <link rel="stylesheet" href="/serve/metawiki/metawiki.css"/>
     </head>
             
     <body>
@@ -89,7 +89,7 @@
         <script type="text/template" id="editor-template">
             <h2>{{heading}}</h2>
             <form>
-                <input type="text" name="path" value="{{path}}">
+                <input type="text" name="path" value="{{path}}"/>
                 <select name="mimeType">
                     <!-- this should be a database value, not hard-coded. -->
                     <option value="text/x-markdown" {{#ifEqual mimeType "text/x-markdown"}}selected{{/ifEqual}}>
@@ -107,10 +107,10 @@
                 </select>
                 <textarea id="editor">{{content}}</textarea>
                 {{#ifEqual mimeType "application/javascript"}}
-                <input type="button" value="Execute" name="execute">
+                <input type="button" value="Execute" name="execute"/>
                 {{/ifEqual}}
-                <input type="submit" value="Save">
-                <input type="submit" value="Save and continue editing" name="save-continue">
+                <input type="submit" value="Save"/>
+                <input type="submit" value="Save and continue editing" name="save-continue"/>
             </form>
         </script>
 
