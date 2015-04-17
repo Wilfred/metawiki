@@ -14,7 +14,7 @@ function index(req, response, next) {
     response.setHeader('Content-Type', 'text/html');
     // TODO: handle no index.
     models.Resource.findOne({
-        'path': 'html/index.html'
+        'path': 'metawiki/index.html'
     }, function(err, indexResource) {
         response.writeHead(200);
         response.end(indexResource.content);

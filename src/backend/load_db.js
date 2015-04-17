@@ -48,10 +48,6 @@ async.series([
     },
     function(cb) {
         async.parallel([
-            createResource("text/html",
-                "html/index.html",
-                "src/frontend/index.html"),
-
             createBinaryResource({
                 path: "logo.jpg",
                 mimeType: "image/jpeg",
@@ -114,6 +110,10 @@ async.series([
             createResource("application/javascript",
                 "handlebars/handlebars.js",
                 "node_modules/handlebars/dist/handlebars.js"),
+
+            createResource("text/html",
+                "metawiki/index.html",
+                "src/frontend/index.html"),
 
             createResource("application/javascript",
                 "metawiki/routing.js",
