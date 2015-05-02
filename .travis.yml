@@ -8,15 +8,21 @@ before_script:
   # install newer versions than we wanted.
   - npm install -g istanbul
   - npm install -g mocha
+
   # Not necessary, but good to check that they work.
   - npm run load-db
   - npm run drop-db
   # We don't run dump-db to avoid dirtying our local checkout, leading
   # to confusing test results.
 script:
+  # backend tests
   - cd src/backend
   - istanbul cover _mocha --report lcovonly -- -R spec
   - cd ../..
+
+  # ensure we can load the frontend
+  - export PATH=$PATH:node_modules/.bin
+  - phantomjs src/frontend/test/test_homepage_loads.js
 after_success:
   # FIXME: taken from the docs at https://www.npmjs.com/package/coveralls,
   # but this is a pointless use of cat.
