@@ -2,11 +2,17 @@
 
 var mongoose = require('mongoose');
 
+// todo: this should be a mutable list stored in mongo.
+var MIME_TYPES = [
+    'text/x-markdown',
+    'application/javascript',
+    'text/html',
+    'test/css'
+];
+
 // A resource is a blob of data that can viewed or modified over
 // our REST API.
 // TODO: versioning
-// TODO: mimeType will need to be immutable if we have a
-// separate 'approver' user type.
 var Resource = mongoose.model('Resource', {
     path: String,
     content: String,
@@ -19,5 +25,6 @@ var Resource = mongoose.model('Resource', {
 });
 
 module.exports = {
-    Resource: Resource
+    Resource: Resource,
+    MIME_TYPES: MIME_TYPES
 };
