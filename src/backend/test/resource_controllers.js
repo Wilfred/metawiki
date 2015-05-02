@@ -12,11 +12,11 @@ var Resource = require('../models').Resource;
 
 
 describe("Homepage", function() {
-    before(helpers.testPrepare);
+    beforeEach(helpers.testPrepare);
     
     it("should return 200 from /", function(done) {
         new Resource({
-            'path': 'html/index.html',
+            'path': 'metawiki/index.html',
             'content': 'foo'
         }).save(function() {
             request('http://localhost:9001')
@@ -28,7 +28,16 @@ describe("Homepage", function() {
         });
     });
 
-    after(helpers.teardownServer);
+    it("should return 404 if there's no index.html", function(done) {
+        request('http://localhost:9001')
+            .get('/')
+            .end(function (err, response) {
+                expect(response).to.have.status(404);
+                done();
+            });
+    });
+
+    afterEach(helpers.teardownServer);
 });
 
 describe("Serving resources", function() {

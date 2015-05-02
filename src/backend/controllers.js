@@ -12,12 +12,31 @@ var models = require('./models');
 
 function index(req, response, next) {
     response.setHeader('Content-Type', 'text/html');
-    // TODO: handle no index.
+
+    var path = "metawiki/index.html";
     models.Resource.findOne({
-        'path': 'metawiki/index.html'
+        'path': path
     }, function(err, indexResource) {
-        response.writeHead(200);
-        response.end(indexResource.content);
+        if (indexResource === null) {
+            fetchTemplate("index_missing.html", function(err, template) {
+                if (err) {
+                    // TODO: proper logging.
+                    console.log(err);
+                    throw err;
+                }
+
+                response.writeHead(404);
+
+                response.end(template({
+                    path: path
+                }));
+            });
+            
+        } else {
+            response.writeHead(200);
+            response.end(indexResource.content);
+        }
+        
         next();
     });
 }

@@ -20,7 +20,7 @@ You can also edit the JS ([models](#edit?metawiki/models.js),
 [editor](#edit?metawiki/editor.js), 
 [app](#edit?metawiki/app.js)),
 [the CSS](#edit?metawiki/metawiki.css)
-or [the HTML](#edit?html/index.html) of the site itself!
+or [the HTML](#edit?metawiki/index.html) of the site itself!
 
 The database is reset once an hour, so feel free to experiment.
 
