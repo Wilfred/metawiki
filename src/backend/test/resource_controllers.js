@@ -101,6 +101,15 @@ describe("Accessing resources", function() {
         });
     });
 
+    it("should return 404 for nonexistent resources", function(done) {
+        request('http://localhost:9001')
+            .get('/resources/foo')
+            .end(function (err, response) {
+                expect(response).to.have.status(404);
+                done();
+            });
+    });
+
     it("should return all resources", function(done) {
         var testResource = new Resource({
             'path': 'foo',
