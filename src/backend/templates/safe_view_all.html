@@ -12,11 +12,15 @@
 
         <h2>Resources</h2>
 
+        {{#if resources}}
         <ul>
         {{#each resources}}
             <li><a href="/safe/resource/{{this.path}}">{{this.path}}</a></li>
         {{/each}}
         </ul>
+        {{else}}
+        <p>No resources found!</p>
+        {{/if}}
 
     </body>
 </html>
