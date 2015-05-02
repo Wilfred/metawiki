@@ -22,6 +22,7 @@ script:
 
   # ensure we can load the frontend
   - export PATH=$PATH:node_modules/.bin
+  - npm run load-db
   - phantomjs src/frontend/test/test_homepage_loads.js
 after_success:
   # FIXME: taken from the docs at https://www.npmjs.com/package/coveralls,
