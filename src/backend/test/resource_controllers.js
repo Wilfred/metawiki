@@ -64,7 +64,7 @@ describe("Serving resources", function() {
 
     it("should 404 if no resource with that path", function(done) {
         request('http://localhost:9001')
-            .get('/no/such/resource')
+            .get('/serve/no/such/resource')
             .end(function (err, response) {
                 expect(response).to.have.status(404);
 
