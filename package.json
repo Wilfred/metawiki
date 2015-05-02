@@ -35,7 +35,7 @@
     "load-db": "node src/backend/load_db.js",
     "dump-db": "node src/backend/dump_db.js",
     "drop-db": "node src/backend/drop_db.js",
-    "test": "mocha src/backend/test"
+    "test": "mocha -R dot src/backend/test"
   },
   "engines": {
     "node": "0.12.x"
