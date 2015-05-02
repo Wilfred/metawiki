@@ -34,6 +34,7 @@ setTimeout(function() {
                 exitCode = 1;
             } else if (heading.textContent != 'Metawiki') {
                 console.log("Unexpected header value:", heading.textContent);
+                exitCode = 1;
             } else {
                 console.log("Success!", heading.textContent);
             }
