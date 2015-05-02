@@ -34,9 +34,9 @@ $ npm start
 
 ## Tests
 
-We have a handful of backend tests, which you can run with:
+We have a handful of backend tests. You will need to have a mongodb
+instance running.
 
 ```
-$ export PATH=$PATH:node_modules/.bin
-$ npm run test
+$ npm test
 ```
