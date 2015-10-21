@@ -1,12 +1,13 @@
 define([
     'require',
+    'backbone',
     'metawiki/models',
     'metawiki/templates',
     'metawiki/editor',
     'handlebars/handlebars',
     'marked/marked',
     'jquery'
-], function(require, models, templates, editor, Handlebars, marked) {
+], function(require, Backbone, models, templates, editor, Handlebars, marked) {
     "use strict";
     
     var Resource = models.Resource;
