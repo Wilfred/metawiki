@@ -111,6 +111,13 @@ async.series([
                 "handlebars/handlebars.js",
                 "node_modules/handlebars/dist/handlebars.js"),
 
+            createResource("application/javascript",
+                "mocha/mocha.js",
+                "node_modules/mocha/mocha.js"),
+            createResource("text/css",
+                "mocha/mocha.css",
+                "node_modules/mocha/mocha.css"),
+
             createResource("text/html",
                 "metawiki/index.html",
                 "src/frontend/index.html"),
