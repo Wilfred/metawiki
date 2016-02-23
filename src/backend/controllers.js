@@ -60,8 +60,7 @@ function serve(request, response, next) {
                 response.write(resource.content);
                 response.end();
             } else if (resource.localPath) {
-                // TODO: define an environment variable for production
-                // instead of serving files from here.
+                // TODO: store both text and binary in mongo
                 var appDir = path.dirname(require.main.filename);
                 var absPath = path.join(appDir, "..", "..", "binary_files",
                                         resource.localPath);
