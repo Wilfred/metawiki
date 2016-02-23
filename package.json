@@ -8,7 +8,7 @@
     "wiki"
   ],
   "author": "Wilfred Hughes me@wilfred.me.uk",
-  "license": "AGPL",
+  "license": "AGPL-3.0",
   "dependencies": {
     "async": "^0.9.0",
     "backbone": "^1.1.2",
