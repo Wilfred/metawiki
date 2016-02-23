@@ -10,11 +10,9 @@ var MIME_TYPES = [
     'test/css'
 ];
 
-// A resource is a blob of data that can viewed or modified over
-// our REST API.
-// TODO: versioning
-var Resource = mongoose.model('Resource', {
-    path: String,
+var resourceSchema = mongoose.Schema({
+    path: String, // used for serving, not the local disk
+    created: Date,
     content: String,
     localPath: String, // TODO: enforce content XOR localPath
     mimeType: String,
@@ -23,6 +21,11 @@ var Resource = mongoose.model('Resource', {
     // need this in the schema.
     bootstrapPath: String,
 });
+
+// A resource is a blob of data that can viewed or modified over
+// our REST API.
+// TODO: versioning
+var Resource = mongoose.model('Resource', resourceSchema);
 
 module.exports = {
     Resource: Resource,

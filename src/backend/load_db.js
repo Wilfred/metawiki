@@ -17,6 +17,7 @@ function createResource(mimeType, resourcePath, localPath) {
             content: fs.readFileSync(localPath, {
                 encoding: 'utf8'
             }),
+            created: Date.now(),
             bootstrapPath: localPath
         }, {
             upsert: true
@@ -31,6 +32,7 @@ function createBinaryResource(opts) {
             path: opts.path
         }, {
             mimeType: opts.mimeType,
+            created: Date.now(),
             localPath: opts.localPath
         }, {
             upsert: true
