@@ -28,7 +28,7 @@
     "mongoose": "^4.4.4",
     "phantomjs": "^1.9.16",
     "requirejs": "^2.1.22",
-    "restify": "~3.0.1",
+    "restify": "^4.0.4",
     "underscore": "^1.8.3"
   },
   "scripts": {
