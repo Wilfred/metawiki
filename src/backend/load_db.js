@@ -171,7 +171,7 @@ async.series([
         ], cb);
     },
     db.disconnect
-], function(err, res) {
+], function(err) {
     if (err) {
         console.log(['Failed:', err]);
     } else {
