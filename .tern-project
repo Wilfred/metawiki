@@ -1,0 +1,6 @@
+{
+    "loadEagerly": ["src/*/*.js"],
+    "plugins": {
+        "node": {}
+    }
+}
