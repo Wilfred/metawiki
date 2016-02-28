@@ -28,3 +28,6 @@ after_success:
   # FIXME: taken from the docs at https://www.npmjs.com/package/coveralls,
   # but this is a pointless use of cat.
   - cat src/backend/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
+notifications:
+  email: false

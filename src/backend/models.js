@@ -12,7 +12,8 @@ var MIME_TYPES = [
 
 var resourceSchema = mongoose.Schema({
     path: String, // used for serving, not the local disk
-    created: Date,
+    created: { type: Date, default: Date.now },
+    latest: { type: Boolean, default: true },
     content: String,
     localPath: String, // TODO: enforce content XOR localPath
     mimeType: String,

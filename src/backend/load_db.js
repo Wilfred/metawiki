@@ -10,33 +10,29 @@ var total = 0;
 // TODO: use an opts object.
 function createResource(mimeType, resourcePath, localPath) {
     return function(cb) {
-        models.Resource.findOneAndUpdate({
-            path: resourcePath
-        }, {
+        var resource = new models.Resource({
             mimeType: mimeType,
             content: fs.readFileSync(localPath, {
                 encoding: 'utf8'
             }),
-            created: Date.now(),
+            path: resourcePath,
             bootstrapPath: localPath
-        }, {
-            upsert: true
-        }, cb);
+        });
+        resource.save(cb);
+
         total++;
     };
 }
 
 function createBinaryResource(opts) {
     return function(cb) {
-        models.Resource.findOneAndUpdate({
-            path: opts.path
-        }, {
+        var resource = new models.Resource({
+            path: opts.path,
             mimeType: opts.mimeType,
-            created: Date.now(),
             localPath: opts.localPath
-        }, {
-            upsert: true
-        }, cb);
+        });
+        resource.save(cb);
+
         total++;
     };
 

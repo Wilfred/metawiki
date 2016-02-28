@@ -7,18 +7,34 @@ chai.use(chaiHttp);
 var expect = chai.expect;
 var request = chai.request;
 
+var _ = require('underscore');
+
 var helpers = require('./helpers');
 var Resource = require('../models').Resource;
 
 
+// Create a test resource in the database, and pass it to the
+// callback.
+function insertResource(opts, cb) {
+    opts = opts || {};
+
+    var testResource = new Resource({
+        path: opts.path || 'test_path',
+        content: opts.content || 'test_content',
+        mimeType: opts.mimeType || 'test_mimetype',
+    });
+    testResource.save(function() {
+        cb(testResource);
+    });
+}
+
 describe("Homepage", function() {
     beforeEach(helpers.testPrepare);
-    
+
     it("should return 200 from /", function(done) {
-        new Resource({
-            'path': 'metawiki/index.html',
-            'content': 'foo'
-        }).save(function() {
+        insertResource({
+            path: 'metawiki/index.html',
+        }, function() {
             request('http://localhost:9001')
                 .get('/')
                 .end(function (err, response) {
@@ -42,13 +58,12 @@ describe("Homepage", function() {
 
 describe("Serving resources", function() {
     beforeEach(helpers.testPrepare);
-    
+
     it("should be able to serve HTML", function(done) {
-        new Resource({
-            'path': 'html/index.html',
-            'content': 'foo',
-            'mimeType': 'text/html'
-        }).save(function() {
+        insertResource({
+            path: 'html/index.html',
+            mimeType: 'text/html'
+        }, function() {
             request('http://localhost:9001')
                 .get('/serve/html/index.html')
                 .end(function (err, response) {
@@ -90,9 +105,11 @@ describe("Accessing resources", function() {
                     expect(response).to.have.status(200);
 
                     var expected = testResource.toObject();
-                    // Ignore ID for the time being.
+                    // Ignore ID and created for the time being.
                     response.body._id = null;
                     expected._id = null;
+                    response.body.created = null;
+                    expected.created = null;
 
                     expect(response.body).to.deep.equal(expected);
                     
@@ -179,12 +196,9 @@ describe("Editing resources", function() {
     beforeEach(helpers.testPrepare);
 
     it("should change resource content", function(done) {
-        var testResource = new Resource({
-            'path': 'foo',
-            'content': 'foo',
-            'mimeType': 'application/javascript'
-        });
-        testResource.save(function() {
+        insertResource({
+            content: 'foo'
+        }, function (testResource) {
             request('http://localhost:9001')
                 .put('/resources/' + encodeURIComponent(testResource.path))
                 .field('content', 'bar')
@@ -192,12 +206,11 @@ describe("Editing resources", function() {
                 .end(function (err, response) {
                     expect(response).to.have.status(200);
                     
-                    
-                    Resource.find({
-                        'path': testResource.path
-                    }, function(err, resources) {
-                        expect(resources.length).to.equal(1);
-                        expect(resources[0].content).to.equal("bar");
+                    Resource.findOne({
+                        path: testResource.path,
+                        latest: true,
+                    }, function(err, resource) {
+                        expect(resource.content).to.equal("bar");
                         done();
                     });
                 });
@@ -205,24 +218,50 @@ describe("Editing resources", function() {
     });
 
     it("should change resource mime type", function(done) {
-        var testResource = new Resource({
-            path: 'foo',
-            content: 'foo',
+        insertResource({
             mimeType: 'application/javascript'
-        });
-        testResource.save(function() {
+        }, function(testResource) {
             request('http://localhost:9001')
                 .put('/resources/' + testResource.path)
-                .field('content', 'foo')
+                .field('content', 'foo123')
                 .field('mimeType', 'text/css')
                 .end(function (err, response) {
                     expect(response).to.have.status(200);
                     
+                    Resource.findOne({
+                        path: testResource.path,
+                        latest: true,
+                    }, function(err, resource) {
+                        expect(resource.mimeType).to.equal("text/css");
+                        done();
+                    });
+                });
+        });
+    });
+
+    it("should create a new version", function(done) {
+        insertResource({
+            content: "oldcontent"
+        }, function (testResource) {
+            request('http://localhost:9001')
+                .put('/resources/' + encodeURIComponent(testResource.path))
+                .field('content', 'newcontent')
+                .field('mimeType', 'whatever')
+                .end(function () {
                     Resource.find({
-                        'path': testResource.path
+                        path: testResource.path
                     }, function(err, resources) {
-                        expect(resources.length).to.equal(1);
-                        expect(resources[0].mimeType).to.equal("text/css");
+                        var oldResources = _.where(resources, {content: 'oldcontent'});
+                        var newResources = _.where(resources, {content: 'newcontent'});
+
+                        // We should have one old version, and the current version.
+                        expect(oldResources.length).to.equal(1);
+                        expect(newResources.length).to.equal(1);
+
+                        // We should have set latest only on the new resource.
+                        expect(oldResources[0].latest).to.equal(false);
+                        expect(newResources[0].latest).to.equal(true);
+
                         done();
                     });
                 });
@@ -241,12 +280,7 @@ describe("Editing resources", function() {
     });
 
     it("should 400 on missing parameters", function(done) {
-        var testResource = new Resource({
-            path: 'foo',
-            content: 'foo',
-            mimeType: 'application/javascript'
-        });
-        testResource.save(function() {
+        insertResource({}, function(testResource) {
             request('http://localhost:9001')
                 .put('/resources/' + testResource.path)
                 .field('mimeType', 'text/css')
