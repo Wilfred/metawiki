@@ -112,7 +112,7 @@ describe("Accessing resources", function() {
                     expected.created = null;
 
                     expect(response.body).to.deep.equal(expected);
-                    
+
                     done();
                 });
         });
@@ -156,7 +156,7 @@ describe("Creating resources", function() {
             .field('content', 'bar')
             .end(function (err, response) {
                 expect(response).to.have.status(200);
-                
+
                 Resource.find({
                     'path': 'foo'
                 }, function(err, resources) {
@@ -178,7 +178,7 @@ describe("Creating resources", function() {
                 .field('content', 'foo')
                 .end(function (err, response) {
                     expect(response).to.have.status(400);
-                    
+
                     Resource.find({
                         'path': 'foo'
                     }, function(err, resources) {
@@ -205,7 +205,7 @@ describe("Editing resources", function() {
                 .field('mimeType', 'application/javascript')
                 .end(function (err, response) {
                     expect(response).to.have.status(200);
-                    
+
                     Resource.findOne({
                         path: testResource.path,
                         latest: true,
@@ -227,7 +227,7 @@ describe("Editing resources", function() {
                 .field('mimeType', 'text/css')
                 .end(function (err, response) {
                     expect(response).to.have.status(200);
-                    
+
                     Resource.findOne({
                         path: testResource.path,
                         latest: true,
@@ -275,7 +275,7 @@ describe("Editing resources", function() {
             .field('mimeType', 'text/css')
             .end(function (err, response) {
                 expect(response).to.have.status(404);
-                done(); 
+                done();
             });
     });
 
