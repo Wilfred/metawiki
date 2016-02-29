@@ -7,16 +7,15 @@ var models = require('./models.js');
 
 var total = 0;
 
-// TODO: use an opts object.
-function createResource(mimeType, resourcePath, localPath) {
+function createResource(opts) {
     return function(cb) {
         var resource = new models.Resource({
-            mimeType: mimeType,
-            content: fs.readFileSync(localPath, {
+            mimeType: opts.mimeType,
+            content: fs.readFileSync(opts.localPath, {
                 encoding: 'utf8'
             }),
-            path: resourcePath,
-            bootstrapPath: localPath
+            path: opts.resourcePath,
+            bootstrapPath: opts.localPath
         });
         resource.save(cb);
 
@@ -52,118 +51,184 @@ async.series([
                 localPath: "ouroboros.jpg"
             }),
 
-            createResource("text/css",
-                "codemirror/lib/codemirror.css",
-                "node_modules/codemirror/lib/codemirror.css"),
-            createResource("application/javascript",
-                "codemirror/lib/codemirror.js",
-                "node_modules/codemirror/lib/codemirror.js"),
+            createResource({
+                mimeType: "text/css",
+                resourcePath: "codemirror/lib/codemirror.css",
+                localPath: "node_modules/codemirror/lib/codemirror.css"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "codemirror/lib/codemirror.js",
+                localPath: "node_modules/codemirror/lib/codemirror.js"
+            }),
 
-            createResource("application/javascript",
-                "codemirror/addon/edit/closebrackets.js",
-                "node_modules/codemirror/addon/edit/closebrackets.js"),
-            createResource("application/javascript",
-                "codemirror/addon/edit/matchbrackets.js",
-                "node_modules/codemirror/addon/edit/matchbrackets.js"),
-            createResource("application/javascript",
-                "codemirror/addon/selection/active-line.js",
-                "node_modules/codemirror/addon/selection/active-line.js"),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "codemirror/addon/edit/closebrackets.js",
+                localPath: "node_modules/codemirror/addon/edit/closebrackets.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "codemirror/addon/edit/matchbrackets.js",
+                localPath: "node_modules/codemirror/addon/edit/matchbrackets.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "codemirror/addon/selection/active-line.js",
+                localPath: "node_modules/codemirror/addon/selection/active-line.js"
+            }),
 
-            createResource("application/javascript",
-                "codemirror/mode/javascript/javascript.js",
-                "node_modules/codemirror/mode/javascript/javascript.js"),
-            createResource("application/javascript",
-                "codemirror/mode/meta.js",
-                "node_modules/codemirror/mode/meta.js"),
-            createResource("application/javascript",
-                "codemirror/mode/markdown/markdown.js",
-                "node_modules/codemirror/mode/markdown/markdown.js"),
-            createResource("application/javascript",
-                "codemirror/mode/xml/xml.js",
-                "node_modules/codemirror/mode/xml/xml.js"),
-            createResource("application/javascript",
-                "codemirror/mode/css/css.js",
-                "node_modules/codemirror/mode/css/css.js"),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "codemirror/mode/javascript/javascript.js",
+                localPath: "node_modules/codemirror/mode/javascript/javascript.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "codemirror/mode/meta.js",
+                localPath: "node_modules/codemirror/mode/meta.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "codemirror/mode/markdown/markdown.js",
+                localPath: "node_modules/codemirror/mode/markdown/markdown.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "codemirror/mode/xml/xml.js",
+                localPath: "node_modules/codemirror/mode/xml/xml.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "codemirror/mode/css/css.js",
+                localPath: "node_modules/codemirror/mode/css/css.js"
+            }),
 
-            createResource("application/javascript",
-                "requirejs/require.js",
-                "node_modules/requirejs/require.js"),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "requirejs/require.js",
+                localPath: "node_modules/requirejs/require.js"
+            }),
 
-            createResource("application/javascript",
-                "backbone.js",
-                "node_modules/backbone/backbone.js"),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "backbone.js",
+                localPath: "node_modules/backbone/backbone.js"
+            }),
 
-            createResource("application/javascript",
-                "underscore.js",
-                "node_modules/underscore/underscore.js"),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "underscore.js",
+                localPath: "node_modules/underscore/underscore.js"
+            }),
 
-            createResource("application/javascript",
-                "jquery.js",
-                "node_modules/jquery/dist/jquery.js"),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "jquery.js",
+                localPath: "node_modules/jquery/dist/jquery.js"
+            }),
 
-            createResource("application/javascript",
-                "marked/marked.js",
-                "node_modules/marked/lib/marked.js"),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "marked/marked.js",
+                localPath: "node_modules/marked/lib/marked.js"
+            }),
 
-            createResource("application/javascript",
-                "handlebars/handlebars.js",
-                "node_modules/handlebars/dist/handlebars.js"),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "handlebars/handlebars.js",
+                localPath: "node_modules/handlebars/dist/handlebars.js"
+            }),
 
-            createResource("application/javascript",
-                "mocha/mocha.js",
-                "node_modules/mocha/mocha.js"),
-            createResource("text/css",
-                "mocha/mocha.css",
-                "node_modules/mocha/mocha.css"),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "mocha/mocha.js",
+                localPath: "node_modules/mocha/mocha.js"
+            }),
+            createResource({
+                mimeType: "text/css",
+                resourcePath: "mocha/mocha.css",
+                localPath: "node_modules/mocha/mocha.css"
+            }),
 
-            createResource("text/html",
-                "metawiki/index.html",
-                "src/frontend/index.html"),
+            createResource({
+                mimeType: "text/html",
+                resourcePath: "metawiki/index.html",
+                localPath: "src/frontend/index.html"
+            }),
 
-            createResource("application/javascript",
-                "metawiki/routing.js",
-                "src/frontend/routing.js"),
-            createResource("application/javascript",
-                "metawiki/models.js",
-                "src/frontend/models.js"),
-            createResource("application/javascript",
-                "metawiki/controllers.js",
-                "src/frontend/controllers.js"),
-            createResource("application/javascript",
-                "metawiki/templates.js",
-                "src/frontend/templates.js"),
-            createResource("application/javascript",
-                "metawiki/editor.js",
-                "src/frontend/editor.js"),
-            createResource("application/javascript",
-                "metawiki/app.js",
-                "src/frontend/app.js"),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "metawiki/routing.js",
+                localPath: "src/frontend/routing.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "metawiki/models.js",
+                localPath: "src/frontend/models.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "metawiki/controllers.js",
+                localPath: "src/frontend/controllers.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "metawiki/templates.js",
+                localPath: "src/frontend/templates.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "metawiki/editor.js",
+                localPath: "src/frontend/editor.js"
+            }),
+            createResource({
+                mimeType: "application/javascript",
+                resourcePath: "metawiki/app.js",
+                localPath: "src/frontend/app.js"
+            }),
 
-            createResource("text/css",
-                "metawiki/metawiki.css",
-                "src/frontend/metawiki.css"),
+            createResource({
+                mimeType: "text/css",
+                resourcePath: "metawiki/metawiki.css",
+                localPath: "src/frontend/metawiki.css"
+            }),
 
-            createResource("text/x-markdown",
-                           "page/Home",
-                           "src/frontend/Home"),
-            createResource("text/x-markdown",
-                           "page/Bugs",
-                           "src/frontend/Bugs"),
-            createResource("text/x-markdown",
-                           "page/Challenges",
-                           "src/frontend/Challenges"),
-            createResource("text/x-markdown",
-                           "page/Bugs",
-                           "src/frontend/Bugs"),
-            createResource("text/x-markdown",
-                           "page/Related",
-                           "src/frontend/Related"),
-            createResource("text/x-markdown",
-                           "page/Security",
-                           "src/frontend/Security"),
-            createResource("text/x-markdown",
-                           "page/Design",
-                           "src/frontend/Design"),
+            createResource({
+                mimeType: "text/x-markdown",
+                resourcePath: "page/Home",
+                localPath: "src/frontend/Home"
+            }),
+            createResource({
+                mimeType: "text/x-markdown",
+                resourcePath: "page/Bugs",
+                localPath: "src/frontend/Bugs"
+            }),
+            createResource({
+                mimeType: "text/x-markdown",
+                resourcePath: "page/Challenges",
+                localPath: "src/frontend/Challenges"
+            }),
+            createResource({
+                mimeType: "text/x-markdown",
+                resourcePath: "page/Bugs",
+                localPath: "src/frontend/Bugs"
+            }),
+            createResource({
+                mimeType: "text/x-markdown",
+                resourcePath: "page/Related",
+                localPath: "src/frontend/Related"
+            }),
+            createResource({
+                mimeType: "text/x-markdown",
+                resourcePath: "page/Security",
+                localPath: "src/frontend/Security"
+            }),
+            createResource({
+                mimeType: "text/x-markdown",
+                resourcePath: "page/Design",
+                localPath: "src/frontend/Design"
+            }),
         ], cb);
     },
     db.disconnect
