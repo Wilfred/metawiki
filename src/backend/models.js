@@ -11,12 +11,17 @@ var MIME_TYPES = [
 ];
 
 var resourceSchema = mongoose.Schema({
+    // Content
     path: String, // used for serving, not the local disk
-    created: { type: Date, default: Date.now },
-    latest: { type: Boolean, default: true },
     content: String,
     localPath: String, // TODO: enforce content XOR localPath
     mimeType: String,
+
+    // Metadata
+    created: { type: Date, default: Date.now },
+    latest: { type: Boolean, default: true },
+
+    // Bootstrapping
     // TODO: since we want to allow arbitrary fields to be defined by the
     // client, we will probably need to talk to mongo directly. We then don't
     // need this in the schema.
