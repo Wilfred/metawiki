@@ -206,9 +206,8 @@ describe("Editing resources", function() {
                 .end(function (err, response) {
                     expect(response).to.have.status(200);
 
-                    Resource.findOne({
+                    Resource.findLatestOne({
                         path: testResource.path,
-                        latest: true,
                     }, function(err, resource) {
                         expect(resource.content).to.equal("bar");
                         done();
@@ -228,9 +227,8 @@ describe("Editing resources", function() {
                 .end(function (err, response) {
                     expect(response).to.have.status(200);
 
-                    Resource.findOne({
+                    Resource.findLatestOne({
                         path: testResource.path,
-                        latest: true,
                     }, function(err, resource) {
                         expect(resource.mimeType).to.equal("text/css");
                         done();

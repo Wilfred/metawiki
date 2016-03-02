@@ -1,5 +1,6 @@
-"use strict"; 
+"use strict";
 
+var _ = require('underscore');
 var mongoose = require('mongoose');
 
 // todo: this should be a mutable list stored in mongo.
@@ -27,6 +28,16 @@ var resourceSchema = mongoose.Schema({
     // need this in the schema.
     bootstrapPath: String,
 });
+
+resourceSchema.statics.findLatest = function(opts, callback) {
+    opts = _.extend({}, opts, {latest: true});
+    return this.find(opts, callback);
+};
+
+resourceSchema.statics.findLatestOne = function(opts, callback) {
+    opts = _.extend({}, opts, {latest: true});
+    return this.findOne(opts, callback);
+};
 
 // A resource is a blob of data that can viewed or modified over
 // our REST API.

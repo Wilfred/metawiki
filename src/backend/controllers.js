@@ -44,9 +44,8 @@ function index(req, response, next) {
 function serve(request, response, next) {
     var urlPath = request.params[0];
 
-    models.Resource.findOne({
+    models.Resource.findLatestOne({
         path: urlPath,
-        latest: true,
     }, function(err, resource) {
         if (resource === null) {
             // TODO: should be JSON with an error reason.
@@ -83,9 +82,8 @@ function serve(request, response, next) {
 function getResource(req, res, next) {
     var path = req.params.path;
 
-    models.Resource.findOne({
+    models.Resource.findLatestOne({
         path: path,
-        latest: true,
     }, function(err, resource) {
         if (resource === null) {
             next(new restify.NotFoundError(
@@ -134,10 +132,8 @@ function updateResource(req, res, next) {
 function createResource(req, res, next) {
     var path = req.params.path;
 
-    // TODO: define a findLatest helper method.
-    models.Resource.findOne({
+    models.Resource.findLatestOne({
         path: path,
-        latest: true,
     }, function(err, existingResource) {
         if (existingResource === null) {
             var resource = new models.Resource({
@@ -158,9 +154,7 @@ function createResource(req, res, next) {
 }
 
 function allResources(req, res, next) {
-    models.Resource.find({
-        latest: true
-    }, function(err, resources) {
+    models.Resource.findLatest({}, function(err, resources) {
         res.send(resources);
         next();
     });
@@ -188,9 +182,7 @@ function fetchTemplate(name, cb) {
 function safeViewAllResources(request, response, next) {
     response.setHeader('Content-Type', 'text/html');
 
-    models.Resource.find({
-        latest: true,
-    }).sort('path').exec(function(err, resources) {
+    models.Resource.findLatest({}).sort('path').exec(function(err, resources) {
 
         fetchTemplate("safe_view_all.html", function(err, template) {
             if (err) {
