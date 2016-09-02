@@ -25,7 +25,7 @@
     "mkdirp": "^0.5.1",
     "mocha": "^3.0.2",
     "mocha-lcov-reporter": "1.2.0",
-    "mongoose": "^4.4.4",
+    "mongoose": "^4.6.0",
     "phantomjs-prebuilt": "^2.1.7",
     "requirejs": "^2.1.22",
     "restify": "^4.0.4",
