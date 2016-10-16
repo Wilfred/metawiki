@@ -652,9 +652,9 @@
       "optional": true
     },
     "jquery": {
-      "version": "3.1.0",
-      "from": "jquery@3.1.0",
-      "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.1.0.tgz"
+      "version": "3.1.1",
+      "from": "jquery@3.1.1",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.1.1.tgz"
     },
     "js-yaml": {
       "version": "3.6.1",
