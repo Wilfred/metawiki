@@ -18,6 +18,7 @@
     "chai-http": "^3.0.0",
     "codemirror": "^5.1.0",
     "coveralls": "*",
+    "eslint": "^3.8.0",
     "handlebars": "^4.0.5",
     "istanbul": "^0.4.2",
     "jquery": "3.1.1",
@@ -36,6 +37,8 @@
     "load-db": "node src/backend/load_db.js",
     "dump-db": "node src/backend/dump_db.js",
     "drop-db": "node src/backend/drop_db.js",
+    "lint-backend": "eslint src/backend",
+    "format-backend": "eslint src/backend --fix",
     "test": "mocha -R dot src/backend/test",
     "test-with-coverage": "cd src/backend && istanbul cover _mocha --report lcovonly -- -R spec"
   },

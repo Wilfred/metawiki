@@ -1,4 +1,5 @@
 define([
+    'jquery',
     'metawiki/models',
     'metawiki/templates',
     'handlebars/handlebars',
@@ -9,9 +10,8 @@ define([
     "codemirror/mode/javascript/javascript",
     "codemirror/mode/markdown/markdown",
     "codemirror/mode/css/css",
-    "codemirror/mode/xml/xml",
-    'jquery'
-], function(models, templates, Handlebars, CodeMirror) {
+    "codemirror/mode/xml/xml"
+], function($, models, templates, Handlebars, CodeMirror) {
     "use strict";
  
     function load(heading, resource) {
@@ -35,7 +35,8 @@ define([
                     path: resource.get('path') || "",
                     heading: heading
                 }))
-        }));
+            })
+        );
         
         var cm = CodeMirror.fromTextArea($('#editor').get(0), {
             lineNumbers: true,

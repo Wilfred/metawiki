@@ -3,7 +3,7 @@ define([
     'metawiki/controllers',
 ], function(Backbone, controllers) {
     var Router = Backbone.Router.extend({
-        initialize: function(options) {
+        initialize: function(_options) {
             this.route('all', 'allPages', function() {
                 var allPages = new controllers.AllPages;
                 allPages.render();
