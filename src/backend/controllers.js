@@ -102,6 +102,7 @@ function updateResource(req, res, next) {
         next(new restify.BadRequestError(
             "You need to provide a body and a mimeType."));
         next();
+        return;
     }
 
     models.Resource.findOneAndUpdate({
@@ -157,6 +158,7 @@ function fetchTemplate(name, cb) {
     }, function(err, templateSrc) {
         if (err) {
             cb(err, null);
+            return;
         }
 
         var template;
