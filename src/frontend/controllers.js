@@ -7,9 +7,9 @@ define([
     'handlebars/handlebars',
     'marked/marked',
     'jquery'
-], function(require, Backbone, models, templates, editor, Handlebars, marked) {
+], function(require, Backbone, models, templates, editor, Handlebars, marked, $) {
     "use strict";
-    
+
     var Resource = models.Resource;
     
     marked.setOptions({
@@ -107,7 +107,7 @@ define([
                     // TODO: we should narrow this to children of the edit form.
                     $('input[type=submit]').click(function() {
                         var $input = $(this);
-                        var mimeType = $('[name=mimeType]').val()
+                        var mimeType = $('[name=mimeType]').val();
                         
                         resource.save({
                             content: editorInstance.getValue(),
