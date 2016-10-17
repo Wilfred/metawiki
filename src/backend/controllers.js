@@ -3,9 +3,7 @@
 var restify = require('restify');
 var path = require('path');
 var fs = require('fs');
-
 var Handlebars = require('handlebars');
-var _ = require('underscore');
 
 var models = require('./models');
 
