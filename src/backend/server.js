@@ -6,6 +6,7 @@ var _ = require('underscore');
 var log = require('./log');
 var controllers = require('./controllers');
 var resourceControllers = require('./resource-controllers');
+var formatControllers = require('./format-controllers');
 
 function createServer(opts) {
     opts = opts || {};
@@ -26,6 +27,7 @@ function createServer(opts) {
     server.use(restify.bodyParser({
         mapParams: false
     }));
+    server.use(restify.queryParser());
 
     server.get('/', controllers.index);
     server.get(/^\/serve\/(.+?)$/, controllers.serve);
@@ -40,6 +42,7 @@ function createServer(opts) {
     server.get(/^\/safe$/, controllers.safeViewAllResources);
     server.get(/^\/safe\/resource\/(.+?)$/, controllers.safeViewResource);
 
+    server.get('/format', formatControllers.format);
     return server;
 }
 
