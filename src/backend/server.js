@@ -5,6 +5,7 @@ var _ = require('underscore');
 
 var log = require('./log');
 var controllers = require('./controllers');
+var resourceControllers = require('./resource-controllers');
 
 function createServer(opts) {
     opts = opts || {};
@@ -30,11 +31,11 @@ function createServer(opts) {
     server.get(/^\/serve\/(.+?)$/, controllers.serve);
 
     // TODO: can we treat /resources/ as /resources ?
-    server.get('/resources', controllers.allResources);
+    server.get('/resources', resourceControllers.all);
 
-    server.get('/resources/:path', controllers.getResource);
-    server.post('/resources/:path', controllers.createResource);
-    server.put('/resources/:path', controllers.updateResource);
+    server.get('/resources/:path', resourceControllers.get);
+    server.post('/resources/:path', resourceControllers.create);
+    server.put('/resources/:path', resourceControllers.update);
 
     server.get(/^\/safe$/, controllers.safeViewAllResources);
     server.get(/^\/safe\/resource\/(.+?)$/, controllers.safeViewResource);
