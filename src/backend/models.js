@@ -1,6 +1,7 @@
 "use strict"; 
 
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 // todo: this should be a mutable list stored in mongo.
 var MIME_TYPES = [
