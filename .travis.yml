@@ -7,11 +7,6 @@ node_js:
 services:
   - mongodb
 before_script:
-  # TODO: we should do everything from our package.json, as this may
-  # install newer versions than we wanted.
-  - npm install -g istanbul
-  - npm install -g mocha
-
   # Not necessary, but good to check that they work.
   - npm run load-db
   - npm run drop-db
@@ -19,9 +14,7 @@ before_script:
   # to confusing test results.
 script:
   # backend tests
-  - cd src/backend
-  - istanbul cover _mocha --report lcovonly -- -R spec
-  - cd ../..
+  - npm run test-with-coverage
 
   # ensure we can load the frontend
   - export PATH=$PATH:node_modules/.bin
