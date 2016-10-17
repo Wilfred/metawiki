@@ -48,9 +48,9 @@
       "resolved": "https://registry.npmjs.org/assertion-error/-/assertion-error-1.0.2.tgz"
     },
     "async": {
-      "version": "2.1.1",
-      "from": "async@>=2.0.1 <3.0.0",
-      "resolved": "https://registry.npmjs.org/async/-/async-2.1.1.tgz"
+      "version": "2.1.2",
+      "from": "async@2.1.2",
+      "resolved": "https://registry.npmjs.org/async/-/async-2.1.2.tgz"
     },
     "asynckit": {
       "version": "0.4.0",
