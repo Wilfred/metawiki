@@ -1,4 +1,4 @@
-"use strict"; 
+"use strict";
 
 var restify = require('restify');
 var _ = require('underscore');
@@ -39,7 +39,7 @@ function createServer(opts) {
 
     server.get(/^\/safe$/, controllers.safeViewAllResources);
     server.get(/^\/safe\/resource\/(.+?)$/, controllers.safeViewResource);
-    
+
     return server;
 }
 

@@ -29,12 +29,12 @@ function index(req, response, next) {
                     path: path
                 }));
             });
-            
+
         } else {
             response.writeHead(200);
             response.end(indexResource.content);
         }
-        
+
         next();
     });
 }
@@ -119,7 +119,7 @@ function safeViewAllResources(request, response, next) {
 
 function safeViewResource(request, response, next) {
     var resourcePath = request.params[0];
-    
+
     response.setHeader('Content-Type', 'text/html');
 
     models.Resource.findOne({
@@ -145,9 +145,9 @@ function safeViewResource(request, response, next) {
 
 module.exports = {
     serve: serve,
-    
+
     safeViewAllResources: safeViewAllResources,
     safeViewResource: safeViewResource,
-    
+
     index: index
 };

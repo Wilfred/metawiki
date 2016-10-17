@@ -13,7 +13,7 @@ var Resource = require('../models').Resource;
 
 describe("Homepage", function() {
     beforeEach(helpers.testPrepare);
-    
+
     it("should return 200 from /", function(done) {
         new Resource({
             'path': 'metawiki/index.html',
@@ -42,7 +42,7 @@ describe("Homepage", function() {
 
 describe("Serving resources", function() {
     beforeEach(helpers.testPrepare);
-    
+
     it("should be able to serve HTML", function(done) {
         new Resource({
             'path': 'html/index.html',
@@ -95,7 +95,7 @@ describe("Accessing resources", function() {
                     expected._id = null;
 
                     expect(response.body).to.deep.equal(expected);
-                    
+
                     done();
                 });
         });
@@ -139,7 +139,7 @@ describe("Creating resources", function() {
             .field('content', 'bar')
             .end(function (err, response) {
                 expect(response).to.have.status(200);
-                
+
                 Resource.find({
                     'path': 'foo'
                 }, function(err, resources) {
@@ -161,7 +161,7 @@ describe("Creating resources", function() {
                 .field('content', 'foo')
                 .end(function (err, response) {
                     expect(response).to.have.status(400);
-                    
+
                     Resource.find({
                         'path': 'foo'
                     }, function(err, resources) {
@@ -191,8 +191,8 @@ describe("Editing resources", function() {
                 .field('mimeType', 'application/javascript')
                 .end(function (err, response) {
                     expect(response).to.have.status(200);
-                    
-                    
+
+
                     Resource.find({
                         'path': testResource.path
                     }, function(err, resources) {
@@ -217,7 +217,7 @@ describe("Editing resources", function() {
                 .field('mimeType', 'text/css')
                 .end(function (err, response) {
                     expect(response).to.have.status(200);
-                    
+
                     Resource.find({
                         'path': testResource.path
                     }, function(err, resources) {
@@ -236,7 +236,7 @@ describe("Editing resources", function() {
             .field('mimeType', 'text/css')
             .end(function (err, response) {
                 expect(response).to.have.status(404);
-                done(); 
+                done();
             });
     });
 
