@@ -30,3 +30,7 @@ after_success:
 
 notifications:
   email: false
+
+addons:
+  code_climate:
+    repo_token: fbe7d046fe2100df23c8c2303ce8590b61517aa50505f56ed78e52e2d788352f
