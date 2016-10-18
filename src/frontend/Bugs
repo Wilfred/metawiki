@@ -3,3 +3,6 @@
 * Handle trying to edit a nonexistent page.
 * Changing mode isn't changing highlighting
 * 'Save and continue editing' doesn't work for new pages
+* Eval is broken now we have require js
+* Format button is always shown
+* Server errors are ignored
