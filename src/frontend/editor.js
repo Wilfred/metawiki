@@ -56,7 +56,19 @@ define([
             e.preventDefault();
             return false;
         });
-        
+
+        $(".format-source").click(function(e) {
+            e.preventDefault();
+            var src = cm.getValue();
+            fetch("/format?" + $.param({
+                code: src
+            })).then(function(response) {
+                return response.json();
+            }).then(function(data) {
+                cm.getDoc().setValue(data.code);
+            });
+        });
+
         return cm;
     }
     
