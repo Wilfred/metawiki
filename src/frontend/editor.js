@@ -54,6 +54,9 @@ define([
             Tab: "indentAuto"
         });
 
+        $("select[name=\"mimeType\"").change(function(e) {
+            cm.setOption("mode", getMode(this.value));
+        });
 
         $("input[name=execute]").click(function(e) {
             eval(cm.getValue());
