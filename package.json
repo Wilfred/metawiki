@@ -38,7 +38,7 @@
     "dump-db": "node src/backend/dump_db.js",
     "drop-db": "node src/backend/drop_db.js",
     "lint-backend": "eslint src/backend",
-    "format-backend": "eslint src/backend --fix",
+    "format-backend": "eslint src/backend --fix --no-eslintrc -c .eslintrc-format.json",
     "test": "mocha -R dot src/backend/test",
     "test-with-coverage": "cd src/backend && istanbul cover _mocha --report lcovonly -- -R spec"
   },

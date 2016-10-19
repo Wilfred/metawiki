@@ -1,3 +1,4 @@
+var formatRules = require('../../.eslintrc-format.json');
 var CLIEngine = require("eslint").CLIEngine;
 
 function format(req, res, next) {
@@ -9,37 +10,7 @@ function format(req, res, next) {
         envs: ["browser", "mocha"],
         useEslintrc: false,
         // TODO: allow users to override these.
-        // TODO: ensure frontend and backend use the same rules
-        rules: {
-            "array-bracket-spacing": "warn",
-            "comma-dangle": "warn",
-            "comma-spacing": "warn",
-            "dot-notation": "warn",
-            "eol-last": "warn",
-            "func-call-spacing": "warn",
-            "indent": ["warn", 4],
-            "key-spacing": "warn",
-            "keyword-spacing": "warn",
-            "linebreak-style": "warn",
-            "new-parens": "warn",
-            "no-extra-parens": "warn",
-            "no-extra-semi": "warn",
-            "no-implicit-coercion": "warn",
-            "no-multi-spaces": "warn",
-            "no-multiple-empty-lines": "warn",
-            "no-trailing-spaces": "warn",
-            "no-whitespace-before-property": "warn",
-            "object-curly-spacing": "warn",
-            "quotes": "warn",
-            "quote-props": ["warn", "consistent-as-needed"],
-            "semi": "warn",
-            "semi-spacing": "warn",
-            "space-before-blocks": "warn",
-            "space-before-function-paren": ["warn", "never"],
-            "space-in-parens": "warn",
-            "space-infix-ops": "warn",
-            "space-unary-ops": "warn",
-        },
+        rules: formatRules,
         fix: true
     });
 
