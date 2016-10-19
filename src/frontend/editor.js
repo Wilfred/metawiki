@@ -14,18 +14,21 @@ define([
 ], function($, models, templates, Handlebars, CodeMirror) {
     "use strict";
 
+    function getMode(mimeType) {
+        if (mimeType == "text/x-markdown") {
+            return "markdown";
+        } else if (mimeType == "application/javascript") {
+            return "javascript";
+        } else if (mimeType == "text/html") {
+            return "xml";
+        } else if (mimeType == "text/css") {
+            return "css";
+        }
+    }
+
     function load(heading, resource) {
         resource = resource || new models.Resource();
         var mimeType = resource.get("mimeType") || "text/x-markdown";
-        var mode = "javascript";
-
-        if (mimeType == "text/x-markdown") {
-            mode = "markdown";
-        } else if (mimeType == "text/html") {
-            mode = "xml";
-        } else if (mimeType == "text/css") {
-            mode = "css";
-        }
 
         templates.$content.html(
             templates.pageTemplate({
@@ -44,12 +47,13 @@ define([
             matchBrackets: true,
             styleActiveLine: true,
             autoCloseBrackets: true,
-            mode: mode
+            mode: getMode(mimeType)
         });
 
         cm.setOption("extraKeys", {
             Tab: "indentAuto"
         });
+
 
         $("input[name=execute]").click(function(e) {
             eval(cm.getValue());
