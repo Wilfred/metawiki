@@ -54,8 +54,20 @@ define([
             Tab: "indentAuto"
         });
 
-        $("select[name=\"mimeType\"").change(function(e) {
+        var $selectMimeType = $("select[name=\"mimeType\"");
+        var $formatSource = $(".format-source");
+
+        if ($selectMimeType.val() == "application/javascript") {
+            $formatSource.removeClass("hidden");
+        }
+
+        $selectMimeType.change(function(e) {
             cm.setOption("mode", getMode(this.value));
+            if (this.value == "application/javascript") {
+                $formatSource.removeClass("hidden");
+            } else {
+                $formatSource.addClass("hidden");
+            }
         });
 
         $("input[name=execute]").click(function(e) {
@@ -64,7 +76,7 @@ define([
             return false;
         });
 
-        $(".format-source").click(function(e) {
+        $formatSource.click(function(e) {
             e.preventDefault();
             var src = cm.getValue();
             fetch("/format?" + $.param({

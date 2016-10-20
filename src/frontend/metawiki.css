@@ -68,6 +68,10 @@ th {
     color: #ecf0f1;
 }
 
+.hidden {
+    display: none;
+}
+
 .CodeMirror {
     border: 1px solid #eee;
     height: auto;
