@@ -132,8 +132,7 @@ define([
                  
                 }, error: function() {
                     // Page doesn't exist
-                    // FIXME: need to set URL too.
-                    return newPage();     
+                    navigate('new?' + resourceName);
                 }
             });
         }
