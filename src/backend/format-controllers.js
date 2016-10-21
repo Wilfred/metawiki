@@ -1,6 +1,9 @@
 var formatRules = require('../../.eslintrc-format.json');
 var CLIEngine = require("eslint").CLIEngine;
 
+// Eslint does not really run in the browser. See
+// https://groups.google.com/forum/#!topic/eslint/_If8mxLNdgI and
+// https://github.com/eslint/eslint/issues/2585
 function format(req, res, next) {
     // TODO: handle missing parameters, unknown mime types and invalid
     // syntax.
