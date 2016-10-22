@@ -1,4 +1,6 @@
-define(["backbone"], function(Backbone) {
+define(function(require) {
+    var Backbone = require("backbone");
+
     var Resource = Backbone.Model.extend({
         url: function() {
             // TODO: Is this a sign that our backend should be changed
