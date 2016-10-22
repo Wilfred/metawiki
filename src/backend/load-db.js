@@ -56,6 +56,7 @@ async.series([
                 localPath: "ouroboros.jpg"
             }),
 
+            // Base codemirror
             createResource("text/css",
                 "codemirror/lib/codemirror.css",
                 "node_modules/codemirror/lib/codemirror.css"),
@@ -63,6 +64,7 @@ async.series([
                 "codemirror/lib/codemirror.js",
                 "node_modules/codemirror/lib/codemirror.js"),
 
+            // Editor conveniences
             createResource("application/javascript",
                 "codemirror/addon/edit/closebrackets.js",
                 "node_modules/codemirror/addon/edit/closebrackets.js"),
@@ -73,6 +75,7 @@ async.series([
                 "codemirror/addon/selection/active-line.js",
                 "node_modules/codemirror/addon/selection/active-line.js"),
 
+            // Syntax highlighting
             createResource("application/javascript",
                 "codemirror/mode/javascript/javascript.js",
                 "node_modules/codemirror/mode/javascript/javascript.js"),
