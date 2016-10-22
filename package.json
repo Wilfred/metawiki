@@ -34,9 +34,9 @@
   },
   "scripts": {
     "start": "node src/backend/main.js",
-    "load-db": "node src/backend/load_db.js",
-    "dump-db": "node src/backend/dump_db.js",
-    "drop-db": "node src/backend/drop_db.js",
+    "load-db": "node src/backend/load-db.js",
+    "dump-db": "node src/backend/dump-db.js",
+    "drop-db": "node src/backend/drop-db.js",
     "lint-backend": "eslint src/backend",
     "format-backend": "eslint src/backend --fix --no-eslintrc -c .eslintrc-format.json",
     "test": "mocha -R dot src/backend/test",
