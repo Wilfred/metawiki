@@ -1,4 +1,4 @@
-var formatRules = require('../../.eslintrc-format.json');
+var formatRules = require("../../.eslintrc-format.json").rules;
 var CLIEngine = require("eslint").CLIEngine;
 
 // Eslint does not really run in the browser. See
