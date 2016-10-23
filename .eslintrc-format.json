@@ -20,7 +20,6 @@
         "no-trailing-spaces": "error",
         "no-whitespace-before-property": "warn",
         "object-curly-spacing": "warn",
-        "quotes": "warn",
         "quote-props": ["warn", "consistent-as-needed"],
         "semi": "error",
         "semi-spacing": "warn",
