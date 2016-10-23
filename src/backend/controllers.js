@@ -13,7 +13,7 @@ function index(req, response, next) {
 
     var path = "metawiki/index.html";
     models.Resource.findOne({
-        'path': path
+        path: path
     }, function(err, indexResource) {
         if (indexResource === null) {
             fetchTemplate("index_missing.html", function(err, template) {
@@ -43,7 +43,7 @@ function serve(request, response, next) {
     var urlPath = request.params[0];
 
     models.Resource.findOne({
-        'path': urlPath
+        path: urlPath
     }, function(err, resource) {
         if (resource === null) {
             // TODO: should be JSON with an error reason.
@@ -89,7 +89,7 @@ function fetchTemplate(name, cb) {
         var template;
         try {
             template = Handlebars.compile(templateSrc);
-        } catch(e) {
+        } catch (e) {
             cb(err, null);
         }
 
@@ -123,7 +123,7 @@ function safeViewResource(request, response, next) {
     response.setHeader('Content-Type', 'text/html');
 
     models.Resource.findOne({
-        'path': resourcePath
+        path: resourcePath
     }, function(err, resource) {
         fetchTemplate("safe_view.html", function(err, template) {
             if (err) {

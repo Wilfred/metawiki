@@ -16,12 +16,12 @@ describe("Homepage", function() {
 
     it("should return 200 from /", function(done) {
         new Resource({
-            'path': 'metawiki/index.html',
-            'content': 'foo'
+            path: 'metawiki/index.html',
+            content: 'foo'
         }).save(function() {
             request('http://localhost:9001')
                 .get('/')
-                .end(function (err, response) {
+                .end(function(err, response) {
                     expect(response).to.have.status(200);
                     done();
                 });
@@ -31,7 +31,7 @@ describe("Homepage", function() {
     it("should return 404 if there's no index.html", function(done) {
         request('http://localhost:9001')
             .get('/')
-            .end(function (err, response) {
+            .end(function(err, response) {
                 expect(response).to.have.status(404);
                 done();
             });
@@ -45,13 +45,13 @@ describe("Serving resources", function() {
 
     it("should be able to serve HTML", function(done) {
         new Resource({
-            'path': 'html/index.html',
-            'content': 'foo',
-            'mimeType': 'text/html'
+            path: 'html/index.html',
+            content: 'foo',
+            mimeType: 'text/html'
         }).save(function() {
             request('http://localhost:9001')
                 .get('/serve/html/index.html')
-                .end(function (err, response) {
+                .end(function(err, response) {
                     expect(response).to.have.status(200);
 
                     expect(response.headers['content-type'])
@@ -65,7 +65,7 @@ describe("Serving resources", function() {
     it("should 404 if no resource with that path", function(done) {
         request('http://localhost:9001')
             .get('/serve/no/such/resource')
-            .end(function (err, response) {
+            .end(function(err, response) {
                 expect(response).to.have.status(404);
 
                 done();
@@ -80,13 +80,13 @@ describe("Accessing resources", function() {
 
     it("should return the resource requested", function(done) {
         var testResource = new Resource({
-            'path': 'foo',
-            'content': 'foo'
+            path: 'foo',
+            content: 'foo'
         });
         testResource.save(function() {
             request('http://localhost:9001')
                 .get('/resources/foo')
-                .end(function (err, response) {
+                .end(function(err, response) {
                     expect(response).to.have.status(200);
 
                     var expected = testResource.toObject();
@@ -104,7 +104,7 @@ describe("Accessing resources", function() {
     it("should return 404 for nonexistent resources", function(done) {
         request('http://localhost:9001')
             .get('/resources/foo')
-            .end(function (err, response) {
+            .end(function(err, response) {
                 expect(response).to.have.status(404);
                 done();
             });
@@ -112,13 +112,13 @@ describe("Accessing resources", function() {
 
     it("should return all resources", function(done) {
         var testResource = new Resource({
-            'path': 'foo',
-            'content': 'foo'
+            path: 'foo',
+            content: 'foo'
         });
         testResource.save(function() {
             request('http://localhost:9001')
                 .get('/resources')
-                .end(function (err, response) {
+                .end(function(err, response) {
                     expect(response).to.have.status(200);
                     expect(response.body.length).to.equal(1);
 
@@ -137,11 +137,11 @@ describe("Creating resources", function() {
         request('http://localhost:9001')
             .post('/resources/foo')
             .field('content', 'bar')
-            .end(function (err, response) {
+            .end(function(err, response) {
                 expect(response).to.have.status(200);
 
                 Resource.find({
-                    'path': 'foo'
+                    path: 'foo'
                 }, function(err, resources) {
                     expect(resources.length).to.equal(1);
                     expect(resources[0].content).to.equal("bar");
@@ -152,18 +152,18 @@ describe("Creating resources", function() {
 
     it("should error if the resource already exists", function(done) {
         var testResource = new Resource({
-            'path': 'fooz',
-            'content': 'foo'
+            path: 'fooz',
+            content: 'foo'
         });
         testResource.save(function() {
             request('http://localhost:9001')
                 .post('/resources/fooz')
                 .field('content', 'foo')
-                .end(function (err, response) {
+                .end(function(err, response) {
                     expect(response).to.have.status(400);
 
                     Resource.find({
-                        'path': 'foo'
+                        path: 'foo'
                     }, function(err, resources) {
                         expect(resources.length).to.equal(1);
                         done();
@@ -180,21 +180,21 @@ describe("Editing resources", function() {
 
     it("should change resource content", function(done) {
         var testResource = new Resource({
-            'path': 'foo',
-            'content': 'foo',
-            'mimeType': 'application/javascript'
+            path: 'foo',
+            content: 'foo',
+            mimeType: 'application/javascript'
         });
         testResource.save(function() {
             request('http://localhost:9001')
                 .put('/resources/' + encodeURIComponent(testResource.path))
                 .field('content', 'bar')
                 .field('mimeType', 'application/javascript')
-                .end(function (err, response) {
+                .end(function(err, response) {
                     expect(response).to.have.status(200);
 
 
                     Resource.find({
-                        'path': testResource.path
+                        path: testResource.path
                     }, function(err, resources) {
                         expect(resources.length).to.equal(1);
                         expect(resources[0].content).to.equal("bar");
@@ -215,11 +215,11 @@ describe("Editing resources", function() {
                 .put('/resources/' + testResource.path)
                 .field('content', 'foo')
                 .field('mimeType', 'text/css')
-                .end(function (err, response) {
+                .end(function(err, response) {
                     expect(response).to.have.status(200);
 
                     Resource.find({
-                        'path': testResource.path
+                        path: testResource.path
                     }, function(err, resources) {
                         expect(resources.length).to.equal(1);
                         expect(resources[0].mimeType).to.equal("text/css");
@@ -234,7 +234,7 @@ describe("Editing resources", function() {
             .put('/resources/no-such-resource')
             .field('content', 'bar')
             .field('mimeType', 'text/css')
-            .end(function (err, response) {
+            .end(function(err, response) {
                 expect(response).to.have.status(404);
                 done();
             });
@@ -250,7 +250,7 @@ describe("Editing resources", function() {
             request('http://localhost:9001')
                 .put('/resources/' + testResource.path)
                 .field('mimeType', 'text/css')
-                .end(function (err, response) {
+                .end(function(err, response) {
                     expect(response).to.have.status(400);
                     done();
                 });

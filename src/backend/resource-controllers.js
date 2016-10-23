@@ -10,7 +10,7 @@ function get(req, res, next) {
     var path = req.params.path;
 
     models.Resource.findOne({
-        'path': path
+        path: path
     }, function(err, resource) {
         if (resource === null) {
             next(new restify.NotFoundError(
@@ -33,7 +33,7 @@ function update(req, res, next) {
     }
 
     models.Resource.findOneAndUpdate({
-        'path': path
+        path: path
     }, {
         content: req.body.content,
         mimeType: req.body.mimeType
@@ -52,7 +52,7 @@ function create(req, res, next) {
     var path = req.params.path;
 
     models.Resource.findOne({
-        'path': path
+        path: path
     }, function(err, existingResource) {
         if (existingResource === null) {
             var resource = new models.Resource({
@@ -83,5 +83,5 @@ module.exports = {
     get: get,
     create: create,
     update: update,
-    all: all,
+    all: all
 };

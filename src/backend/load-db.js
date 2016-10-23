@@ -173,7 +173,7 @@ async.series([
                            "src/frontend/Security"),
             createResource("text/x-markdown",
                            "page/Design",
-                           "src/frontend/Design"),
+                           "src/frontend/Design")
         ], cb);
     },
     db.disconnect

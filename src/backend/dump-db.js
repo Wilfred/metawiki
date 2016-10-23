@@ -29,7 +29,7 @@ async.series([
                     },
                     function(__cb) {
                         fs.writeFile(localPath, resource.content, __cb);
-                    },
+                    }
                 ], _cb);
             }, cb);
         });

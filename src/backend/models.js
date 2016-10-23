@@ -20,7 +20,7 @@ var resourceSchema = mongoose.Schema({
     // TODO: since we want to allow arbitrary fields to be defined by the
     // client, we will probably need to talk to mongo directly. We then don't
     // need this in the schema.
-    bootstrapPath: String,
+    bootstrapPath: String
 });
 
 // A resource is a blob of data that can viewed or modified over
