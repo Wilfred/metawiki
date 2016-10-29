@@ -5,7 +5,7 @@
 * Wet Asphalt #34495e
 */
 body {
-    font-family: sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background-color: #ecf0f1;
     
     max-width: 700px;
@@ -23,14 +23,13 @@ nav a, nav a:visited {
     color: white;
 }
 nav h2 {
-    font-style: italic;
     text-transform: lowercase;
     margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
-    font-family: serif;
+    font-family: 'Dosis', sans-serif;
     color: #34495e;
 }
 
