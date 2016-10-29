@@ -9,9 +9,8 @@ function SyntaxError(message) {
 }
 SyntaxError.prototype = new Error();
 
-// Eslint does not really run in the browser. See
-// https://groups.google.com/forum/#!topic/eslint/_If8mxLNdgI and
-// https://github.com/eslint/eslint/issues/2585
+// TODO: it would be nice to move the formatting into the browser,
+// wherever possible.
 function format(req, res, next) {
     // TODO: handle missing parameters and unknown mime types.
     var code = req.query.code;
@@ -29,6 +28,9 @@ function format(req, res, next) {
     }
 }
 
+// Eslint does not really run in the browser. See
+// https://groups.google.com/forum/#!topic/eslint/_If8mxLNdgI and
+// https://github.com/eslint/eslint/issues/2585
 function formatJs(src) {
     var cli = new CLIEngine({
         envs: ["browser", "mocha"],
