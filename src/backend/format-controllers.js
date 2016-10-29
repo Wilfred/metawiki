@@ -9,6 +9,13 @@ function format(req, res, next) {
     // syntax.
     var code = req.query.code;
 
+    // TODO: test on code which requires no changes.
+    res.send({code: formatJs(code)});
+    // TODO: test that this is the correct MIME type
+    next();
+}
+
+function formatJs(src) {
     var cli = new CLIEngine({
         envs: ["browser", "mocha"],
         useEslintrc: false,
@@ -17,11 +24,9 @@ function format(req, res, next) {
         fix: true
     });
 
-    var report = cli.executeOnText(code);
+    var report = cli.executeOnText(src);
     // TODO: test on code which requires no changes.
-    res.send({code: report.results[0].output});
-    // TODO: test that this is the correct MIME type
-    next();
+    return report.results[0].output;
 }
 
 module.exports = {
