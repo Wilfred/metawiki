@@ -83,6 +83,17 @@ async.series([
                 "codemirror/addon/selection/active-line.js",
                 "node_modules/codemirror/addon/selection/active-line.js"),
 
+            // Basic, dumb completion (dabbrev style).
+            createResource(
+                "codemirror/addon/hint/show-hint.css",
+                "node_modules/codemirror/addon/hint/show-hint.css"),
+            createResource(
+                "codemirror/addon/hint/show-hint.js",
+                "node_modules/codemirror/addon/hint/show-hint.js"),
+            createResource(
+                "codemirror/addon/hint/anyword-hint.js",
+                "node_modules/codemirror/addon/hint/anyword-hint.js"),
+
             // Syntax highlighting
             createResource(
                 "codemirror/mode/javascript/javascript.js",

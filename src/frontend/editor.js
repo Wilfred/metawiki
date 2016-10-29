@@ -7,6 +7,8 @@ define([
     "codemirror/addon/edit/matchbrackets",
     "codemirror/addon/edit/closebrackets",
     "codemirror/addon/selection/active-line",
+    "codemirror/addon/hint/show-hint",
+    "codemirror/addon/hint/anyword-hint",
     "codemirror/mode/javascript/javascript",
     "codemirror/mode/markdown/markdown",
     "codemirror/mode/css/css",
@@ -41,6 +43,11 @@ define([
             })
         );
 
+        // TODO: patching CodeMirror like this is dirty.
+        CodeMirror.commands.autocomplete = function(cm) {
+            cm.showHint({hint: CodeMirror.hint.anyword});
+        };
+
         var cm = CodeMirror.fromTextArea($("#editor").get(0), {
             lineNumbers: true,
             indentUnit: 4,
@@ -50,8 +57,10 @@ define([
             mode: getMode(mimeType)
         });
 
+        // TODO: this could be passed directly to fromTextArea
         cm.setOption("extraKeys", {
-            Tab: "indentAuto"
+            "Tab": "indentAuto",
+            "Ctrl-Space": "autocomplete"
         });
 
         var $selectMimeType = $("select[name=\"mimeType\"");
