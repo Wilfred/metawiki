@@ -96,6 +96,15 @@ async.series([
             createResource(
                 "codemirror/addon/hint/anyword-hint.js",
                 "node_modules/codemirror/addon/hint/anyword-hint.js"),
+            createResource(
+                "codemirror/addon/hint/css-hint.js",
+                "node_modules/codemirror/addon/hint/css-hint.js"),
+            createResource(
+                "codemirror/addon/hint/html-hint.js",
+                "node_modules/codemirror/addon/hint/html-hint.js"),
+            createResource(
+                "codemirror/addon/hint/xml-hint.js",
+                "node_modules/codemirror/addon/hint/xml-hint.js"),
 
             // Syntax highlighting
             createResource(

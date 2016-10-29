@@ -11,6 +11,8 @@ define([
     "codemirror/addon/selection/active-line",
     "codemirror/addon/hint/show-hint",
     "codemirror/addon/hint/anyword-hint",
+    "codemirror/addon/hint/css-hint",
+    "codemirror/addon/hint/html-hint",
     "codemirror/mode/javascript/javascript",
     "codemirror/mode/markdown/markdown",
     "codemirror/mode/css/css",
@@ -47,7 +49,7 @@ define([
 
         // TODO: patching CodeMirror like this is dirty.
         CodeMirror.commands.autocomplete = function(cm) {
-            cm.showHint({hint: CodeMirror.hint.anyword});
+            cm.showHint();
         };
 
         var cm = CodeMirror.fromTextArea($("#editor").get(0), {
