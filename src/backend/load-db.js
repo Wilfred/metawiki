@@ -2,18 +2,26 @@
 
 var fs = require("fs");
 var async = require('async');
+var path = require('path');
+
 var db = require('./db.js');
 var models = require('./models.js');
 
 var total = 0;
 
-// TODO: use an opts object.
-function createResource(mimeType, resourcePath, localPath) {
+function createResource(resourcePath, localPath) {
+    var MIME_TYPES = {
+        ".css": "text/css",
+        ".html": "text/html",
+        ".js": "application/javascript",
+        "": "text/x-markdown"
+    };
+
     return function(cb) {
         models.Resource.findOneAndUpdate({
             path: resourcePath
         }, {
-            mimeType: mimeType,
+            mimeType: MIME_TYPES[path.extname(localPath)],
             content: fs.readFileSync(localPath, {
                 encoding: 'utf8'
             }),
@@ -57,123 +65,123 @@ async.series([
             }),
 
             // Base codemirror
-            createResource("text/css",
+            createResource(
                 "codemirror/lib/codemirror.css",
                 "node_modules/codemirror/lib/codemirror.css"),
-            createResource("application/javascript",
+            createResource(
                 "codemirror/lib/codemirror.js",
                 "node_modules/codemirror/lib/codemirror.js"),
 
             // Editor conveniences
-            createResource("application/javascript",
+            createResource(
                 "codemirror/addon/edit/closebrackets.js",
                 "node_modules/codemirror/addon/edit/closebrackets.js"),
-            createResource("application/javascript",
+            createResource(
                 "codemirror/addon/edit/matchbrackets.js",
                 "node_modules/codemirror/addon/edit/matchbrackets.js"),
-            createResource("application/javascript",
+            createResource(
                 "codemirror/addon/selection/active-line.js",
                 "node_modules/codemirror/addon/selection/active-line.js"),
 
             // Syntax highlighting
-            createResource("application/javascript",
+            createResource(
                 "codemirror/mode/javascript/javascript.js",
                 "node_modules/codemirror/mode/javascript/javascript.js"),
-            createResource("application/javascript",
+            createResource(
                 "codemirror/mode/meta.js",
                 "node_modules/codemirror/mode/meta.js"),
-            createResource("application/javascript",
+            createResource(
                 "codemirror/mode/markdown/markdown.js",
                 "node_modules/codemirror/mode/markdown/markdown.js"),
-            createResource("application/javascript",
+            createResource(
                 "codemirror/mode/xml/xml.js",
                 "node_modules/codemirror/mode/xml/xml.js"),
-            createResource("application/javascript",
+            createResource(
                 "codemirror/mode/css/css.js",
                 "node_modules/codemirror/mode/css/css.js"),
 
-            createResource("application/javascript",
+            createResource(
                 "requirejs/require.js",
                 "node_modules/requirejs/require.js"),
 
-            createResource("application/javascript",
+            createResource(
                 "backbone.js",
                 "node_modules/backbone/backbone.js"),
 
-            createResource("application/javascript",
+            createResource(
                 "underscore.js",
                 "node_modules/underscore/underscore.js"),
 
-            createResource("application/javascript",
+            createResource(
                 "jquery.js",
                 "node_modules/jquery/dist/jquery.js"),
 
-            createResource("application/javascript",
+            createResource(
                 "marked/marked.js",
                 "node_modules/marked/lib/marked.js"),
 
-            createResource("application/javascript",
+            createResource(
                 "handlebars/handlebars.js",
                 "node_modules/handlebars/dist/handlebars.js"),
 
-            createResource("application/javascript",
+            createResource(
                 "mocha/mocha.js",
                 "node_modules/mocha/mocha.js"),
-            createResource("text/css",
+            createResource(
                 "mocha/mocha.css",
                 "node_modules/mocha/mocha.css"),
 
-            createResource("text/html",
+            createResource(
                 "metawiki/index.html",
                 "src/frontend/index.html"),
 
-            createResource("application/javascript",
+            createResource(
                 "metawiki/routing.js",
                 "src/frontend/routing.js"),
-            createResource("application/javascript",
+            createResource(
                 "metawiki/models.js",
                 "src/frontend/models.js"),
-            createResource("application/javascript",
+            createResource(
                 "metawiki/controllers.js",
                 "src/frontend/controllers.js"),
-            createResource("application/javascript",
+            createResource(
                 "metawiki/AllPagesController.js",
                 "src/frontend/AllPagesController.js"),
-            createResource("application/javascript",
+            createResource(
                 "metawiki/templates.js",
                 "src/frontend/templates.js"),
-            createResource("application/javascript",
+            createResource(
                 "metawiki/editor.js",
                 "src/frontend/editor.js"),
-            createResource("application/javascript",
+            createResource(
                 "metawiki/app.js",
                 "src/frontend/app.js"),
 
-            createResource("text/css",
+            createResource(
                 "metawiki/metawiki.css",
                 "src/frontend/metawiki.css"),
 
-            createResource("text/x-markdown",
-                           "page/Home",
-                           "src/frontend/Home"),
-            createResource("text/x-markdown",
-                           "page/Bugs",
-                           "src/frontend/Bugs"),
-            createResource("text/x-markdown",
-                           "page/Challenges",
-                           "src/frontend/Challenges"),
-            createResource("text/x-markdown",
-                           "page/Bugs",
-                           "src/frontend/Bugs"),
-            createResource("text/x-markdown",
-                           "page/Related",
-                           "src/frontend/Related"),
-            createResource("text/x-markdown",
-                           "page/Security",
-                           "src/frontend/Security"),
-            createResource("text/x-markdown",
-                           "page/Design",
-                           "src/frontend/Design")
+            createResource(
+                "page/Home",
+                "src/frontend/Home"),
+            createResource(
+                "page/Bugs",
+                "src/frontend/Bugs"),
+            createResource(
+                "page/Challenges",
+                "src/frontend/Challenges"),
+            createResource(
+                "page/Bugs",
+                "src/frontend/Bugs"),
+            createResource(
+                "page/Related",
+                "src/frontend/Related"),
+            createResource(
+                "page/Security",
+                "src/frontend/Security"),
+            createResource(
+                "page/Design",
+                "src/frontend/Design")
         ], cb);
     },
     db.disconnect
