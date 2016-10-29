@@ -124,6 +124,8 @@ async.series([
                 "handlebars/handlebars.js",
                 "node_modules/handlebars/dist/handlebars.js"),
 
+            // TODO: it would be nice to have more systematic naming
+            // of our paths, based on the node_modules path.
             createResource(
                 "mocha/mocha.js",
                 "node_modules/mocha/mocha.js"),
