@@ -1,12 +1,9 @@
-![logo](/serve/logo.jpg)
+This website is a **metawiki**.
 
-# Metawiki
+Unlike normal wikis, you can edit both the content and
+the website functionality.
 
-## What is a metawiki?
-A metawiki is a website where both the content and
-the functionality can be edited within the site itself.
-
-This is a pure JavaScript metawiki, and the source
+This website is written in JavaScript, and the source
 is [available on GitHub](https://github.com/Wilfred/metawiki).
 
 ## What can I edit?
