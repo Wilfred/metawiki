@@ -1,11 +1,12 @@
-define([
-    "backbone",
-    "metawiki/models",
-    "metawiki/templates",
-    "handlebars/handlebars",
-    "jquery"
-], function(Backbone, models, templates, Handlebars, $) {
+define(function(require) {
     "use strict";
+
+    var Backbone = require("backbone");
+    var Handlebars = require("handlebars/handlebars");
+    var $ = require("jquery");
+
+    var templates = require("metawiki/templates");
+    var models = require("metawiki/models");
 
     // FIXME: this applies to all resources, not just pages.
     var AllPages = Backbone.View.extend({

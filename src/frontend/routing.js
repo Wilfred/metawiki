@@ -1,8 +1,9 @@
-define([
-    "backbone",
-    "metawiki/AllPagesController",
-    "metawiki/controllers"
-], function(Backbone, AllPagesController, controllers) {
+define(function(require) {
+    var Backbone = require("backbone");
+
+    var AllPagesController = require("metawiki/AllPagesController");
+    var controllers = require("metawiki/controllers");
+
     var Router = Backbone.Router.extend({
         initialize: function(_options) {
             this.route("all", "allPages", function() {
