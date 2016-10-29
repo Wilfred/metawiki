@@ -1,17 +1,15 @@
-define([
-    'require',
-    'backbone',
-    'metawiki/models',
-    'metawiki/templates',
-    'metawiki/editor',
-    'handlebars/handlebars',
-    'marked/marked',
-    'jquery'
-], function(require, Backbone, models, templates, editor, Handlebars, marked, $) {
+define(function(require) {
     "use strict";
 
-    var Resource = models.Resource;
-    
+    var Backbone = require("backbone");
+    var Handlebars = require("handlebars/handlebars");
+    var $ = require("jquery");
+    var marked = require("marked/marked");
+
+    var templates = require("metawiki/templates");
+    var Resource = require("metawiki/models").Resource;
+    var editor = require("metawiki/editor");
+
     marked.setOptions({
         sanitize: true
     });
