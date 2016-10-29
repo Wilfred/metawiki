@@ -1,5 +1,8 @@
 "use strict";
 
+// TODO: rename this file fresh-db.js and separate out metawiki file
+// loading from 3rd party code loading.
+
 var fs = require("fs");
 var async = require('async');
 var path = require('path');
