@@ -14,8 +14,8 @@ body {
 
 nav {
     background-color: #34495e;
-    padding: 10px;
-    margin: 0;
+    padding: 0px 10px 10px 10px;
+    margin-bottom: 10px;
 }
 nav a, nav a:visited {
     margin-right: 10px;
