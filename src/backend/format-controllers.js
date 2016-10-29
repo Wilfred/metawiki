@@ -1,18 +1,32 @@
+var restify = require('restify');
 var formatRules = require("../../.eslintrc-format.json").rules;
 var CLIEngine = require("eslint").CLIEngine;
+
+function SyntaxError(message) {
+    this.name = 'SyntaxError';
+    this.message = message;
+    this.stack = (new Error()).stack;
+}
+SyntaxError.prototype = new Error();
 
 // Eslint does not really run in the browser. See
 // https://groups.google.com/forum/#!topic/eslint/_If8mxLNdgI and
 // https://github.com/eslint/eslint/issues/2585
 function format(req, res, next) {
-    // TODO: handle missing parameters, unknown mime types and invalid
-    // syntax.
+    // TODO: handle missing parameters and unknown mime types.
     var code = req.query.code;
 
     // TODO: test on code which requires no changes.
-    res.send({code: formatJs(code)});
-    // TODO: test that this is the correct MIME type
-    next();
+    try {
+        res.send({code: formatJs(code)});
+        next();
+    } catch (e) {
+        if (e.name == 'SyntaxError') {
+            next(new restify.BadRequestError(e.message));
+        } else {
+            throw e;
+        }
+    }
 }
 
 function formatJs(src) {
@@ -25,6 +39,11 @@ function formatJs(src) {
     });
 
     var report = cli.executeOnText(src);
+
+    if (report.errorCount > 0) {
+        throw new SyntaxError("JS syntax error");
+    }
+
     // TODO: test on code which requires no changes.
     return report.results[0].output;
 }
