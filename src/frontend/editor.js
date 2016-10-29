@@ -1,3 +1,5 @@
+// TODO: use require() to avoid having to match up all these module names
+// with arguments.
 define([
     "jquery",
     "metawiki/models",
