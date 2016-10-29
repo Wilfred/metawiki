@@ -17,7 +17,7 @@ nav {
     padding: 0px 10px 10px 10px;
     margin-bottom: 10px;
 }
-nav a, nav a:visited {
+nav a, nav a:visited, nav a:hover {
     margin-right: 10px;
     border-bottom: 0;
     color: white;
