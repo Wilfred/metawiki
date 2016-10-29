@@ -19,6 +19,16 @@ describe('Autoformat', function() {
             });
     });
 
+    it("should require mime type", function(done) {
+        request('http://localhost:9001')
+            .get('/format')
+            .query({code: 'function foo(x,y){x+1;y+2;}'})
+            .end(function(err, response) {
+                expect(response).to.have.status(400);
+                done();
+            });
+    });
+
     it("should return formatted JS", function(done) {
         request('http://localhost:9001')
             .get('/format')

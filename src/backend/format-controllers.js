@@ -12,13 +12,17 @@ SyntaxError.prototype = new Error();
 // TODO: it would be nice to move the formatting into the browser,
 // wherever possible.
 function format(req, res, next) {
-    // TODO: handle missing parameters and unknown mime types.
     var code = req.query.code;
+    var mimeType = req.query.mimeType;
 
     // TODO: test on code which requires no changes.
     try {
-        res.send({code: formatJs(code)});
-        next();
+        if (mimeType == 'application/javascript') {
+            res.send({code: formatJs(code)});
+            next();
+        } else {
+            next(new restify.BadRequestError("Invalid MIME type: " + mimeType));
+        }
     } catch (e) {
         if (e.name == 'SyntaxError') {
             next(new restify.BadRequestError(e.message));
