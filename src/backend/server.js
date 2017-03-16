@@ -20,7 +20,7 @@ function createServer(opts) {
     var server = restify.createServer(opts);
 
     server.pre(function(request, response, next) {
-        request.log.info(request.method, request.url);
+        request.log.info(request.method, request.url.substring(0, 70));
         next();
     });
 
