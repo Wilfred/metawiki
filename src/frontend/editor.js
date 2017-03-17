@@ -93,7 +93,8 @@ define([
             e.preventDefault();
             var src = cm.getValue();
             fetch("/format?" + $.param({
-                code: src
+                code: src,
+                mimeType: $selectMimeType.val()
             })).then(function(response) {
                 return response.json();
             }).then(function(data) {
