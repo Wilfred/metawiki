@@ -15,7 +15,6 @@ function format(req, res, next) {
     var code = req.query.code;
     var mimeType = req.query.mimeType;
 
-    // TODO: test on code which requires no changes.
     try {
         if (mimeType == 'application/javascript') {
             res.send({code: formatJs(code)});
@@ -54,8 +53,9 @@ function formatJs(src) {
                 " " + message.message);
     }
 
-    // TODO: test on code which requires no changes.
-    return result.output;
+    // If the code is already well formatted, eslint does not return
+    // any output.
+    return result.output || src;
 }
 
 module.exports = {

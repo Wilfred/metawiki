@@ -41,6 +41,18 @@ describe('Autoformat', function() {
             });
     });
 
+    it("should handle correctly formatted JS", function(done) {
+        request('http://localhost:9001')
+            .get('/format')
+            .query({code: "x;\n", mimeType: 'application/javascript'})
+            .end(function(err, response) {
+                expect(response.body).to.deep.equal({
+                    code: "x;\n"
+                });
+                done();
+            });
+    });
+
     it("should handle malformed JS", function(done) {
         request('http://localhost:9001')
             .get('/format')
