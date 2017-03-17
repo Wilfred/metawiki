@@ -45,13 +45,17 @@ function formatJs(src) {
     });
 
     var report = cli.executeOnText(src);
+    var result = report.results[0];
 
     if (report.errorCount > 0) {
-        throw new SyntaxError("JS syntax error");
+        var message = result.messages[0];
+        throw new SyntaxError(
+            "" + message.line + ":" + message.column +
+                " " + message.message);
     }
 
     // TODO: test on code which requires no changes.
-    return report.results[0].output;
+    return result.output;
 }
 
 module.exports = {
