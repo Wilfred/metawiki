@@ -63,5 +63,39 @@ describe('Autoformat', function() {
             });
     });
 
+    it("should return formatted CSS", function(done) {
+        request('http://localhost:9001')
+            .get('/format')
+            .query({code: ".foo{display:block;}", mimeType: 'text/css'})
+            .end(function(err, response) {
+                expect(response.body).to.deep.equal({
+                    code: ".foo {\n  display: block;\n}"
+                });
+                done();
+            });
+    });
+
+    it("should handle correctly formatted CSS", function(done) {
+        request('http://localhost:9001')
+            .get('/format')
+            .query({code: "a {\n}\n", mimeType: 'text/css'})
+            .end(function(err, response) {
+                expect(response.body).to.deep.equal({
+                    code: "a {\n}\n"
+                });
+                done();
+            });
+    });
+
+    it("should handle malformed CSS", function(done) {
+        request('http://localhost:9001')
+            .get('/format')
+            .query({code: ".foo {", mimeType: 'text/css'})
+            .end(function(err, response) {
+                expect(response).to.have.status(400);
+                done();
+            });
+    });
+
     afterEach(helpers.teardownServer);
 });
