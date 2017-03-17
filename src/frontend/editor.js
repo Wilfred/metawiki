@@ -32,6 +32,11 @@ define([
         }
     }
 
+    function canAutoformat(mimeType) {
+        return mimeType == "application/javascript" ||
+            mimeType == "text/css";
+    }
+
     function load(heading, resource) {
         resource = resource || new models.Resource();
         var mimeType = resource.get("mimeType") || "text/x-markdown";
@@ -70,13 +75,13 @@ define([
         var $selectMimeType = $("select[name=\"mimeType\"");
         var $formatSource = $(".format-source");
 
-        if ($selectMimeType.val() == "application/javascript") {
+        if (canAutoformat($selectMimeType.val())) {
             $formatSource.removeClass("hidden");
         }
 
         $selectMimeType.change(function(e) {
             cm.setOption("mode", getMode(this.value));
-            if (this.value == "application/javascript") {
+            if (canAutoformat(this.value)) {
                 $formatSource.removeClass("hidden");
             } else {
                 $formatSource.addClass("hidden");

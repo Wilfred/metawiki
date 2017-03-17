@@ -5,80 +5,96 @@
 * Wet Asphalt #34495e
 */
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #ecf0f1;
-    
-    max-width: 700px;
-    margin: 0 0 30px 200px;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ecf0f1;
+  max-width: 700px;
+  margin: 0 0 30px 200px;
 }
 
 nav {
-    background-color: #34495e;
-    padding: 0px 10px 0px 10px;
-    margin-bottom: 10px;
-}
-nav a, nav a:visited, nav a:hover {
-    margin-right: 10px;
-    border-bottom: 0;
-    color: white;
-}
-nav h2 {
-    margin: 0;
-    float: left;
-}
-nav .header-links {
-    float: right;
-    line-height: 31px;
-}
-.clearfix {
-   clear: both;
+  background-color: #34495e;
+  padding: 0px 10px 0px 10px;
+  margin-bottom: 10px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 0;
-    font-family: 'Dosis', sans-serif;
-    color: #34495e;
+nav a,
+nav a:visited,
+nav a:hover {
+  margin-right: 10px;
+  border-bottom: 0;
+  color: white;
+}
+
+nav h2 {
+  margin: 0;
+  float: left;
+}
+
+nav .header-links {
+  float: right;
+  line-height: 31px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0;
+  font-family: 'Dosis', sans-serif;
+  color: #34495e;
 }
 
 a {
-    color: #2980b9;
-    text-decoration: none;
+  color: #2980b9;
+  text-decoration: none;
 }
+
 a:hover {
-    border-bottom: 1px solid #2980b9;
+  border-bottom: 1px solid #2980b9;
 }
+
 a:visited {
-    color: #8e44ad;
-    border-bottom: 1px solid #8e44ad;
+  color: #8e44ad;
+  border-bottom: 1px solid #8e44ad;
 }
 
 p {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 table {
-    background-color: #bdc3c7;
-    width: 100%;
-    border-collapse: collapse;
+  background-color: #bdc3c7;
+  width: 100%;
+  border-collapse: collapse;
 }
-td, th {
-    border: 1px solid #34495e;
-    border-spacing: 0;
-    padding: 5px;
-}
-tbody tr:nth-child(odd) {
-   background-color: #95a5a6;
-}
+
+td,
 th {
-    background-color: #34495e;
-    color: #ecf0f1;
+  border: 1px solid #34495e;
+  border-spacing: 0;
+  padding: 5px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #95a5a6;
+}
+
+th {
+  background-color: #34495e;
+  color: #ecf0f1;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .CodeMirror {
-    border: 1px solid #eee;
-    height: auto;
+  border: 1px solid #eee;
+  height: auto;
 }
