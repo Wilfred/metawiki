@@ -8,6 +8,9 @@ async.series([
     db.connect,
 
     function(cb) {
+        models.Counter.remove({}, cb);
+    },
+    function(cb) {
         models.Resource.remove({}, cb);
     },
 
