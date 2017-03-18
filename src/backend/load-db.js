@@ -21,34 +21,28 @@ function createResource(resourcePath, localPath) {
     };
 
     return function(cb) {
-        models.Resource.findOneAndUpdate({
-            path: resourcePath
-        }, {
+        total++;
+        new models.Resource({
+            path: resourcePath,
             mimeType: MIME_TYPES[path.extname(localPath)],
             content: fs.readFileSync(localPath, {
                 encoding: 'utf8'
             }),
             created: Date.now(),
             bootstrapPath: localPath
-        }, {
-            upsert: true
-        }, cb);
-        total++;
+        }).save(cb);
     };
 }
 
 function createBinaryResource(opts) {
     return function(cb) {
-        models.Resource.findOneAndUpdate({
-            path: opts.path
-        }, {
+        total++;
+        new models.Resource({
+            path: opts.path,
             mimeType: opts.mimeType,
             created: Date.now(),
             localPath: opts.localPath
-        }, {
-            upsert: true
-        }, cb);
-        total++;
+        }).save(cb);
     };
 
 }
