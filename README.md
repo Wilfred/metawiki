@@ -17,13 +17,16 @@ AGPLv3 license. Ouroboros image is [under CC-NC-ND license](https://www.flickr.c
 ## Running the server
 
 ```
-# specifying --python is only necessary if python 3 is the default
-$ npm install --python=/usr/bin/python2
-$ sudo systemctl start mongodb
+# Install the dependencies.
+$ npm install -g yarn
+$ yarn
 
+# Start a database for the backend.
+$ sudo systemctl start mongodb
 # if mongo didn't shut down cleanly:
 $ sudo -u mongodb bash -c "mongod --repair --dbpath /var/lib/mongodb"
 
+# Populate the database and start the server.
 $ npm run load-db
 $ npm start
 ```
