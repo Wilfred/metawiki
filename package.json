@@ -22,7 +22,7 @@
     "handlebars": "^4.0.5",
     "istanbul": "^0.4.2",
     "jquery": "3.1.1",
-    "lodash": "https://registry.npmjs.org/lodash/-/lodash-4.16.4.tgz",
+    "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "mkdirp": "^0.5.1",
     "mocha": "^3.0.2",
