@@ -6,7 +6,9 @@ chai.use(chaiHttp);
 
 var server = require('../server');
 var db = require('../db');
-var Resource = require('../models.js').Resource;
+var models = require('../models.js');
+var Resource = models.Resource;
+var Counter = models.Counter;
 
 var SERVER_PORT = 9001;
 var TEST_DB_NAME = "testing";
@@ -16,6 +18,12 @@ function freshTestDB(cb) {
     async.series([
         function(_cb) {
             db.connect(_cb, {db: TEST_DB_NAME});
+        },
+        function(_cb) {
+            Counter.remove({}, _cb);
+        },
+        function(_cb) {
+            new Counter({name: 'Resource', value: 1}).save(_cb);
         },
         function(_cb) {
             Resource.remove({}, _cb);

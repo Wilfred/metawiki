@@ -59,6 +59,12 @@ async.series([
     function(cb) {
         models.Resource.remove({}, cb);
     },
+    function(_cb) {
+        models.Counter.remove({}, _cb);
+    },
+    function(_cb) {
+        new models.Counter({name: 'Resource', value: 1}).save(_cb);
+    },
     function(cb) {
         async.parallel([
             createBinaryResource({
