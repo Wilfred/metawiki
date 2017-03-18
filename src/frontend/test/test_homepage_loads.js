@@ -24,15 +24,15 @@ setTimeout(function() {
         // Give the page 2 seconds to load.
         setTimeout(function() {
             var heading = page.evaluate(function() {
-                var h1 = document.getElementsByTagName('h1')[0];
-                return h1;
+                var h2 = document.getElementsByTagName('h2')[0];
+                return h2;
             });
 
             var exitCode = 0;
             if (!heading) {
                 console.log("Could not find the heading!");
                 exitCode = 1;
-            } else if (heading.textContent != 'Metawiki') {
+            } else if (heading.textContent != '∞ metawiki') {
                 console.log("Unexpected header value:", heading.textContent);
                 exitCode = 1;
             } else {
