@@ -9,7 +9,7 @@ var request = chai.request;
 
 var helpers = require('./helpers');
 var Resource = require('../models').Resource;
-
+var _ = require('lodash');
 
 describe("Homepage", function() {
     beforeEach(helpers.testPrepare);
@@ -79,22 +79,23 @@ describe("Accessing resources", function() {
     beforeEach(helpers.testPrepare);
 
     it("should return the resource requested", function(done) {
-        var testResource = new Resource({
+        new Resource({
             path: 'foo',
             content: 'foo'
-        });
-        testResource.save(function() {
+        }).save(function() {
             request('http://localhost:9001')
                 .get('/resources/foo')
                 .end(function(err, response) {
                     expect(response).to.have.status(200);
 
-                    var expected = testResource.toObject();
-                    // Ignore ID for the time being.
-                    response.body._id = null;
-                    expected._id = null;
-
-                    expect(response.body).to.deep.equal(expected);
+                    var result = _.omitBy(response.body, function(v, k) {
+                        return k.startsWith("_")
+                    });
+                    expect(result).to.deep.equal({
+                        path: 'foo',
+                        content: 'foo',
+                        id: 1,
+                    });
 
                     done();
                 });
