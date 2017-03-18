@@ -55,12 +55,10 @@ function create(req, res, next) {
         path: path
     }, function(err, existingResource) {
         if (existingResource === null) {
-            var resource = new models.Resource({
+            new models.Resource({
                 path: path,
                 content: req.body.content
-            });
-            resource.save(function() {
-                // TODO: should we send something else?
+            }).save(function(err, resource) {
                 res.send(resource);
                 next();
             });
