@@ -89,12 +89,12 @@ describe("Accessing resources", function() {
                     expect(response).to.have.status(200);
 
                     var result = _.omitBy(response.body, function(v, k) {
-                        return k.startsWith("_")
+                        return k.startsWith("_");
                     });
                     expect(result).to.deep.equal({
                         path: 'foo',
                         content: 'foo',
-                        id: 1,
+                        id: 1
                     });
 
                     done();
@@ -124,12 +124,12 @@ describe("Accessing resources", function() {
                     expect(response.body.length).to.equal(1);
 
                     var result = _.omitBy(response.body[0], function(v, k) {
-                        return k.startsWith("_")
+                        return k.startsWith("_");
                     });
                     expect(result).to.deep.equal({
                         path: 'foo',
                         content: 'foo',
-                        id: 1,
+                        id: 1
                     });
 
                     done();

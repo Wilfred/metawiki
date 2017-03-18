@@ -39,11 +39,11 @@ resourceSchema.pre('save', function(next) {
         Counter.findOneAndUpdate({
             name: 'Resource'
         }, {
-            $inc: { value: 1 }
+            $inc: {value: 1}
         }, function(err, counter) {
             self.id = counter.value;
             next();
-        })
+        });
     } else {
         next();
     }
