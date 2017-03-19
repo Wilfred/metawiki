@@ -7,10 +7,10 @@ var prettyStdOut = new PrettyStream();
 prettyStdOut.pipe(process.stdout);
 
 module.exports = new bunyan.createLogger({
-    name: "metawiki",
-    streams: [{
-        level: 'debug',
-        type: 'raw',
-        stream: prettyStdOut
-    }]
+  name: "metawiki",
+  streams: [{
+    level: 'debug',
+    type: 'raw',
+    stream: prettyStdOut
+  }]
 });
