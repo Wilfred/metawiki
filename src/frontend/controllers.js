@@ -113,7 +113,7 @@ define(function(require) {
               mimeType: mimeType
             }, {
               success: function() {
-                messages.success('Saved', "Wrote " + this + " to database.");
+                messages.success('Saved', "Wrote " + resource.get('path') + " to database.");
                 // don't go anywhere if we said 'save and continue'
                 if ($input.attr("name") != "save-continue") {
                   // FIXME: what if we create a page called 'edit'?
