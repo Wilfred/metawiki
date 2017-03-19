@@ -12,7 +12,15 @@ API design is based on
 [GoCardless's API design guidelines](https://github.com/gocardless/http-api-design/blob/master/README.md). The
 frontend is a single page app.
 
-AGPLv3 license. Ouroboros image is [under CC-NC-ND license](https://www.flickr.com/photos/vaxzine/3389513720).
+## License
+
+Metawiki code is under the AGPLv3 license.
+
+Ouroboros image
+is
+[under CC-NC-ND license](https://www.flickr.com/photos/vaxzine/3389513720).
+
+Icons are from Icons8 which is [CC-BY-ND](https://icons8.com/license/).
 
 ## Running the server
 

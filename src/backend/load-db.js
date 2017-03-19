@@ -152,6 +152,18 @@ async.series([
                 "push/push.js",
                 "node_modules/push.js/push.js"),
 
+            // Icons.
+            createBinaryResource({
+                path: "Ok.png",
+                mimeType: "image/png",
+                localPath: "icons/Ok.png"
+            }),
+            createBinaryResource({
+                path: "Error.png",
+                mimeType: "image/png",
+                localPath: "icons/Error-48.png"
+            }),
+
             // TODO: it would be nice to have more systematic naming
             // of our paths, based on the node_modules path.
             createResource(
