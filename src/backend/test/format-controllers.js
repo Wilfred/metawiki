@@ -35,7 +35,7 @@ describe('Autoformat', function() {
             .query({code: "function foo(x,y){\nx+1\nx={'a': 1}\n}", mimeType: 'application/javascript'})
             .end(function(err, response) {
               expect(response.body).to.deep.equal({
-                code: "function foo(x, y) {\n    x + 1;\n    x = {a: 1};\n}\n"
+                code: "function foo(x, y) {\n  x + 1;\n  x = {a: 1};\n}\n"
               });
               done();
             });
