@@ -2,11 +2,11 @@ require.config({
     baseUrl: "/serve"
 });
 
-// The clientside wiki app.
-require([
-    "backbone",
-    "metawiki/routing" // defines our routes
-], function(Backbone, routing) {
+// The entry point for the app.
+define(function(require) {
+    var Backbone = require('backbone');
+    var routing = require('metawiki/routing');
+
     Backbone.history.start();
 
     if (Backbone.history.getHash() === "") {
