@@ -56,7 +56,8 @@ function create(req, res, next) {
     if (existingResource === null) {
       new models.Resource({
         path: path,
-        content: req.body.content
+        content: req.body.content,
+        mimeType: req.body.mimeType
       }).save(function(err, resource) {
         res.send(resource);
         next();

@@ -112,6 +112,7 @@ describe("Creating resources", function() {
     request('http://localhost:9001')
             .post('/resources/foo')
             .field('content', 'bar')
+            .field('mimeType', 'text/x-markdown')
             .end(function(err, response) {
               expect(response).to.have.status(200);
 
@@ -119,7 +120,9 @@ describe("Creating resources", function() {
                 path: 'foo'
               }, function(err, resources) {
                 expect(resources.length).to.equal(1);
-                expect(resources[0].content).to.equal("bar");
+                var resource = resources[0];
+                expect(resource.content).to.equal("bar");
+                expect(resource.mimeType).to.equal("text/x-markdown");
                 done();
               });
             });
