@@ -30,6 +30,7 @@
     "mongoose": "^4.4.4",
     "phantomjs-prebuilt": "^2.1.7",
     "postcss": "^5.2.16",
+    "push.js": "^0.0.12",
     "requirejs": "^2.1.22",
     "restify": "^4.0.4",
     "stylefmt": "^5.3.0",

@@ -15,6 +15,7 @@ You can also edit the JS ([models](#edit?metawiki/models.js),
 [controllers](#edit?metawiki/controllers.js),
 [AllPagesController](#edit?metawiki/AllPagesController.js),
 [templates](#edit?metawiki/templates.js), 
+[messages](#edit?metawiki/messages.js), 
 [editor](#edit?metawiki/editor.js), 
 [app](#edit?metawiki/app.js)),
 [the CSS](#edit?metawiki/metawiki.css)

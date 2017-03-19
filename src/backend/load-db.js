@@ -147,6 +147,11 @@ async.series([
                 "handlebars/handlebars.js",
                 "node_modules/handlebars/dist/handlebars.js"),
 
+            // Notifications
+            createResource(
+                "push/push.js",
+                "node_modules/push.js/push.js"),
+
             // TODO: it would be nice to have more systematic naming
             // of our paths, based on the node_modules path.
             createResource(
