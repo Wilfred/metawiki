@@ -95,17 +95,30 @@ define([
       return false;
     });
 
+     // fetch() only errors on network problems, not HTTP status codes.
+    function checkStatus(response) {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      } else {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
+    }
+
     $formatSource.click(function(e) {
       e.preventDefault();
       var src = cm.getValue();
       fetch("/format?" + $.param({
         code: src,
         mimeType: $selectMimeType.val()
-      })).then(function(response) {
+      })).then(checkStatus).then(function(response) {
         return response.json();
       }).then(function(data) {
         cm.getDoc().setValue(data.code);
         messages.success('Formatted', 'ESLint ran successfully');
+      }).catch(function(error) {
+        messages.error("Formatting failed", String(error));
       });
     });
 
