@@ -7,7 +7,7 @@ define(function(require) {
     Push.create(title, {
       body: body,
       icon: '/serve/' + icon,
-      timeout: 2000,
+      timeout: 3000,
       onClick: function() {
         window.focus();
         this.close();
