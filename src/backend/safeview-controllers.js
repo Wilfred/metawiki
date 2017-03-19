@@ -7,6 +7,8 @@ var Handlebars = require('handlebars');
 
 var models = require('./models');
 
+// Serve the index, but fail gracefully if the database is
+// empty/missing.
 function index(req, response, next) {
     response.setHeader('Content-Type', 'text/html');
 
@@ -143,10 +145,7 @@ function safeViewResource(request, response, next) {
 }
 
 module.exports = {
-    serve: serve,
-
+    index: index,
     safeViewAllResources: safeViewAllResources,
     safeViewResource: safeViewResource,
-
-    index: index
 };
