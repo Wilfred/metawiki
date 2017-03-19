@@ -177,6 +177,7 @@ async.series([
                 "metawiki/index.html",
                 "src/frontend/index.html"),
 
+            // TODO: use globbing rather than spelling this out.
             createResource(
                 "metawiki/routing.js",
                 "src/frontend/routing.js"),
@@ -192,6 +193,9 @@ async.series([
             createResource(
                 "metawiki/templates.js",
                 "src/frontend/templates.js"),
+            createResource(
+                "metawiki/messages.js",
+                "src/frontend/messages.js"),
             createResource(
                 "metawiki/editor.js",
                 "src/frontend/editor.js"),

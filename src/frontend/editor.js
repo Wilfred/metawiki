@@ -4,6 +4,7 @@ define([
     "jquery",
     "metawiki/models",
     "metawiki/templates",
+    "metawiki/messages",
     "handlebars/handlebars",
     "codemirror/lib/codemirror",
     "codemirror/addon/edit/matchbrackets",
@@ -17,7 +18,7 @@ define([
     "codemirror/mode/markdown/markdown",
     "codemirror/mode/css/css",
     "codemirror/mode/xml/xml"
-], function($, models, templates, Handlebars, CodeMirror) {
+], function($, models, templates, messages, Handlebars, CodeMirror) {
     "use strict";
 
     function getMode(mimeType) {
@@ -104,6 +105,7 @@ define([
                 return response.json();
             }).then(function(data) {
                 cm.getDoc().setValue(data.code);
+                messages.success('Formatted', 'ESLint ran successfully');
             });
         });
 

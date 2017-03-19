@@ -3,13 +3,28 @@ define(function(require) {
 
     var Push = require('push/push');
 
-    Push.create("Hello world!", {
-        body: "How's it hangin'?",
-        icon: 'icon.png',
-        timeout: 4000,
-        onClick: function() {
-            window.focus();
-            this.close();
-        }
-    });
+    function message(title, body, icon) {
+        Push.create(title, {
+            body: body,
+            icon: '/serve/' + icon,
+            timeout: 2000,
+            onClick: function() {
+                window.focus();
+                this.close();
+            }
+        });
+    }
+
+    function success(title, body) {
+        message(title, body, "Ok.png");
+    }
+
+    function error(title, body) {
+        message(title, body, "Error.png");
+    }
+
+    return {
+        success: success,
+        error: error
+    };
 });
