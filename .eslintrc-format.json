@@ -17,7 +17,7 @@
         "no-extra-semi": "warn",
         "no-implicit-coercion": "warn",
         "no-multi-spaces": "warn",
-        "no-multiple-empty-lines": "warn",
+        "no-multiple-empty-lines": ["warn", { "max": 1 }],
         "no-trailing-spaces": "error",
         "no-whitespace-before-property": "warn",
         "object-curly-spacing": "warn",

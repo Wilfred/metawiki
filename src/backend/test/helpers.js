@@ -3,7 +3,6 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-
 var server = require('../server');
 var db = require('../db');
 var models = require('../models.js');

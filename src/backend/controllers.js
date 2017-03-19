@@ -7,7 +7,6 @@ var Handlebars = require('handlebars');
 
 var models = require('./models');
 
-
 function index(req, response, next) {
     response.setHeader('Content-Type', 'text/html');
 

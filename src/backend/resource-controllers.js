@@ -5,7 +5,6 @@ var _ = require('underscore');
 
 var models = require('./models');
 
-
 function get(req, res, next) {
     var path = req.params.path;
 

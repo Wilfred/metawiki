@@ -202,7 +202,6 @@ describe("Editing resources", function() {
                 .end(function(err, response) {
                     expect(response).to.have.status(200);
 
-
                     Resource.find({
                         path: testResource.path
                     }, function(err, resources) {
