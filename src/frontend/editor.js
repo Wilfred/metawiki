@@ -14,6 +14,8 @@ define([
   "codemirror/addon/hint/anyword-hint",
   "codemirror/addon/hint/css-hint",
   "codemirror/addon/hint/html-hint",
+  "codemirror/addon/lint/lint",
+  "codemirror/addon/lint/javascript-lint",
   "codemirror/mode/javascript/javascript",
   "codemirror/mode/markdown/markdown",
   "codemirror/mode/css/css",
@@ -58,14 +60,23 @@ define([
       cm.showHint();
     };
 
-    var cm = CodeMirror.fromTextArea($("#editor").get(0), {
+    var mode = getMode(mimeType);
+    var config = {
       lineNumbers: true,
       indentUnit: 4,
       matchBrackets: true,
       styleActiveLine: true,
       autoCloseBrackets: true,
-      mode: getMode(mimeType)
-    });
+      mode: mode
+    };
+    if (mimeType == 'application/javascript') {
+      config.gutters = ["CodeMirror-lint-markers"];
+      config.lint = true;
+    }
+      
+    console.log(config);
+
+    var cm = CodeMirror.fromTextArea($("#editor").get(0), config);
 
     // TODO: this could be passed directly to fromTextArea
     cm.setOption("extraKeys", {

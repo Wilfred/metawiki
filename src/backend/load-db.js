@@ -75,7 +75,7 @@ async.series([
                 "codemirror/lib/codemirror.js",
                 "node_modules/codemirror/lib/codemirror.js"),
 
-            // Editor conveniences
+      // Editor conveniences
       createResource(
                 "codemirror/addon/edit/closebrackets.js",
                 "node_modules/codemirror/addon/edit/closebrackets.js"),
@@ -86,7 +86,18 @@ async.series([
                 "codemirror/addon/selection/active-line.js",
                 "node_modules/codemirror/addon/selection/active-line.js"),
 
-            // Basic, dumb completion (dabbrev style).
+      // Linting in editor.
+      createResource(
+        "codemirror/addon/lint/lint.css",
+        "node_modules/codemirror/addon/lint/lint.css"),
+      createResource(
+        "codemirror/addon/lint/lint.js",
+        "node_modules/codemirror/addon/lint/lint.js"),
+      createResource(
+        "codemirror/addon/lint/javascript-lint.js",
+        "node_modules/codemirror/addon/lint/javascript-lint.js"),
+
+      // Basic, dumb completion (dabbrev style).
       createResource(
                 "codemirror/addon/hint/show-hint.css",
                 "node_modules/codemirror/addon/hint/show-hint.css"),
