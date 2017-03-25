@@ -63,7 +63,7 @@ define([
     var mode = getMode(mimeType);
     var config = {
       lineNumbers: true,
-      indentUnit: 4,
+      indentUnit: 2,
       matchBrackets: true,
       styleActiveLine: true,
       autoCloseBrackets: true,
@@ -73,7 +73,7 @@ define([
       config.gutters = ["CodeMirror-lint-markers"];
       config.lint = true;
     }
-      
+
     console.log(config);
 
     var cm = CodeMirror.fromTextArea($("#editor").get(0), config);
