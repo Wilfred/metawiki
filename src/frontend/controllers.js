@@ -93,10 +93,10 @@ define(function(require) {
                 if ($input.attr("name") != "save-continue") {
                   // FIXME: what if we create a page called 'edit'?
                   if (mimeType == "text/x-markdown") {
-                      navigate(resourceName);
-                    } else {
-                      navigate("page/Home");
-                    }
+                    navigate(resourceName);
+                  } else {
+                    navigate("page/Home");
+                  }
                 }
               }
             });
