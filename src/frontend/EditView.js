@@ -21,58 +21,51 @@ define(function(require) {
     routing.navigate(path, {trigger: true});
   }
 
-  var EditView = Backbone.View.extend({
+  function startEditor(resource) {
+    var editorInstance = editor.load("Editing", resource);
+
+    // TODO: we should narrow this to children of the edit form.
+    $("input[type=submit]").click(function(e) {
+      e.preventDefault();
+      var $input = $(this);
+      var mimeType = $("[name=mimeType]").val();
+
+      resource.save({
+        content: editorInstance.getValue(),
+        mimeType: mimeType
+      }, {
+        success: function() {
+          messages.success('Saved', "Wrote " + resource.get('path') + " to database.");
+          // don't go anywhere if we said 'save and continue'
+          if ($input.attr("name") != "save-continue") {
+            // FIXME: what if we create a page called 'edit'?
+            if (mimeType == "text/x-markdown") {
+              navigate(resource.get('path'));
+            } else {
+              navigate("page/Home");
+            }
+          }
+        }
+      });
+    });
+  }
+
+  return Backbone.View.extend({
     el: $("#content"),
 
     render: function() {
-      if (editor === undefined) {
-        editor = require("metawiki/editor");
-      }
-
       // Of the form 'edit?foo/bar'
       // TODO: this should be from the router directly
       var hashPath = window.location.hash.substring(1);
       var resourceName = hashPath.split("?")[1];
 
-      var resource = new Resource({path: resourceName, id: resourceName});
-
-      resource.fetch({
-        success: function() {
-          var editorInstance = editor.load("Editing", resource);
-
-          // TODO: we should narrow this to children of the edit form.
-          $("input[type=submit]").click(function() {
-            var $input = $(this);
-            var mimeType = $("[name=mimeType]").val();
-
-            resource.save({
-              content: editorInstance.getValue(),
-              mimeType: mimeType
-            }, {
-              success: function() {
-                messages.success('Saved', "Wrote " + resource.get('path') + " to database.");
-                // don't go anywhere if we said 'save and continue'
-                if ($input.attr("name") != "save-continue") {
-                  // FIXME: what if we create a page called 'edit'?
-                  if (mimeType == "text/x-markdown") {
-                    navigate(resourceName);
-                  } else {
-                    navigate("page/Home");
-                  }
-                }
-              }
-            });
-
-            return false;
-          });
-
-        }, error: function() {
+      (new Resource({path: resourceName, id: resourceName})).fetch({
+        success: startEditor,
+        error: function() {
           // Page doesn't exist
           navigate("new?" + resourceName);
         }
       });
     }
   });
-  
-  return EditView;
 });
