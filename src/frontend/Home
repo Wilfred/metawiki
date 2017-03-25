@@ -13,6 +13,8 @@ You can edit the content on this site. For example, you can
 You can also edit the JS ([models](#edit?metawiki/models.js),
 [routing](#edit?metawiki/routing.js), 
 [controllers](#edit?metawiki/controllers.js),
+[PageView](#edit?metawiki/PageView.js),
+[EditView](#edit?metawiki/EditView.js),
 [AllPagesController](#edit?metawiki/AllPagesController.js),
 [templates](#edit?metawiki/templates.js), 
 [messages](#edit?metawiki/messages.js), 

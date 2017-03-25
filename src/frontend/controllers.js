@@ -1,52 +1,13 @@
+// jshint unused:true, undef:true
+/* globals define, window */
 define(function(require) {
   "use strict";
 
   var Backbone = require("backbone");
-  var Handlebars = require("handlebars/handlebars");
   var $ = require("jquery");
-  var marked = require("marked/marked");
 
-  var templates = require("metawiki/templates");
   var Resource = require("metawiki/models").Resource;
-  var messages = require('metawiki/messages');
   var editor = require("metawiki/editor");
-
-  marked.setOptions({
-    sanitize: true
-  });
-
-    // TODO: factor out a Nav view
-  var ViewPage = Backbone.View.extend({
-    el: $("#content"),
-
-        // TODO: we should probably take the page name in
-        // initialize instead.
-    render: function(pageName) {
-      var self = this;
-
-      var path = "page/" + pageName;
-      var page = new Resource({path: path, id: path});
-
-      page.fetch({
-        success: function() {
-          var renderedContent = new Handlebars.SafeString(
-                        marked(page.get("content")));
-
-          self.$el.html(templates.pageTemplate({
-            path: page.get("path"),
-            content: renderedContent
-          }));
-        },
-        error: function() {
-          self.$el.html(templates.pageMissingTemplate({
-            path: page.get("path")
-          }));
-        }
-      });
-
-      return self;
-    }
-  });
 
   var routing = null;
     /** Navigate to path. Routing depends on controllers, so we
@@ -58,60 +19,6 @@ define(function(require) {
     }
     routing.navigate(path, {trigger: true});
   }
-
-  var EditResource = Backbone.View.extend({
-    el: $("#content"),
-
-    render: function() {
-      if (editor === undefined) {
-        editor = require("metawiki/editor");
-      }
-
-      // Of the form 'edit?foo/bar'
-      // TODO: this should be from the router directly
-      var hashPath = window.location.hash.substring(1);
-      var resourceName = hashPath.split("?")[1];
-
-      var resource = new Resource({path: resourceName, id: resourceName});
-
-      resource.fetch({
-        success: function() {
-          var editorInstance = editor.load("Editing", resource);
-
-          // TODO: we should narrow this to children of the edit form.
-          $("input[type=submit]").click(function() {
-            var $input = $(this);
-            var mimeType = $("[name=mimeType]").val();
-
-            resource.save({
-              content: editorInstance.getValue(),
-              mimeType: mimeType
-            }, {
-              success: function() {
-                messages.success('Saved', "Wrote " + resource.get('path') + " to database.");
-                // don't go anywhere if we said 'save and continue'
-                if ($input.attr("name") != "save-continue") {
-                  // FIXME: what if we create a page called 'edit'?
-                  if (mimeType == "text/x-markdown") {
-                    navigate(resourceName);
-                  } else {
-                    navigate("page/Home");
-                  }
-                }
-              }
-            });
-
-            return false;
-
-          });
-
-        }, error: function() {
-          // Page doesn't exist
-          navigate("new?" + resourceName);
-        }
-      });
-    }
-  });
 
   var NewResource = Backbone.View.extend({
     el: $("#content"),
@@ -156,8 +63,6 @@ define(function(require) {
   });
 
   return {
-    ViewPage: ViewPage,
-    EditResource: EditResource,
     NewResource: NewResource
   };
 });
