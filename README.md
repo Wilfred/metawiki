@@ -35,8 +35,8 @@ $ sudo systemctl start mongodb
 $ sudo -u mongodb bash -c "mongod --repair --dbpath /var/lib/mongodb"
 
 # Populate the database and start the server.
-$ npm run load-db
-$ npm start
+$ yarn run load-db
+$ yarn run start
 ```
 
 ## Tests
