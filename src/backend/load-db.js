@@ -202,8 +202,8 @@ async.series([
                 "metawiki/AllPagesController.js",
                 "src/frontend/AllPagesController.js"),
       createResource(
-                "metawiki/PageView.js",
-                "src/frontend/PageView.js"),
+                "metawiki/ReadView.js",
+                "src/frontend/ReadView.js"),
       createResource(
                 "metawiki/EditView.js",
                 "src/frontend/EditView.js"),

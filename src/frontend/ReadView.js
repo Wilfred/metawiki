@@ -16,7 +16,7 @@ define(function(require) {
   });
 
   // TODO: factor out a Nav view
-  var PageView = Backbone.View.extend({
+  var ReadView = Backbone.View.extend({
     el: $("#content"),
 
     // TODO: we should probably take the page name in
@@ -47,5 +47,5 @@ define(function(require) {
     }
   });
 
-  return PageView;
+  return ReadView;
 });

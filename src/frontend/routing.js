@@ -3,7 +3,7 @@
 define(function(require) {
   var Backbone = require("backbone");
 
-  var PageView = require("metawiki/PageView");
+  var ReadView = require("metawiki/ReadView");
   var EditView = require("metawiki/EditView");
   var AllPagesController = require("metawiki/AllPagesController");
   var controllers = require("metawiki/controllers");
@@ -16,7 +16,7 @@ define(function(require) {
       });
 
       this.route("page/:pageName", "pageView", function(pageName) {
-        var pageView = new PageView();
+        var pageView = new ReadView();
         pageView.render(pageName);
       });
       this.route("edit*", "editView", function() {
