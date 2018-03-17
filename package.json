@@ -30,6 +30,7 @@
     "mongoose": "^4.4.4",
     "phantomjs-prebuilt": "^2.1.7",
     "postcss": "^5.2.16",
+    "prettier": "^1.11.1",
     "push.js": "^0.0.12",
     "requirejs": "^2.1.22",
     "restify": "^4.0.4",
@@ -42,7 +43,7 @@
     "dump-db": "node src/backend/dump-db.js",
     "drop-db": "node src/backend/drop-db.js",
     "lint-backend": "eslint src/backend",
-    "format-backend": "eslint src/backend --fix --no-eslintrc -c .eslintrc-format.json",
+    "format-backend": "eslint src/backend --fix || true; prettier --write \"src/backend/**/*.js\"",
     "test": "mocha -R dot src/backend/test",
     "test-with-coverage": "cd src/backend && istanbul cover _mocha --report lcovonly -- -R spec"
   },

@@ -1,20 +1,13 @@
 {
-    "env": {
-        "browser": true,
-        "node": true,
-        "amd": true,
-        "mocha": true
-    },
-    "extends": "eslint:recommended",
-    "rules": {
-        "no-console": "off",
-        "indent": [
-            "error",
-            2
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ]
-    }
+  "env": {
+    "browser": true,
+    "node": true,
+    "amd": true,
+    "mocha": true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "no-console": "off",
+    "linebreak-style": ["error", "unix"]
+  }
 }

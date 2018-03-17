@@ -1,16 +1,16 @@
-var chai = require('chai');
+var chai = require("chai");
 var expect = chai.expect;
 
-var helpers = require('./helpers');
-var Resource = require('../models').Resource;
+var helpers = require("./helpers");
+var Resource = require("../models").Resource;
 
-describe('Saving models', function() {
+describe("Saving models", function() {
   beforeEach(helpers.testPrepare);
 
   it("should have an ID after saving", function(done) {
     new Resource({
-      path: 'foo',
-      content: 'bar'
+      path: "foo",
+      content: "bar"
     }).save(function(err, resource) {
       expect(resource.id).to.equal(1);
       done();
