@@ -128,9 +128,9 @@ define([
         return response.json();
       }).then(function(data) {
         cm.getDoc().setValue(data.code);
-        messages.success('Formatted', 'ESLint ran successfully');
+        //messages.success('Formatted', 'ESLint ran successfully');
       }).catch(function(error) {
-        messages.error("Formatting failed", String(error));
+        //messages.error("Formatting failed", String(error));
       });
     });
 
