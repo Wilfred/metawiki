@@ -18,7 +18,7 @@
     "chai-http": "^3.0.0",
     "codemirror": "^5.1.0",
     "coveralls": "*",
-    "eslint": "^3.9.0",
+    "eslint": "^4.18.2",
     "handlebars": "^4.3.0",
     "istanbul": "^0.4.2",
     "jquery": "^3.4.1",
