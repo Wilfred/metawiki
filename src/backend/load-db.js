@@ -74,10 +74,10 @@ async.series(
     // Remove all existing resources, install a fresh set, and cleanup.
     db.connect,
     function(cb) {
-      models.Resource.remove({}, cb);
+      models.Resource.deleteMany({}, cb);
     },
     function(_cb) {
-      models.Counter.remove({}, _cb);
+      models.Counter.deleteMany({}, _cb);
     },
     function(_cb) {
       new models.Counter({ name: "Resource", value: 1 }).save(_cb);

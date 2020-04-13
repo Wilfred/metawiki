@@ -20,13 +20,13 @@ function freshTestDB(cb) {
         db.connect(_cb, { db: TEST_DB_NAME });
       },
       function(_cb) {
-        Counter.remove({}, _cb);
+        Counter.deleteMany({}, _cb);
       },
       function(_cb) {
         new Counter({ name: "Resource", value: 1 }).save(_cb);
       },
       function(_cb) {
-        Resource.remove({}, _cb);
+        Resource.deleteMany({}, _cb);
       }
     ],
     cb

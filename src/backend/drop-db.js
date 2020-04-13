@@ -9,10 +9,10 @@ async.series(
     db.connect,
 
     function(cb) {
-      models.Counter.remove({}, cb);
+      models.Counter.deleteMany({}, cb);
     },
     function(cb) {
-      models.Resource.remove({}, cb);
+      models.Resource.deleteMany({}, cb);
     },
 
     db.disconnect
