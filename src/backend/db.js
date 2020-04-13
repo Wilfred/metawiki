@@ -1,6 +1,8 @@
 "use strict";
 
 var mongoose = require("mongoose");
+mongoose.set("useNewUrlParser", true);
+mongoose.set("useUnifiedTopology", true);
 mongoose.Promise = global.Promise;
 
 function connect(cb, opts) {
