@@ -2,9 +2,6 @@
 
 set -e
 
-echo "Discarding old DB"
-npm run drop-db
-
 echo "Loading fresh DB"
 npm run load-db
 
