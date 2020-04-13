@@ -15,4 +15,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 9002
-CMD [ "npm", "start" ]
+CMD [ "./bin/start-sandbox" ]
