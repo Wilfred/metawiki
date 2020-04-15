@@ -1,6 +1,6 @@
 <img src="binary_files/ouroboros.jpg" align="right"/>
 
-# Metawiki [![Build Status](https://travis-ci.org/Wilfred/metawiki.svg?branch=master)](https://travis-ci.org/Wilfred/metawiki) [![Dependency Status](https://david-dm.org/wilfred/metawiki.svg)](https://david-dm.org/wilfred/metawiki) [![Coverage Status](https://coveralls.io/repos/Wilfred/metawiki/badge.svg)](https://coveralls.io/r/Wilfred/metawiki) [![Code Climate](https://codeclimate.com/github/Wilfred/metawiki/badges/gpa.svg)](https://codeclimate.com/github/Wilfred/metawiki)
+# Metawiki [![Build Status](https://travis-ci.org/Wilfred/metawiki.svg?branch=master)](https://travis-ci.org/Wilfred/metawiki) [![Dependency Status](https://david-dm.org/wilfred/metawiki.svg)](https://david-dm.org/wilfred/metawiki) [![Coverage Status](https://coveralls.io/repos/Wilfred/metawiki/badge.svg)](https://coveralls.io/r/Wilfred/metawiki) [![Code Climate](https://codeclimate.com/github/Wilfred/metawiki/badges/gpa.svg)](https://codeclimate.com/github/Wilfred/metawiki) [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/wilfred/metawiki)](https://hub.docker.com/r/wilfred/metawiki)
 
 Demo site: http://metawiki-demo.wilfred.me.uk/
 
